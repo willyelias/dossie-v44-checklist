@@ -1,0 +1,1697 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dossiê Operacional v44 • ABDI + TJPB + TJRN | Willy Alves</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #0b0f19;
+      --bg-secondary: #111827;
+      --bg-card: #1e293b;
+      --bg-card-hover: #263449;
+      --border: #334155;
+      --text-primary: #f8fafc;
+      --text-secondary: #94a3b8;
+      --text-muted: #64748b;
+      --accent: #3b82f6;
+      --accent-hover: #2563eb;
+      --success: #10b981;
+      --success-bg: rgba(16, 185, 129, 0.15);
+      --warning: #f59e0b;
+      --warning-bg: rgba(245, 158, 11, 0.15);
+      --danger: #ef4444;
+      --danger-bg: rgba(239, 68, 68, 0.15);
+      --critical: #ea580c;
+      --critical-bg: rgba(234, 88, 12, 0.18);
+      --maximo: #dc2626;
+      --maximo-bg: rgba(220, 38, 38, 0.22);
+      --alto: #2563eb;
+      --alto-bg: rgba(37, 99, 235, 0.2);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.5;
+      padding-bottom: 4rem;
+    }
+
+    /* Header Banner */
+    .hero-header {
+      background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 1.75rem 1.5rem;
+      position: relative;
+    }
+
+    .container {
+      max-width: 1360px;
+      margin: 0 auto;
+    }
+
+    .hero-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .badge-version {
+      display: inline-block;
+      color: var(--warning);
+      font-weight: 700;
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 0.35rem;
+    }
+
+    .hero-title {
+      font-size: 1.75rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: #ffffff;
+    }
+
+    .hero-meta-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 0.75rem;
+      margin-top: 1.25rem;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .meta-box {
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid rgba(255,255,255,0.08);
+      padding: 0.65rem 0.9rem;
+      border-radius: 0.5rem;
+    }
+
+    .meta-label {
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--warning);
+      font-weight: 700;
+    }
+
+    .meta-val {
+      font-size: 0.85rem;
+      color: var(--text-primary);
+      font-weight: 500;
+      margin-top: 0.15rem;
+    }
+
+    /* Sync Bar */
+    .sync-bar {
+      background: var(--bg-secondary);
+      border-bottom: 1px solid var(--border);
+      padding: 0.65rem 1.5rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(12px);
+    }
+
+    .sync-bar-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .db-status {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+    }
+
+    .status-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--success);
+      box-shadow: 0 0 8px var(--success);
+    }
+
+    .status-dot.syncing {
+      background: var(--warning);
+      box-shadow: 0 0 8px var(--warning);
+      animation: pulse 1s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
+    .action-btns {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.42rem 0.85rem;
+      border-radius: 0.45rem;
+      font-size: 0.78rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      color: var(--text-primary);
+      transition: all 0.15s;
+    }
+
+    .btn:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--text-secondary);
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-hover);
+    }
+
+    .btn-success {
+      background: rgba(16, 185, 129, 0.2);
+      border-color: var(--success);
+      color: #34d399;
+    }
+
+    /* KPI Dashboard */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+
+    .kpi-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 0.75rem;
+      padding: 1.1rem 1.25rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .kpi-title {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-secondary);
+    }
+
+    .kpi-value {
+      font-size: 1.75rem;
+      font-weight: 800;
+      font-family: 'JetBrains Mono', monospace;
+      margin: 0.35rem 0;
+      color: var(--text-primary);
+    }
+
+    .kpi-sub {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .progress-bar-bg {
+      width: 100%;
+      height: 6px;
+      background: var(--bg-card);
+      border-radius: 999px;
+      overflow: hidden;
+      margin-top: 0.6rem;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent), var(--success));
+      border-radius: 999px;
+      transition: width 0.3s ease;
+    }
+
+    /* Alert Banner */
+    .alert-banner {
+      background: rgba(234, 88, 12, 0.12);
+      border: 1px solid var(--critical);
+      border-left: 4px solid var(--critical);
+      border-radius: 0.6rem;
+      padding: 0.9rem 1.15rem;
+      margin-bottom: 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .alert-banner strong {
+      color: #fb923c;
+    }
+
+    /* Navigation Tabs */
+    .nav-tabs {
+      display: flex;
+      gap: 0.4rem;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 1.5rem;
+      overflow-x: auto;
+      padding-bottom: 0.2rem;
+    }
+
+    .tab-btn {
+      padding: 0.7rem 1.1rem;
+      border: none;
+      background: transparent;
+      color: var(--text-secondary);
+      font-weight: 600;
+      font-size: 0.85rem;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      white-space: nowrap;
+      transition: all 0.15s;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .tab-btn:hover {
+      color: var(--text-primary);
+      background: rgba(255,255,255,0.03);
+    }
+
+    .tab-btn.active {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+      background: rgba(59, 130, 246, 0.08);
+    }
+
+    .tab-badge {
+      font-size: 0.7rem;
+      padding: 0.1rem 0.45rem;
+      border-radius: 99px;
+      background: var(--bg-card);
+      color: var(--text-secondary);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .tab-btn.active .tab-badge {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    /* Filter Bar */
+    .filter-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-bottom: 1.25rem;
+      background: var(--bg-secondary);
+      padding: 0.85rem 1rem;
+      border-radius: 0.6rem;
+      border: 1px solid var(--border);
+    }
+
+    .search-input {
+      background: var(--bg-primary);
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+      padding: 0.5rem 0.85rem;
+      border-radius: 0.45rem;
+      font-size: 0.85rem;
+      min-width: 260px;
+      flex: 1;
+    }
+
+    .filter-pills {
+      display: flex;
+      gap: 0.4rem;
+      flex-wrap: wrap;
+    }
+
+    .pill {
+      padding: 0.35rem 0.75rem;
+      border-radius: 99px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1px solid var(--border);
+      background: var(--bg-primary);
+      color: var(--text-secondary);
+    }
+
+    .pill.active {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+    }
+
+    /* Tables & Cards */
+    .tab-pane {
+      display: none;
+    }
+
+    .tab-pane.active {
+      display: block;
+    }
+
+    .section-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 0.75rem;
+      margin-bottom: 1.5rem;
+      overflow: hidden;
+    }
+
+    .section-header {
+      background: rgba(30, 41, 59, 0.75);
+      padding: 0.9rem 1.25rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .section-title {
+      font-size: 1rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .table-responsive {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.84rem;
+    }
+
+    th {
+      background: #0f172a;
+      color: var(--text-secondary);
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: 0.7rem;
+      letter-spacing: 0.05em;
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    td {
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid rgba(51, 65, 85, 0.5);
+      vertical-align: middle;
+    }
+
+    tr:hover td {
+      background: rgba(30, 41, 59, 0.45);
+    }
+
+    tr.row-done td {
+      opacity: 0.62;
+      background: rgba(16, 185, 129, 0.05);
+    }
+
+    tr.row-done .item-title {
+      text-decoration: line-through;
+      color: var(--text-secondary);
+    }
+
+    tr.row-past:not(.row-done) td {
+      background: rgba(245, 158, 11, 0.07);
+    }
+
+    tr.row-today:not(.row-done) td {
+      background: rgba(59, 130, 246, 0.12);
+    }
+
+    /* Custom Checkbox */
+    .chk-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    input[type="checkbox"].custom-chk {
+      width: 19px;
+      height: 19px;
+      cursor: pointer;
+      accent-color: var(--success);
+      border-radius: 4px;
+    }
+
+    /* Badges */
+    .peso-badge {
+      display: inline-block;
+      padding: 0.2rem 0.55rem;
+      border-radius: 0.35rem;
+      font-size: 0.68rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      text-align: center;
+      min-width: 74px;
+    }
+
+    .peso-CONCLUIDO { background: var(--success-bg); color: #34d399; border: 1px solid var(--success); }
+    .peso-CRITICO { background: var(--critical-bg); color: #fb923c; border: 1px solid var(--critical); }
+    .peso-MAXIMO { background: var(--maximo-bg); color: #f87171; border: 1px solid var(--maximo); }
+    .peso-ALTO { background: var(--alto-bg); color: #60a5fa; border: 1px solid var(--alto); }
+
+    .date-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.76rem;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .tag-past {
+      display: inline-block;
+      font-size: 0.65rem;
+      padding: 0.1rem 0.4rem;
+      border-radius: 4px;
+      background: var(--warning-bg);
+      color: #fbbf24;
+      border: 1px solid rgba(245, 158, 11, 0.4);
+      margin-left: 0.35rem;
+      font-weight: 700;
+    }
+
+    .tag-today {
+      display: inline-block;
+      font-size: 0.65rem;
+      padding: 0.1rem 0.4rem;
+      border-radius: 4px;
+      background: rgba(59, 130, 246, 0.25);
+      color: #60a5fa;
+      border: 1px solid var(--accent);
+      margin-left: 0.35rem;
+      font-weight: 700;
+    }
+
+    /* Score Inputs */
+    .score-input {
+      width: 64px;
+      background: var(--bg-primary);
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+      padding: 0.35rem 0.45rem;
+      border-radius: 0.35rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      text-align: center;
+    }
+
+    .score-input:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+
+    .pct-pill {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      font-size: 0.78rem;
+      padding: 0.2rem 0.5rem;
+      border-radius: 0.35rem;
+      display: inline-block;
+      min-width: 54px;
+      text-align: center;
+    }
+
+    .pct-high { background: var(--success-bg); color: #34d399; }
+    .pct-mid { background: var(--warning-bg); color: #fbbf24; }
+    .pct-low { background: var(--danger-bg); color: #f87171; }
+    .pct-none { background: var(--bg-card); color: var(--text-muted); }
+
+    .note-input {
+      width: 100%;
+      min-width: 130px;
+      background: transparent;
+      border: 1px dashed rgba(148, 163, 184, 0.25);
+      color: var(--text-secondary);
+      padding: 0.3rem 0.5rem;
+      border-radius: 0.35rem;
+      font-size: 0.78rem;
+    }
+
+    .note-input:focus {
+      outline: none;
+      border-color: var(--accent);
+      background: var(--bg-primary);
+      color: var(--text-primary);
+    }
+
+    /* Modal */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.75);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 200;
+      padding: 1rem;
+    }
+
+    .modal-backdrop.open {
+      display: flex;
+    }
+
+    .modal-box {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 0.75rem;
+      max-width: 520px;
+      width: 100%;
+      padding: 1.5rem;
+    }
+
+    .modal-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .form-group {
+      margin: 1rem 0;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+      margin-bottom: 0.35rem;
+      font-weight: 600;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 0.55rem 0.75rem;
+      background: var(--bg-primary);
+      border: 1px solid var(--border);
+      border-radius: 0.45rem;
+      color: var(--text-primary);
+      font-size: 0.85rem;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* Checklist Microfocos Grid */
+    .microfoco-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 0.75rem;
+      padding: 1rem;
+    }
+
+    .microfoco-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      padding: 0.75rem;
+      border-radius: 0.5rem;
+      background: var(--bg-primary);
+      border: 1px solid var(--border);
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .microfoco-item:hover {
+      border-color: var(--accent);
+    }
+
+    .microfoco-item.done {
+      opacity: 0.6;
+      background: rgba(16, 185, 129, 0.06);
+      border-color: rgba(16, 185, 129, 0.3);
+    }
+
+    .microfoco-item.done .mf-text {
+      text-decoration: line-through;
+      color: var(--text-secondary);
+    }
+
+    .mf-cat {
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--accent);
+      display: block;
+      margin-bottom: 0.15rem;
+    }
+
+    .mf-text {
+      font-size: 0.83rem;
+      color: var(--text-primary);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Header -->
+  <header class="hero-header">
+    <div class="container">
+      <div class="hero-top">
+        <div>
+          <span class="badge-version">DOSSIÊ OPERACIONAL PADRÃO V44 • ENGENHARIA REVERSA POR DELTA</span>
+          <h1 class="hero-title">PLANO DE ATAQUE INTEGRADO: ABDI + TJPB + TJRN</h1>
+        </div>
+        <div style="text-align: right;">
+          <span class="badge-version">DATA DE REFERÊNCIA</span>
+          <div style="font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 0.95rem;" id="currentDateDisplay">28/10/2026</div>
+        </div>
+      </div>
+
+      <div class="hero-meta-grid">
+        <div class="meta-box">
+          <div class="meta-label">Candidato</div>
+          <div class="meta-val">Willy Alves (Eng. Computação | 10 anos Infra/Suporte)</div>
+        </div>
+        <div class="meta-box">
+          <div class="meta-label">Cota</div>
+          <div class="meta-val">Negros (Preto/Pardo)</div>
+        </div>
+        <div class="meta-box">
+          <div class="meta-label">Banca Dominante</div>
+          <div class="meta-val">FGV (Fundação Getulio Vargas)</div>
+        </div>
+        <div class="meta-box">
+          <div class="meta-label">Baseline Recente</div>
+          <div class="meta-val">Aprovado DATAPREV (48/70 • 76,5 pts)</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Sticky Database & Cloud Sync Bar -->
+  <div class="sync-bar">
+    <div class="container sync-bar-inner">
+      <div class="db-status">
+        <span class="status-dot" id="syncDot"></span>
+        <span id="syncStatusText">Banco de Dados Conectado (IndexedDB + LocalStorage Ativo)</span>
+      </div>
+      <div class="action-btns">
+        <button class="btn" onclick="markAllPastDatesDone()" title="Marca como concluídos todos os itens anteriores a hoje">
+          ⏳ Marcar Datas Passadas
+        </button>
+        <button class="btn btn-primary" onclick="openCloudModal()">
+          ☁️ Sincronizar Banco GitHub / API
+        </button>
+        <button class="btn" onclick="exportDatabaseJSON()">
+          ⬇️ Exportar JSON/CSV
+        </button>
+        <button class="btn" onclick="document.getElementById('importFile').click()">
+          ⬆️ Importar Backup
+        </button>
+        <input type="file" id="importFile" style="display:none" accept=".json" onchange="importDatabaseJSON(event)" />
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <main class="container" style="padding: 0 1.5rem;">
+
+    <!-- KPI Summary -->
+    <div class="kpi-grid">
+      <div class="kpi-card">
+        <div class="kpi-title">Progresso Geral do Dossiê</div>
+        <div class="kpi-value" id="kpiTotalPct">0%</div>
+        <div class="kpi-sub" id="kpiTotalCount">0 de 0 itens concluídos</div>
+        <div class="progress-bar-bg"><div class="progress-bar-fill" id="kpiTotalBar" style="width: 0%"></div></div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-title">Questões Resolvidas (TEC)</div>
+        <div class="kpi-value" id="kpiQuestionsDone">0</div>
+        <div class="kpi-sub" id="kpiQuestionsTarget">Meta Sprints 01-02: 595 questões</div>
+        <div class="progress-bar-bg"><div class="progress-bar-fill" id="kpiQuestionsBar" style="width: 0%"></div></div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-title">Taxa Média de Acertos (FGV)</div>
+        <div class="kpi-value" id="kpiAccuracy">0.0%</div>
+        <div class="kpi-sub" id="kpiAccuracySub">0 acertos registrados</div>
+        <div class="progress-bar-bg"><div class="progress-bar-fill" id="kpiAccuracyBar" style="width: 0%"></div></div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-title">Marcos Administrativos</div>
+        <div class="kpi-value" id="kpiAdminDone">1 / 15</div>
+        <div class="kpi-sub" id="kpiAdminSub">Próximo: Hemonorte (Até 28/10)</div>
+        <div class="progress-bar-bg"><div class="progress-bar-fill" id="kpiAdminBar" style="width: 7%"></div></div>
+      </div>
+    </div>
+
+    <!-- Alert Banner -->
+    <div class="alert-banner">
+      <div>
+        <strong>🚨 AÇÃO PREVENTIVA RECOMENDADA (TJPB — Subitem 5.4.1.2):</strong>
+        Mantenha em mãos a declaração timbrada do <strong>HEMONORTE</strong> (unidade coletora) até <strong>28/10/2026</strong> para eventual recurso caso a FGV indefira a declaração isolada do REDOME no resultado preliminar.
+      </div>
+    </div>
+
+    <!-- Navigation Tabs -->
+    <div class="nav-tabs">
+      <button class="tab-btn active" onclick="switchTab('tab-anexo', this)">
+        📊 Anexo A: Sprints 01 e 02 (Diário) <span class="tab-badge" id="badge-anexo">0/22</span>
+      </button>
+      <button class="tab-btn" onclick="switchTab('tab-admin', this)">
+        🗓️ 1. Calendário Administrativo <span class="tab-badge" id="badge-admin">1/15</span>
+      </button>
+      <button class="tab-btn" onclick="switchTab('tab-sprints', this)">
+        🚀 3. Macrocronograma (15 Sprints) <span class="tab-badge" id="badge-sprints">0/15</span>
+      </button>
+      <button class="tab-btn" onclick="switchTab('tab-nucleos', this)">
+        🧠 2. Arquitetura de Conteúdo (Núcleos 1, 2 e 3) <span class="tab-badge" id="badge-nucleos">0/58</span>
+      </button>
+      <button class="tab-btn" onclick="switchTab('tab-grades', this)">
+        ⏰ 4-6. Grades Diárias e Horárias (Fases 1, 2 e 3) <span class="tab-badge" id="badge-grades">0/42</span>
+      </button>
+    </div>
+
+    <!-- Filter & Search Bar -->
+    <div class="filter-bar">
+      <input type="text" class="search-input" id="searchInput" placeholder="🔍 Filtrar por disciplina, data, lei, resolução ou tópico..." oninput="renderAll()" />
+      <div class="filter-pills">
+        <button class="pill active" onclick="setStatusFilter('all', this)">Todos</button>
+        <button class="pill" onclick="setStatusFilter('pending', this)">Pendentes</button>
+        <button class="pill" onclick="setStatusFilter('done', this)">Concluídos</button>
+        <button class="pill" onclick="setStatusFilter('past', this)">⏳ Datas Passadas</button>
+      </div>
+    </div>
+
+    <!-- TAB 1: ANEXO A (SPRINTS 01 E 02) -->
+    <div class="tab-pane active" id="tab-anexo">
+      <div class="section-card">
+        <div class="section-header">
+          <div class="section-title">
+            <span>📋 ANEXO A — CRONOGRAMA TÁTICO DE EXECUÇÃO • SPRINTS 01 E 02</span>
+          </div>
+          <span style="font-size: 0.78rem; color: var(--text-secondary);">Marque OK, insira seus Acertos e o banco calculará sua % automaticamente</span>
+        </div>
+        <div class="table-responsive">
+          <table>
+            <thead>
+              <tr>
+                <th style="width: 50px; text-align: center;">OK</th>
+                <th>Data / Dia</th>
+                <th>Sprint</th>
+                <th>Horário</th>
+                <th>Bloco / Disciplina</th>
+                <th>Método</th>
+                <th>Peso</th>
+                <th style="text-align: center;">Acertos</th>
+                <th style="text-align: center;">Meta (Q)</th>
+                <th style="text-align: center;">%</th>
+                <th>Notas / Observações</th>
+              </tr>
+            </thead>
+            <tbody id="tbody-anexo"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 2: CALENDÁRIO ADMINISTRATIVO -->
+    <div class="tab-pane" id="tab-admin">
+      <div class="section-card">
+        <div class="section-header">
+          <div class="section-title">
+            <span>🗓️ SEÇÃO 1 — CALENDÁRIO ADMINISTRATIVO E MARCOS OPERACIONAIS (MONITORAMENTO FGV)</span>
+          </div>
+        </div>
+        <div class="table-responsive">
+          <table>
+            <thead>
+              <tr>
+                <th style="width: 50px; text-align: center;">OK</th>
+                <th>Data / Prazo</th>
+                <th>Órgão</th>
+                <th>Evento / Marco Oficial</th>
+                <th>Conduta Tática do Candidato</th>
+                <th>Peso</th>
+                <th>Protocolo / Anotações</th>
+              </tr>
+            </thead>
+            <tbody id="tbody-admin"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 3: MACROCRONOGRAMA 15 SPRINTS -->
+    <div class="tab-pane" id="tab-sprints">
+      <div class="section-card">
+        <div class="section-header">
+          <div class="section-title">
+            <span>🚀 SEÇÃO 3 — MACROCRONOGRAMA TÁTICO DE 15 SEMANAS (22/10/2026 A PÓS-24/01/2027)</span>
+          </div>
+        </div>
+        <div class="table-responsive">
+          <table>
+            <thead>
+              <tr>
+                <th style="width: 50px; text-align: center;">OK</th>
+                <th>Sprint</th>
+                <th>Período</th>
+                <th>Fase / Foco</th>
+                <th>Conteúdos Prioritários da Semana</th>
+                <th>Meta Semanal</th>
+                <th>Peso</th>
+                <th style="text-align: center;">Questões Feitas</th>
+                <th>Notas / Simulado</th>
+              </tr>
+            </thead>
+            <tbody id="tbody-sprints"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 4: ARQUITETURA DE CONTEÚDO (NÚCLEOS 1, 2 E 3) -->
+    <div class="tab-pane" id="tab-nucleos">
+      <div id="nucleos-container"></div>
+    </div>
+
+    <!-- TAB 5: GRADES DIÁRIAS E HORÁRIAS (FASES 1, 2 E 3) -->
+    <div class="tab-pane" id="tab-grades">
+      <div id="grades-container"></div>
+    </div>
+
+  </main>
+
+  <!-- Cloud / GitHub Sync Modal -->
+  <div class="modal-backdrop" id="cloudModal">
+    <div class="modal-box">
+      <div class="modal-title">☁️ Sincronização de Banco de Dados (SQLite Local / GitHub Cloud)</div>
+      <p style="font-size: 0.82rem; color: var(--text-secondary); margin-bottom: 1rem;">
+        Seus dados são gravados automaticamente em:
+        <br>1. <strong>IndexedDB + LocalStorage</strong> no navegador (instantâneo).
+        <br>2. <strong>Banco SQLite (`estudos.db`)</strong> quando aberto via servidor local (`python server.py`).
+        <br>3. <strong>GitHub Cloud Sync</strong> (abaixo): sincroniza diretamente no arquivo `data/progress_db.json` do seu repositório privado ou Gist no GitHub Pages!
+      </p>
+      <div class="form-group">
+        <label>GitHub Personal Access Token (PAT - com permissão `repo`)</label>
+        <input type="password" class="form-control" id="ghTokenInput" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx" />
+      </div>
+      <div class="form-group">
+        <label>Repositório GitHub (`usuario/repositorio`)</label>
+        <input type="text" class="form-control" id="ghRepoInput" value="willyelias/dossie-v44-checklist" />
+      </div>
+      <div style="display: flex; justify-content: flex-end; gap: 0.5rem; margin-top: 1.25rem;">
+        <button class="btn" onclick="closeCloudModal()">Fechar</button>
+        <button class="btn" onclick="pullFromGitHub()">⬇️ Baixar da Nuvem</button>
+        <button class="btn btn-primary" onclick="saveAndPushGitHub()">💾 Salvar e Sincronizar Agora</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // =========================================================================
+    // INITIAL DATASET — DOSSIÊ OPERACIONAL V44 (INTEGRAL)
+    // =========================================================================
+    const INITIAL_DB = {
+      version: 44,
+      lastUpdated: new Date().toISOString(),
+      anexoA: [
+        { id: "ax-01", date: "22/10/2026", isoDate: "2026-10-22", day: "Quinta-feira", sprint: "Sprint 01", time: "18h15 – 19h45", title: "Redes: OSI, TCP/IP, IPv4/IPv6, Roteamento e VLANs", targetQ: 25, method: "Engenharia Reversa (6 passos)", peso: "ALTO", done: false, acertos: "", notes: "" },
+        { id: "ax-02", date: "22/10/2026", isoDate: "2026-10-22", day: "Quinta-feira", sprint: "Sprint 01", time: "19h45 – 21h15", title: "Governança: COBIT 2019 (EDM/APO/BAI/DSS/MEA)", targetQ: 20, method: "Engenharia Reversa", peso: "ALTO", done: false, acertos: "", notes: "" },
+        { id: "ax-03", date: "22/10/2026", isoDate: "2026-10-22", day: "Quinta-feira", sprint: "Sprint 01", time: "21h30 – 23h00", title: "RLM FGV: Lógica Sentencial e Tabelas-Verdade", targetQ: 20, method: "Resolução Dissecada", peso: "CRITICO", done: false, acertos: "", notes: "" },
+        { id: "ax-04", date: "23/10/2026", isoDate: "2026-10-23", day: "Sexta-feira", sprint: "Sprint 01", time: "14h00 – 15h30", title: "ITIL 4: Práticas, Cadeia de Valor e SLA", targetQ: 25, method: "Engenharia Reversa", peso: "ALTO", done: false, acertos: "", notes: "" },
+        { id: "ax-05", date: "23/10/2026", isoDate: "2026-10-23", day: "Sexta-feira", sprint: "Sprint 01", time: "15h30 – 17h00", title: "Segurança: Controle de Acesso e Gestão de Identidades", targetQ: 25, method: "Execução Pura (Fim 17h - Sabbath)", peso: "ALTO", done: false, acertos: "", notes: "" },
+        { id: "ax-06", date: "25/10/2026", isoDate: "2026-10-25", day: "Domingo", sprint: "Sprint 01", time: "08h00 – 12h00", title: "Simulado Tronco Comum #01 (FGV - 60 qts)", targetQ: 60, method: "Simulado Cronometrado", peso: "CRITICO", done: false, acertos: "", notes: "" },
+        { id: "ax-07", date: "25/10/2026", isoDate: "2026-10-25", day: "Domingo", sprint: "Sprint 01", time: "13h30 – 18h00", title: "Auditoria de Erros + Microbaterias de Reforço", targetQ: 30, method: "Diagnóstico de Causa Raiz", peso: "ALTO", done: false, acertos: "", notes: "" },
+        { id: "ax-08", date: "26/10/2026", isoDate: "2026-10-26", day: "Segunda-feira", sprint: "Sprint 02", time: "17h30 – 19h00", title: "Sistemas Operacionais: Windows Server e Linux (Permissões)", targetQ: 25, method: "Execução Pura", peso: "ALTO", done: false, acertos: "", notes: "" },
+        { id: "ax-09", date: "26/10/2026", isoDate: "2026-10-26", day: "Segunda-feira", sprint: "Sprint 02", time: "19h15 – 20h45", title: "Active Directory, DNS, GPO e PowerShell/Bash", targetQ: 25, method: "Engenharia Reversa", peso: "ALTO", done: false, acertos: "", notes: "" },
+        { id: "ax-10", date: "26/10/2026", isoDate: "2026-10-26", day: "Segunda-feira", sprint: "Sprint 02", time: "21h15 – 23h00", title: "Português FGV: Compreensão Textual e Coesão", targetQ: 20, method: "Resolução Dissecada", peso: "CRITICO", done: false, acertos: "", notes: "" },
+        { id: "ax-11", date: "27/10/2026", isoDate: "2026-10-27", day: "Terça-feira", sprint: "Sprint 02", time: "17h30 – 19h00", title: "Virtualização e Contêineres (VMware, Hyper-V, Docker)", targetQ: 25, method: "Engenharia Reversa", peso: "ALTO", done: false, acertos: "", notes: "" },
+        { id: "ax-12", date: "27/10/2026", isoDate: "2026-10-27", day: "Terça-feira", sprint: "Sprint 02", time: "19h15 – 20h45", title: "Computação em Nuvem (IaaS, PaaS, SaaS)", targetQ: 25, method: "Execução Pura", peso: "ALTO", done: false, acertos: "", notes: "" },
+        { id: "ax-13", date: "27/10/2026", isoDate: "2026-10-27", day: "Terça-feira", sprint: "Sprint 02", time: "21h15 – 23h00", title: "RLM FGV: Diagramas Lógicos e Quantificadores", targetQ: 20, method: "Resolução Dissecada", peso: "CRITICO", done: false, acertos: "", notes: "" },
+        { id: "ax-14", date: "28/10/2026", isoDate: "2026-10-28", day: "Quarta-feira", sprint: "Sprint 02", time: "17h30 – 19h00", title: "Redes e Perímetro: LAN, WAN, VPN, Firewalls", targetQ: 25, method: "Engenharia Reversa", peso: "ALTO", done: false, acertos: "", notes: "" },
+        { id: "ax-15", date: "28/10/2026", isoDate: "2026-10-28", day: "Quarta-feira", sprint: "Sprint 02", time: "19h15 – 20h45", title: "Criptografia, PKI, Backup e DRP", targetQ: 25, method: "Engenharia Reversa", peso: "ALTO", done: false, acertos: "", notes: "" },
+        { id: "ax-16", date: "28/10/2026", isoDate: "2026-10-28", day: "Quarta-feira", sprint: "Sprint 02", time: "21h15 – 23h00", title: "Português FGV: Morfossintaxe e Pontuação", targetQ: 20, method: "Resolução Dissecada", peso: "CRITICO", done: false, acertos: "", notes: "" },
+        { id: "ax-17", date: "29/10/2026", isoDate: "2026-10-29", day: "Quinta-feira", sprint: "Sprint 02", time: "17h30 – 19h00", title: "Governança, Riscos e Contratos (COBIT/ITIL)", targetQ: 25, method: "Engenharia Reversa", peso: "ALTO", done: false, acertos: "", notes: "" },
+        { id: "ax-18", date: "29/10/2026", isoDate: "2026-10-29", day: "Quinta-feira", sprint: "Sprint 02", time: "19h15 – 20h45", title: "Automação, DevOps e LGPD (Lei 13.709/18)", targetQ: 25, method: "Engenharia Reversa", peso: "ALTO", done: false, acertos: "", notes: "" },
+        { id: "ax-19", date: "29/10/2026", isoDate: "2026-10-29", day: "Quinta-feira", sprint: "Sprint 02", time: "21h15 – 23h00", title: "RLM FGV: Problemas Aritméticos e Matriciais", targetQ: 20, method: "Resolução Dissecada", peso: "CRITICO", done: false, acertos: "", notes: "" },
+        { id: "ax-20", date: "30/10/2026", isoDate: "2026-10-30", day: "Sexta-feira", sprint: "Sprint 02", time: "14h00 – 15h30", title: "Operação, Monitoramento e Gestão de Incidentes", targetQ: 25, method: "Engenharia Reversa", peso: "ALTO", done: false, acertos: "", notes: "" },
+        { id: "ax-21", date: "30/10/2026", isoDate: "2026-10-30", day: "Sexta-feira", sprint: "Sprint 02", time: "15h30 – 17h00", title: "Revisão de Erros da Semana (Caderno de Falhas)", targetQ: 25, method: "Retrabalho (Fim 17h - Sabbath)", peso: "ALTO", done: false, acertos: "", notes: "" },
+        { id: "ax-22", date: "01/11/2026", isoDate: "2026-11-01", day: "Domingo", sprint: "Sprint 02", time: "08h00 – 18h00", title: "Simulado Tronco Comum #02 (60 qts) + Auditoria", targetQ: 90, method: "Simulado + Correção Ativa", peso: "CRITICO", done: false, acertos: "", notes: "" }
+      ],
+      admin: [
+        { id: "adm-01", date: "22/10/2026", isoDate: "2026-10-22", orgao: "ABDI / TJPB", title: "Envio dos Pedidos de Isenção (Medula)", conduta: "CONCLUÍDO. Guardar protocolos de envio no portal FGV.", peso: "CONCLUIDO", done: true, notes: "Protocolos salvos" },
+        { id: "adm-02", date: "23 a 28/10/2026", isoDate: "2026-10-28", orgao: "TJPB", title: "Backup Documental HEMONORTE", conduta: "Obter declaração timbrada do Hemonorte para blindar eventual recurso no TJPB.", peso: "CRITICO", done: false, notes: "" },
+        { id: "adm-03", date: "30/10/2026", isoDate: "2026-10-30", orgao: "ABDI", title: "Resultado Preliminar da Isenção ABDI", conduta: "Conferir deferimento no site da FGV (Recurso: 03 e 04/11; Definitivo: 10/11).", peso: "ALTO", done: false, notes: "" },
+        { id: "adm-04", date: "03 e 04/11/2026", isoDate: "2026-11-04", orgao: "ABDI", title: "Prazo de Recurso da Isenção ABDI", conduta: "Interpor recurso caso haja indeferimento preliminar na ABDI.", peso: "ALTO", done: false, notes: "" },
+        { id: "adm-05", date: "10/11/2026", isoDate: "2026-11-10", orgao: "ABDI", title: "Resultado Definitivo da Isenção ABDI", conduta: "Conferir lista definitiva de isentos ABDI no site da FGV.", peso: "ALTO", done: false, notes: "" },
+        { id: "adm-06", date: "10/11/2026 (18h)", isoDate: "2026-11-10", orgao: "ABDI", title: "Encerramento das Inscrições ABDI", conduta: "Conferir status de inscrição ativa (Cargo: Infraestrutura e Operação).", peso: "CRITICO", done: false, notes: "" },
+        { id: "adm-07", date: "11/11/2026", isoDate: "2026-11-11", orgao: "ABDI", title: "Vencimento Final do Boleto ABDI (R$ 100)", conduta: "Pagar boleto exclusivamente se a isenção for indeferida após recurso.", peso: "CRITICO", done: false, notes: "" },
+        { id: "adm-08", date: "Nov/2026 (Site FGV)", isoDate: "2026-11-12", orgao: "TJPB", title: "Resultado Preliminar da Isenção TJPB", conduta: "Se indeferido, interpor recurso em 2 dias úteis anexando declaração do Hemonorte.", peso: "CRITICO", done: false, notes: "" },
+        { id: "adm-09", date: "18/11/2026 (16h)", isoDate: "2026-11-18", orgao: "TJPB", title: "Encerramento das Inscrições TJPB", conduta: "Prazo fatal de inscrição e conferência da opção de Cota Negros (Infra de TI).", peso: "CRITICO", done: false, notes: "" },
+        { id: "adm-10", date: "19/11/2026", isoDate: "2026-11-19", orgao: "TJPB", title: "Vencimento Final da GRJ TJPB (R$ 120)", conduta: "Quitar GRJ (sem usar agendamento) caso a isenção do TJPB seja indeferida.", peso: "CRITICO", done: false, notes: "" },
+        { id: "adm-11", date: "02 e 03/12/2026", isoDate: "2026-12-03", orgao: "ABDI", title: "Regras do Teste Online e Convocação Títulos", conduta: "Executar o teste prévio obrigatório da plataforma online da FGV.", peso: "CRITICO", done: false, notes: "" },
+        { id: "adm-12", date: "03/12 a 22/12 (16h)", isoDate: "2026-12-22", orgao: "ABDI", title: "Envio de Currículo Padrão + Títulos (10 pts)", conduta: "Enviar comprovantes de 10 anos de Infra + Currículo Padrão (eliminatório).", peso: "MAXIMO", done: false, notes: "" },
+        { id: "adm-13", date: "20/12/2026 (13h30)", isoDate: "2026-12-20", orgao: "ABDI", title: "PROVA OBJETIVA ONLINE ABDI", conduta: "Prova remota (13h30–17h00): 60 questões FGV. Virada p/ TJPB no dia 21/12.", peso: "MAXIMO", done: false, notes: "" },
+        { id: "adm-14", date: "11 a 18/01/2027", isoDate: "2027-01-18", orgao: "TJPB", title: "Locais de Prova e Logística João Pessoa", conduta: "Emitir cartão de confirmação e fechar logística Natal → João Pessoa.", peso: "ALTO", done: false, notes: "" },
+        { id: "adm-15", date: "24/01/2027", isoDate: "2027-01-24", orgao: "TJPB", title: "PROVA OBJETIVA + DISCURSIVA TJPB", conduta: "Execução da prova presencial em João Pessoa/PB.", peso: "MAXIMO", done: false, notes: "" }
+      ],
+      sprints: [
+        { id: "sp-01", sprint: "Sprint 01", period: "22/10 a 25/10/26", isoEnd: "2026-10-25", fase: "Fase 1: Tronco Comum", title: "OSI/TCP-IP, IPv4/IPv6, VLANs, COBIT 2019, ITIL 4, Controle de Acesso e Lógica Sentencial (RLM).", meta: "200 questões + Simulado #1", peso: "CRITICO", done: false, qDone: "", notes: "" },
+        { id: "sp-02", sprint: "Sprint 02", period: "26/10 a 01/11/26", isoEnd: "2026-11-01", fase: "Fase 1: Tronco Comum", title: "Windows Server, Linux, AD, GPO, DNS, DHCP, PowerShell/Bash, Criptografia, PKI, LGPD, Port e RLM (1ª Ordem).", meta: "310 questões + Simulado #2", peso: "ALTO", done: false, qDone: "", notes: "" },
+        { id: "sp-03", sprint: "Sprint 03", period: "02/11 a 08/11/26", isoEnd: "2026-11-08", fase: "Fase 1: Tronco Comum", title: "Virtualização, Contêineres, Nuvem (IaaS/PaaS/SaaS), LAN/WAN/VPN, Firewalls, Backup/DRP, SLA e Capacidade.", meta: "310 questões + Simulado #3", peso: "ALTO", done: false, qDone: "", notes: "" },
+        { id: "sp-04", sprint: "Sprint 04", period: "09/11 a 15/11/26", isoEnd: "2026-11-15", fase: "Fase 1: Tronco Comum", title: "Conceitos DevOps/IaC, Gestão de Ativos/CMDB, Riscos, Vulnerabilidades, Contratos TIC e RLM (Aritmético/Matrizes).", meta: "310 questões + Simulado #4", peso: "CRITICO", done: false, qDone: "", notes: "" },
+        { id: "sp-05", sprint: "Sprint 05", period: "16/11 a 22/11/26", isoEnd: "2026-11-22", fase: "Transição Fase 1 → 2", title: "Revisão de Erros do Tronco Comum + LAI, Marco Civil e Lei 12.737/12 + Introdução à Lei 11.080/04 e Dec. 5.352/05.", meta: "310 questões + Simulado #5", peso: "CRITICO", done: false, qDone: "", notes: "" },
+        { id: "sp-06", sprint: "Sprint 06", period: "23/11 a 29/11/26", isoEnd: "2026-11-29", fase: "Fase 2: Reta Final ABDI", title: "Lei 11.080/04 (c/ Lei 14.440/22), Dec. 5.352/05, Estatuto Social ABDI + Informática (Win 10/11, M365, LibreOffice).", meta: "300 questões + Sim. ABDI #1", peso: "CRITICO", done: false, qDone: "", notes: "" },
+        { id: "sp-07", sprint: "Sprint 07", period: "30/11 a 06/12/26", isoEnd: "2026-12-06", fase: "Fase 2: Reta Final ABDI", title: "Regulamento de Licitações/Contratos e Regulamento de Convênios ABDI + Suporte Remoto + Envio Títulos/Currículo.", meta: "300 questões + Sim. ABDI #2", peso: "CRITICO", done: false, qDone: "", notes: "" },
+        { id: "sp-08", sprint: "Sprint 08", period: "07/12 a 13/12/26", isoEnd: "2026-12-13", fase: "Fase 2: Reta Final ABDI", title: "Código de Ética ABDI (Res. 004/22) + Planejamento Estratégico 2024–2029 (Res. 008/23) + Revisão Geral TI/Port/RLM.", meta: "320 questões + Sim. ABDI #3", peso: "CRITICO", done: false, qDone: "", notes: "" },
+        { id: "sp-09", sprint: "Sprint 09", period: "14/12 a 20/12/26", isoEnd: "2026-12-20", fase: "Semana da Prova ABDI", title: "Decoreba final do Bloco Institucional ABDI + Caderno de Erros FGV (Seg a Sex 17h). Dom 20/12: PROVA ABDI.", meta: "180 questões + PROVA ABDI", peso: "MAXIMO", done: false, qDone: "", notes: "" },
+        { id: "sp-10", sprint: "Sprint 10", period: "21/12 a 27/12/26", isoEnd: "2026-12-27", fase: "Fase 3: Imersão TJPB", title: "Res. CNJ (370, 396, 468, 522, 615), PJe, PDPJ-Br + SGBDs, SQL ANSI, ACID, Locks, PITR + Combinatória/Probabilidade.", meta: "320 q + Sim. TJPB #1 + Disc. #1", peso: "CRITICO", done: false, qDone: "", notes: "" },
+        { id: "sp-11", sprint: "Sprint 11", period: "28/12 a 03/01/27", isoEnd: "2027-01-03", fase: "Fase 3: Imersão TJPB", title: "Terraform, Ansible, GitOps, CI/CD, SRE, K8s (Rancher/OpenShift), VMware (vMotion/DRS/HA/FT) + Tuning, NoSQL, DAMA + Estatística.", meta: "320 q + Sim. TJPB #2 + Disc. #2", peso: "CRITICO", done: false, qDone: "", notes: "" },
+        { id: "sp-12", sprint: "Sprint 12", period: "04/01 a 10/01/27", isoEnd: "2027-01-10", fase: "Fase 3: Imersão TJPB", title: "Zero Trust/ZTNA, EDR/NDR/XDR, SIEM/SOAR, MITRE, SBOM, ISO 27001/27002/27005/27701, OSPF/BGP, IPv6 Avançado, Zabbix/Prometheus/ELK.", meta: "320 q + Sim. TJPB #3 + Disc. #3", peso: "CRITICO", done: false, qDone: "", notes: "" },
+        { id: "sp-13", sprint: "Sprint 13", period: "11/01 a 17/01/27", isoEnd: "2027-01-17", fase: "Fase 3: Imersão TJPB", title: "MoReq-Jus, RDC-Arq, PDTI TJPB 2024–26, Eng. Software (Scrum/Kanban/Testes), IA/BI, Redação Oficial, Juros/Funções e Erros.", meta: "340 q + Sim. TJPB #4 + Disc. #4", peso: "CRITICO", done: false, qDone: "", notes: "" },
+        { id: "sp-14", sprint: "Sprint 14", period: "18/01 a 24/01/27", isoEnd: "2027-01-24", fase: "Semana da Prova TJPB", title: "Leitura seca final CNJ + Tabelas ISO/COBIT/ITIL + Comandos K8s/Terraform + Esqueletos Discursiva. Dom 24/01: PROVA TJPB.", meta: "160 questões + PROVA TJPB", peso: "MAXIMO", done: false, qDone: "", notes: "" },
+        { id: "sp-15", sprint: "Sprint 15+", period: "Pós-25/01/2027", isoEnd: "2027-02-28", fase: "Fase 4: Foco TJRN", title: "Manutenção por questões da base de Tribunais (TI/CNJ/FGV) + LC 122/94 (RN).", meta: "300 questões/semana", peso: "ALTO", done: false, qDone: "", notes: "" }
+      ],
+      nucleos: [
+        // NÚCLEO 1
+        { id: "nc-01", nucleo: "NÚCLEO 1: Tronco Comum Convergente (ABDI + TJPB + TJRN | 22/10 a 22/11/2026)", cat: "Português FGV", title: "Compreensão/interpretação de textos, tipos e gêneros textuais e ortografia", done: false },
+        { id: "nc-02", nucleo: "NÚCLEO 1: Tronco Comum Convergente (ABDI + TJPB + TJRN | 22/10 a 22/11/2026)", cat: "Português FGV", title: "Coesão (referenciação/conectores), tempos/modos verbais e morfossintaxe completa", done: false },
+        { id: "nc-03", nucleo: "NÚCLEO 1: Tronco Comum Convergente (ABDI + TJPB + TJRN | 22/10 a 22/11/2026)", cat: "Português FGV", title: "Coordenação/subordinação, pontuação, concordância, regência, crase, colocação pronominal e reescrita", done: false },
+        { id: "nc-04", nucleo: "NÚCLEO 1: Tronco Comum Convergente (ABDI + TJPB + TJRN | 22/10 a 22/11/2026)", cat: "RLM Base", title: "Estruturas lógicas, argumentação, lógica sentencial (proposições, conectivos, tabelas-verdade, equivalências)", done: false },
+        { id: "nc-05", nucleo: "NÚCLEO 1: Tronco Comum Convergente (ABDI + TJPB + TJRN | 22/10 a 22/11/2026)", cat: "RLM Base", title: "Diagramas lógicos, lógica de 1ª ordem (quantificadores) e problemas aritméticos, geométricos e matriciais", done: false },
+        { id: "nc-06", nucleo: "NÚCLEO 1: Tronco Comum Convergente (ABDI + TJPB + TJRN | 22/10 a 22/11/2026)", cat: "Infra, SO e Redes", title: "Arquitetura de servidores/storage, virtualização e contêineres, nuvem (IaaS/PaaS/SaaS) e capacidade/disponibilidade", done: false },
+        { id: "nc-07", nucleo: "NÚCLEO 1: Tronco Comum Convergente (ABDI + TJPB + TJRN | 22/10 a 22/11/2026)", cat: "Infra, SO e Redes", title: "Windows Server e Linux, usuários/permissões/serviços, AD, GPO, DNS, DHCP, PowerShell e Bash", done: false },
+        { id: "nc-08", nucleo: "NÚCLEO 1: Tronco Comum Convergente (ABDI + TJPB + TJRN | 22/10 a 22/11/2026)", cat: "Infra, SO e Redes", title: "OSI/TCP-IP, IPv4/IPv6, roteamento, VLANs, LAN/WAN/VPN, switches/roteadores/firewalls/Wi-Fi e monitoramento", done: false },
+        { id: "nc-09", nucleo: "NÚCLEO 1: Tronco Comum Convergente (ABDI + TJPB + TJRN | 22/10 a 22/11/2026)", cat: "Segurança e Governança", title: "Controle de acesso/identidades, vulnerabilidades/patches/incidentes, criptografia e certificados digitais (PKI)", done: false },
+        { id: "nc-10", nucleo: "NÚCLEO 1: Tronco Comum Convergente (ABDI + TJPB + TJRN | 22/10 a 22/11/2026)", cat: "Segurança e Governança", title: "Backup/restore/DRP e contingência, LGPD (Lei 13.709/18) e SLA", done: false },
+        { id: "nc-11", nucleo: "NÚCLEO 1: Tronco Comum Convergente (ABDI + TJPB + TJRN | 22/10 a 22/11/2026)", cat: "Segurança e Governança", title: "ITIL 4 (incidentes, problemas, mudanças, nível de serviço) e COBIT 2019 (EDM/APO/BAI/DSS/MEA)", done: false },
+        { id: "nc-12", nucleo: "NÚCLEO 1: Tronco Comum Convergente (ABDI + TJPB + TJRN | 22/10 a 22/11/2026)", cat: "Segurança e Governança", title: "Gestão de ativos/configurações/licenças, riscos, contratos/fornecedores de TIC e conceitos de DevOps e IaC", done: false },
+
+        // NÚCLEO 2
+        { id: "nc-13", nucleo: "NÚCLEO 2: Especificidades Exclusivas ABDI (23/11 a 20/12/2026)", cat: "Institucional ABDI (20 qts)", title: "Natureza/finalidade dos Serviços Sociais Autônomos; Lei nº 11.080/2004 (c/ Lei nº 14.440/2022)", done: false },
+        { id: "nc-14", nucleo: "NÚCLEO 2: Especificidades Exclusivas ABDI (23/11 a 20/12/2026)", cat: "Institucional ABDI (20 qts)", title: "Decreto nº 5.352/2005: autonomia, contrato de gestão, supervisão, fiscalização e prestação de contas", done: false },
+        { id: "nc-15", nucleo: "NÚCLEO 2: Especificidades Exclusivas ABDI (23/11 a 20/12/2026)", cat: "Institucional ABDI (20 qts)", title: "Estatuto Social da ABDI (Conselho Deliberativo, Conselho Fiscal e Diretoria-Executiva)", done: false },
+        { id: "nc-16", nucleo: "NÚCLEO 2: Especificidades Exclusivas ABDI (23/11 a 20/12/2026)", cat: "Institucional ABDI (20 qts)", title: "Regulamento de Licitações e Contratos da ABDI (modalidades, dispensa, inexigibilidade, contratos, sanções)", done: false },
+        { id: "nc-17", nucleo: "NÚCLEO 2: Especificidades Exclusivas ABDI (23/11 a 20/12/2026)", cat: "Institucional ABDI (20 qts)", title: "Regulamento de Convênios da ABDI", done: false },
+        { id: "nc-18", nucleo: "NÚCLEO 2: Especificidades Exclusivas ABDI (23/11 a 20/12/2026)", cat: "Institucional ABDI (20 qts)", title: "Regulamento de Ética e Conduta (Res. CD nº 004/2022, arts. 1º a 25) e Planejamento Estratégico 2024–2029 (Res. CD nº 008/2023)", done: false },
+        { id: "nc-19", nucleo: "NÚCLEO 2: Especificidades Exclusivas ABDI (23/11 a 20/12/2026)", cat: "Informática e Leis (6 qts)", title: "Windows 10/11, Microsoft 365 (Word, Excel, PowerPoint, Outlook) e LibreOffice 7.x+ (Writer, Calc, Impress)", done: false },
+        { id: "nc-20", nucleo: "NÚCLEO 2: Especificidades Exclusivas ABDI (23/11 a 20/12/2026)", cat: "Informática e Leis (6 qts)", title: "Navegadores, correio eletrônico, IA no ambiente de trabalho e acessibilidade/atalhos", done: false },
+        { id: "nc-21", nucleo: "NÚCLEO 2: Especificidades Exclusivas ABDI (23/11 a 20/12/2026)", cat: "Informática e Leis (6 qts)", title: "LAI (Lei 12.527/11), Lei 12.737/12 (Delitos Informáticos) e Marco Civil da Internet (Lei 12.965/14)", done: false },
+        { id: "nc-22", nucleo: "NÚCLEO 2: Especificidades Exclusivas ABDI (23/11 a 20/12/2026)", cat: "Suporte Técnico", title: "Atendimento a usuários, gerenciamento remoto e central de serviços", done: false },
+
+        // NÚCLEO 3
+        { id: "nc-23", nucleo: "NÚCLEO 3: Engenharia Avançada + Judiciário — TJPB & TJRN (21/12/2026 a 24/01/2027)", cat: "Normas CNJ e Judiciário", title: "PJe, PDPJ-Br, MoReq-Jus, RDC-Arq e PDTI TJPB 2024–2026", done: false },
+        { id: "nc-24", nucleo: "NÚCLEO 3: Engenharia Avançada + Judiciário — TJPB & TJRN (21/12/2026 a 24/01/2027)", cat: "Normas CNJ e Judiciário", title: "Resoluções CNJ nº 370/2021 (ENTIC-JUD), 396/2021 (ENSEC-PJ + Port. 162/21), 468/2022 (Contratações TIC), 522/2023 e 615/2025 (IA)", done: false },
+        { id: "nc-25", nucleo: "NÚCLEO 3: Engenharia Avançada + Judiciário — TJPB & TJRN (21/12/2026 a 24/01/2027)", cat: "Banco de Dados Avançado", title: "Modelagem, PostgreSQL/Oracle/MySQL/SQL Server, SQL ANSI (DDL/DML/DCL/TCL, joins, CTEs, views), ACID, isolamento, locks/deadlocks, PITR e Query Tuning", done: false },
+        { id: "nc-26", nucleo: "NÚCLEO 3: Engenharia Avançada + Judiciário — TJPB & TJRN (21/12/2026 a 24/01/2027)", cat: "NoSQL, Dados e IA", title: "MongoDB, Redis, Elasticsearch/OpenSearch, DAMA-DMBOK, higienização/qualidade de dados, BI e fundamentos de IA/ML/IA Generativa", done: false },
+        { id: "nc-27", nucleo: "NÚCLEO 3: Engenharia Avançada + Judiciário — TJPB & TJRN (21/12/2026 a 24/01/2027)", cat: "DevOps, IaC e SRE", title: "Terraform (providers, modules, state), Ansible (inventories, playbooks, roles), Gitflow/Trunk-Based, GitOps, CI/CD e SRE (SLIs/SLOs/Error Budget)", done: false },
+        { id: "nc-28", nucleo: "NÚCLEO 3: Engenharia Avançada + Judiciário — TJPB & TJRN (21/12/2026 a 24/01/2027)", cat: "Virtualização Avançada e K8s", title: "VMware (vMotion, Storage vMotion, DRS, HA, FT, vDS), Hyper-V, K8s (Pods, Deployments, Ingress, RBAC, Network Policies, Rancher, OpenShift) e Service Mesh", done: false },
+        { id: "nc-29", nucleo: "NÚCLEO 3: Engenharia Avançada + Judiciário — TJPB & TJRN (21/12/2026 a 24/01/2027)", cat: "SecOps e Zero Trust", title: "Zero Trust (ZTNA/microssegmentação), NGFW, WAF/WAAP, 802.1X, SAML 2.0/OAuth 2.0/OIDC/JWT, PAM, SIEM/SOC, EDR/NDR/XDR, MITRE ATT&CK, SOAR e CVE/CVSS/SBOM", done: false },
+        { id: "nc-30", nucleo: "NÚCLEO 3: Engenharia Avançada + Judiciário — TJPB & TJRN (21/12/2026 a 24/01/2027)", cat: "Redes Avançadas e Observabilidade", title: "IPv6 (SLAAC, NDP, RA Guard, SEND, NAT64/DNS64), OSPF/BGP, SD-WAN, NGINX/HAProxy, DNSSEC, SAN/NAS/NVMe-oF, Ransomware (backup imutável/air gap), Zabbix/Prometheus/Grafana e ELK", done: false },
+        { id: "nc-31", nucleo: "NÚCLEO 3: Engenharia Avançada + Judiciário — TJPB & TJRN (21/12/2026 a 24/01/2027)", cat: "Normas ISO/NIST e Eng. Software", title: "ISO 27001, 27002, 27005 e 27701, NIST CSF, CIS Controls, OWASP Top 10 + Scrum, Kanban, Requisitos e Testes de Software", done: false },
+        { id: "nc-32", nucleo: "NÚCLEO 3: Engenharia Avançada + Judiciário — TJPB & TJRN (21/12/2026 a 24/01/2027)", cat: "Matemática, Estatística e Redação", title: "Análise combinatória, probabilidade, estatística descritiva, conjuntos, razões/proporções, regra de 3, %, juros, equações, funções, sequências + Redação Oficial (Item 6.5) e Discursiva (30 linhas)", done: false }
+      ],
+      grades: [
+        // FASE 1
+        { id: "gr-01", fase: "Fase 1: Tronco Comum (22/10 a 22/11/2026)", dia: "Hoje (Qui 22/10)", horario: "17h30 – 19h30", title: "Redes Convergente: Modelos OSI e TCP/IP, Endereçamento IPv4 e IPv6, Roteamento e VLANs", meta: "30 questões FGV (Execução Pura + Passo 3 nos erros)", peso: "ALTO", done: false },
+        { id: "gr-02", fase: "Fase 1: Tronco Comum (22/10 a 22/11/2026)", dia: "Hoje (Qui 22/10)", horario: "19h45 – 21h15", title: "Governança Convergente: COBIT 2019 (Princípios, Componentes e Objetivos EDM/APO/BAI/DSS/MEA)", meta: "25 questões FGV + tabela de domínios", peso: "ALTO", done: false },
+        { id: "gr-03", fase: "Fase 1: Tronco Comum (22/10 a 22/11/2026)", dia: "Hoje (Qui 22/10)", horario: "21h30 – 23h00", title: "RLM Convergente: Lógica Sentencial (Proposições, Conectivos, Tabelas-Verdade e Equivalências)", meta: "20 questões exclusivas FGV dissecadas", peso: "CRITICO", done: false },
+        { id: "gr-04", fase: "Fase 1: Tronco Comum (22/10 a 22/11/2026)", dia: "Segunda-feira", horario: "17h30 – 19h00", title: "Sistemas Operacionais: Administração Windows Server e Linux, instalação, usuários, permissões e serviços", meta: "25 questões FGV/Cebraspe no TEC", peso: "ALTO", done: false },
+        { id: "gr-05", fase: "Fase 1: Tronco Comum (22/10 a 22/11/2026)", dia: "Segunda-feira", horario: "19h15 – 20h45", title: "Diretório e Scripts: Active Directory (AD DS), GPO, DNS, DHCP e automação em PowerShell e Shell/Bash", meta: "25 questões FGV no TEC", peso: "ALTO", done: false },
+        { id: "gr-06", fase: "Fase 1: Tronco Comum (22/10 a 22/11/2026)", dia: "Segunda-feira", horario: "21h15 – 23h00", title: "Língua Portuguesa FGV: Compreensão e interpretação de textos, tipos/gêneros textuais e coesão/conectores", meta: "20 questões FGV (2024–2026)", peso: "CRITICO", done: false },
+        { id: "gr-07", fase: "Fase 1: Tronco Comum (22/10 a 22/11/2026)", dia: "Terça-feira", horario: "17h30 – 19h00", title: "Infra, Virtualização e Contêineres: Servidores, storage, hipervisores, VMs, alta disponibilidade e contêineres", meta: "25 questões FGV no TEC", peso: "ALTO", done: false },
+        { id: "gr-08", fase: "Fase 1: Tronco Comum (22/10 a 22/11/2026)", dia: "Terça-feira", horario: "19h15 – 20h45", title: "Computação em Nuvem: Modelos IaaS, PaaS e SaaS, segurança em nuvem e planejamento de capacidade/desempenho", meta: "25 questões FGV no TEC", peso: "ALTO", done: false },
+        { id: "gr-09", fase: "Fase 1: Tronco Comum (22/10 a 22/11/2026)", dia: "Terça-feira", horario: "21h15 – 23h00", title: "Raciocínio Lógico FGV: Diagramas lógicos, lógica de 1ª ordem (quantificadores) e lógica de argumentação", meta: "20 questões exclusivas FGV", peso: "CRITICO", done: false },
+        { id: "gr-10", fase: "Fase 1: Tronco Comum (22/10 a 22/11/2026)", dia: "Quarta-feira", horario: "17h30 – 19h00", title: "Redes e Perímetro: LAN, WAN, VPN (IPSec/SSL), switches, roteadores, firewalls, Wi-Fi e diagnóstico de redes", meta: "25 questões FGV no TEC", peso: "ALTO", done: false },
+        { id: "gr-11", fase: "Fase 1: Tronco Comum (22/10 a 22/11/2026)", dia: "Quarta-feira", horario: "19h15 – 20h45", title: "Segurança e Continuidade: Controle de acesso/identidades, criptografia, PKI, backup/restore, DRP e contingência", meta: "25 questões FGV no TEC", peso: "ALTO", done: false },
+        { id: "gr-12", fase: "Fase 1: Tronco Comum (22/10 a 22/11/2026)", dia: "Quarta-feira", horario: "21h15 – 23h00", title: "Língua Portuguesa FGV: Morfossintaxe, coordenação/subordinação, pontuação, concordância, regência, crase e reescrita", meta: "20 questões FGV (2024–2026)", peso: "CRITICO", done: false },
+        { id: "gr-13", fase: "Fase 1: Tronco Comum (22/10 a 22/11/2026)", dia: "Quinta-feira", horario: "17h30 – 19h00", title: "Governança e Gestão de Serviços: COBIT 2019, ITIL 4 (incidentes, problemas, mudanças, SLA), riscos e contratos de TIC", meta: "25 questões FGV no TEC", peso: "ALTO", done: false },
+        { id: "gr-14", fase: "Fase 1: Tronco Comum (22/10 a 22/11/2026)", dia: "Quinta-feira", horario: "19h15 – 20h45", title: "Automação, Ativos e LGPD: Conceitos de DevOps e IaC, gestão de ativos/configurações/licenças e Lei nº 13.709/2018 (LGPD)", meta: "25 questões FGV no TEC", peso: "ALTO", done: false },
+        { id: "gr-15", fase: "Fase 1: Tronco Comum (22/10 a 22/11/2026)", dia: "Quinta-feira", horario: "21h15 – 23h00", title: "Raciocínio Lógico FGV: Problemas aritméticos, geométricos e matriciais", meta: "20 questões exclusivas FGV", peso: "CRITICO", done: false },
+
+        // FASE 2
+        { id: "gr-16", fase: "Fase 2: Reta Final ABDI (23/11 a 20/12/2026)", dia: "Segunda-feira", horario: "17h30 – 19h15", title: "Institucional ABDI (Bloco 1): Serviços Sociais Autônomos; Lei nº 11.080/2004 (c/ Lei nº 14.440/22) e Decreto nº 5.352/2005", meta: "Leitura seca + NotebookLM + 20 questões", peso: "CRITICO", done: false },
+        { id: "gr-17", fase: "Fase 2: Reta Final ABDI (23/11 a 20/12/2026)", dia: "Segunda-feira", horario: "19h30 – 21h00", title: "Manutenção TI + Suporte ABDI: Windows Server/Linux, AD, DNS, DHCP, PowerShell/Bash + Suporte a usuários", meta: "25 questões FGV no TEC", peso: "ALTO", done: false },
+        { id: "gr-18", fase: "Fase 2: Reta Final ABDI (23/11 a 20/12/2026)", dia: "Segunda-feira", horario: "21h30 – 23h00", title: "Língua Portuguesa FGV: Baterias de provas FGV 2025–2026 (Interpretação, Coesão e Reescrita)", meta: "20 questões FGV no TEC", peso: "ALTO", done: false },
+        { id: "gr-19", fase: "Fase 2: Reta Final ABDI (23/11 a 20/12/2026)", dia: "Terça-feira", horario: "17h30 – 19h15", title: "Institucional ABDI (Bloco 2): Estatuto Social da ABDI (natureza, competências, Conselhos, Diretoria, patrimônio e receitas)", meta: "Mapeamento de órgãos/quóruns + 20 questões", peso: "CRITICO", done: false },
+        { id: "gr-20", fase: "Fase 2: Reta Final ABDI (23/11 a 20/12/2026)", dia: "Terça-feira", horario: "19h30 – 21h00", title: "Noções de Informática e Leis (ABDI): Windows 10/11, M365, LibreOffice 7.x+, navegadores, IA, LAI, Lei 12.737/12 e Marco Civil", meta: "30 questões FGV no TEC", peso: "ALTO", done: false },
+        { id: "gr-21", fase: "Fase 2: Reta Final ABDI (23/11 a 20/12/2026)", dia: "Terça-feira", horario: "21h30 – 23h00", title: "Raciocínio Lógico FGV: Bateria mista (Lógica Sentencial, 1ª Ordem e Problemas Aritméticos/Matriciais)", meta: "20 questões exclusivas FGV", peso: "CRITICO", done: false },
+        { id: "gr-22", fase: "Fase 2: Reta Final ABDI (23/11 a 20/12/2026)", dia: "Quarta-feira", horario: "17h30 – 19h15", title: "Institucional ABDI (Bloco 3): Regulamento de Licitações e Contratos da ABDI e Regulamento de Convênios", meta: "Leitura comparativa + 20 questões inéditas", peso: "CRITICO", done: false },
+        { id: "gr-23", fase: "Fase 2: Reta Final ABDI (23/11 a 20/12/2026)", dia: "Quarta-feira", horario: "19h30 – 21h00", title: "Manutenção TI (ABDI/TJPB): Redes (OSI/TCP-IP, IPv4/IPv6, VLANs, VPN), Segurança, Criptografia, Backup/DRP e LGPD", meta: "25 questões FGV no TEC", peso: "ALTO", done: false },
+        { id: "gr-24", fase: "Fase 2: Reta Final ABDI (23/11 a 20/12/2026)", dia: "Quarta-feira", horario: "21h30 – 23h00", title: "Língua Portuguesa FGV: Sintaxe do período, pontuação, concordância, regência e crase", meta: "20 questões FGV no TEC", peso: "ALTO", done: false },
+        { id: "gr-25", fase: "Fase 2: Reta Final ABDI (23/11 a 20/12/2026)", dia: "Quinta-feira", horario: "17h30 – 19h15", title: "Institucional ABDI (Bloco 4): Regulamento de Ética e Conduta (Res. CD nº 004/2022) e Planejamento Estratégico 2024–2029", meta: "Leitura seca integral + 20 questões", peso: "CRITICO", done: false },
+        { id: "gr-26", fase: "Fase 2: Reta Final ABDI (23/11 a 20/12/2026)", dia: "Quinta-feira", horario: "19h30 – 21h00", title: "Manutenção TI (ABDI/TJPB): Governança (ITIL 4, COBIT 2019, SLA, Ativos, Riscos, Contratos), Virtualização, Nuvem e DevOps/IaC", meta: "25 questões FGV no TEC", peso: "ALTO", done: false },
+        { id: "gr-27", fase: "Fase 2: Reta Final ABDI (23/11 a 20/12/2026)", dia: "Quinta-feira", horario: "21h30 – 23h00", title: "Raciocínio Lógico FGV: Sprints cronometrados de 6 questões (formato exato da prova da ABDI)", meta: "3 baterias de 6 q (18 q FGV)", peso: "CRITICO", done: false },
+        { id: "gr-28", fase: "Fase 2: Reta Final ABDI (23/11 a 20/12/2026)", dia: "Sexta-feira", horario: "14h00 – 15h30", title: "Revisão Acelerada Institucional ABDI: Giro nos grifos da Lei 11.080/04, Estatuto, Regulamentos e Código de Ética", meta: "25 flashcards/questões", peso: "CRITICO", done: false },
+        { id: "gr-29", fase: "Fase 2: Reta Final ABDI (23/11 a 20/12/2026)", dia: "Sexta-feira", horario: "15h30 – 17h00", title: "Auditoria do Caderno de Erros da Semana (TI + Básico): Retrabalho de todos os erros de segunda a quinta", meta: "25 a 30 q (Trava às 17h00)", peso: "ALTO", done: false },
+
+        // FASE 3
+        { id: "gr-30", fase: "Fase 3: Engenharia TJPB & TJRN (21/12/26 a 24/01/27)", dia: "Segunda-feira", horario: "17h30 – 19h00", title: "Normas CNJ e Judiciário: PJe, PDPJ-Br, Resoluções CNJ 370, 396, 468, 522 e 615, MoReq-Jus, RDC-Arq e PDTI TJPB", meta: "Leitura seca + 25 questões de Tribunais", peso: "CRITICO", done: false },
+        { id: "gr-31", fase: "Fase 3: Engenharia TJPB & TJRN (21/12/26 a 24/01/27)", dia: "Segunda-feira", horario: "19h15 – 20h45", title: "Banco de Dados Relacional e Admin: Modelagem, PostgreSQL/Oracle/MySQL/SQL Server, SQL ANSI, ACID, locks, PITR e Query Tuning", meta: "25 questões FGV de Banco de Dados", peso: "CRITICO", done: false },
+        { id: "gr-32", fase: "Fase 3: Engenharia TJPB & TJRN (21/12/26 a 24/01/27)", dia: "Segunda-feira", horario: "21h15 – 23h00", title: "Matemática e Estatística FGV (Delta TJPB): Análise combinatória, probabilidade e estatística descritiva", meta: "20 questões exclusivas FGV", peso: "CRITICO", done: false },
+        { id: "gr-33", fase: "Fase 3: Engenharia TJPB & TJRN (21/12/26 a 24/01/27)", dia: "Terça-feira", horario: "17h30 – 19h00", title: "DevOps, IaC e SRE Avançado: Terraform, Ansible, Gitflow/Trunk-Based, GitOps, CI/CD e SRE (SLIs/SLOs/Error Budget)", meta: "25 questões FGV/Cebraspe no TEC", peso: "ALTO", done: false },
+        { id: "gr-34", fase: "Fase 3: Engenharia TJPB & TJRN (21/12/26 a 24/01/27)", dia: "Terça-feira", horario: "19h15 – 20h45", title: "Virtualização Avançada, K8s e Microsserviços: VMware, Hyper-V, K8s (Pods, Deployments, Ingress, RBAC, Rancher, OpenShift) e Service Mesh", meta: "25 questões FGV/Cebraspe no TEC", peso: "ALTO", done: false },
+        { id: "gr-35", fase: "Fase 3: Engenharia TJPB & TJRN (21/12/26 a 24/01/27)", dia: "Terça-feira", horario: "21h15 – 23h00", title: "Português FGV + Redação Oficial: Item 6.5 (Redação Oficial) + Reescrita e Coesão FGV", meta: "20 questões FGV no TEC", peso: "ALTO", done: false },
+        { id: "gr-36", fase: "Fase 3: Engenharia TJPB & TJRN (21/12/26 a 24/01/27)", dia: "Quarta-feira", horario: "17h30 – 19h00", title: "SecOps, Zero Trust e Identidades: Zero Trust, NGFW, WAF, 802.1X, SAML/OAuth/OIDC/JWT, PAM, SIEM/SOC, EDR/XDR, MITRE, SOAR e SBOM", meta: "25 questões FGV/Cebraspe no TEC", peso: "CRITICO", done: false },
+        { id: "gr-37", fase: "Fase 3: Engenharia TJPB & TJRN (21/12/26 a 24/01/27)", dia: "Quarta-feira", horario: "19h15 – 20h45", title: "NoSQL, Governança de Dados e IA: MongoDB, Redis, Elasticsearch, DAMA-DMBOK, qualidade de dados, BI e IA/ML/IA Generativa", meta: "25 questões FGV no TEC", peso: "ALTO", done: false },
+        { id: "gr-38", fase: "Fase 3: Engenharia TJPB & TJRN (21/12/26 a 24/01/27)", dia: "Quarta-feira", horario: "21h15 – 23h00", title: "Matemática FGV (Delta TJPB): Conjuntos, razões/proporções, regra de 3, %, juros simples/compostos, equações, funções e sequências", meta: "20 questões exclusivas FGV", peso: "CRITICO", done: false },
+        { id: "gr-39", fase: "Fase 3: Engenharia TJPB & TJRN (21/12/26 a 24/01/27)", dia: "Quinta-feira", horario: "17h30 – 19h00", title: "Redes Avançadas, Storage e Observabilidade: IPv6 Avançado, OSPF/BGP, SD-WAN, NGINX/HAProxy, DNSSEC, SAN/NAS, Ransomware, Zabbix/Prometheus/ELK", meta: "25 questões FGV/Cebraspe no TEC", peso: "ALTO", done: false },
+        { id: "gr-40", fase: "Fase 3: Engenharia TJPB & TJRN (21/12/26 a 24/01/27)", dia: "Quinta-feira", horario: "19h15 – 20h45", title: "Normas ISO/NIST e Eng. de Software (Comum): ISO 27001, 27002, 27005 e 27701, NIST CSF, CIS Controls, OWASP Top 10 + Scrum, Kanban, Requisitos e Testes", meta: "25 questões FGV no TEC", peso: "ALTO", done: false }
+      ]
+    };
+
+    // =========================================================================
+    // DATABASE ENGINE (IndexedDB + LocalStorage + SQLite Local API + GitHub API)
+    // =========================================================================
+    const DB_KEY = "DOSSIE_V44_DB_STATE";
+    const TODAY_ISO = new Date().toISOString().slice(0, 10); // e.g., "2026-10-28"
+    let STATE = JSON.parse(JSON.stringify(INITIAL_DB));
+    let currentStatusFilter = "all";
+
+    // IndexedDB Wrapper
+    function saveToIndexedDB(data) {
+      try {
+        const req = indexedDB.open("DossieV44Database", 1);
+        req.onupgradeneeded = (e) => {
+          const db = e.target.result;
+          if (!db.objectStoreNames.contains("state")) {
+            db.createObjectStore("state", { keyPath: "id" });
+          }
+        };
+        req.onsuccess = (e) => {
+          const db = e.target.result;
+          const tx = db.transaction("state", "readwrite");
+          tx.objectStore("state").put({ id: "main", payload: data });
+        };
+      } catch (err) {
+        console.warn("IndexedDB fallback to localStorage:", err);
+      }
+    }
+
+    async function loadState() {
+      // 1. Try Local SQLite Backend API if running via python server.py
+      try {
+        const res = await fetch("/api/state", { cache: "no-store" });
+        if (res.ok) {
+          const serverData = await res.json();
+          if (serverData && serverData.anexoA) {
+            STATE = serverData;
+            localStorage.setItem(DB_KEY, JSON.stringify(STATE));
+            setSyncStatus("Conectado ao Banco SQLite Local (estudos.db)", false);
+            renderAll();
+            return;
+          }
+        }
+      } catch (_) {}
+
+      // 2. Try LocalStorage
+      const saved = localStorage.getItem(DB_KEY);
+      if (saved) {
+        try {
+          STATE = JSON.parse(saved);
+        } catch (e) {
+          console.error(e);
+        }
+      }
+
+      // 3. Try fetching remote data/progress_db.json from GitHub Pages if newer
+      try {
+        const res = await fetch("./data/progress_db.json", { cache: "no-store" });
+        if (res.ok) {
+          const remoteData = await res.json();
+          if (!saved && remoteData && remoteData.anexoA) {
+            STATE = remoteData;
+            localStorage.setItem(DB_KEY, JSON.stringify(STATE));
+          }
+        }
+      } catch (_) {}
+
+      renderAll();
+    }
+
+    async function persistState() {
+      STATE.lastUpdated = new Date().toISOString();
+      localStorage.setItem(DB_KEY, JSON.stringify(STATE));
+      saveToIndexedDB(STATE);
+      updateKPIs();
+
+      // Try saving to local SQLite backend if running
+      try {
+        const res = await fetch("/api/state", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(STATE)
+        });
+        if (res.ok) {
+          setSyncStatus("Salvo em SQLite (estudos.db) + IndexedDB às " + new Date().toLocaleTimeString(), false);
+          return;
+        }
+      } catch (_) {}
+
+      // Auto-sync to GitHub if token is configured
+      const ghToken = localStorage.getItem("DOSSIE_GH_TOKEN");
+      if (ghToken) {
+        pushToGitHubSilent();
+      } else {
+        setSyncStatus("Salvo no Banco do Navegador (IndexedDB) às " + new Date().toLocaleTimeString(), false);
+      }
+    }
+
+    function setSyncStatus(msg, syncing = false) {
+      const dot = document.getElementById("syncDot");
+      const txt = document.getElementById("syncStatusText");
+      if (syncing) {
+        dot.classList.add("syncing");
+      } else {
+        dot.classList.remove("syncing");
+      }
+      txt.textContent = msg;
+    }
+
+    // =========================================================================
+    // RENDERING FUNCTIONS
+    // =========================================================================
+    function matchesFilters(itemTitle, itemDone, isoDate) {
+      const q = (document.getElementById("searchInput").value || "").toLowerCase().trim();
+      if (q && !itemTitle.toLowerCase().includes(q)) return false;
+      if (currentStatusFilter === "pending" && itemDone) return false;
+      if (currentStatusFilter === "done" && !itemDone) return false;
+      if (currentStatusFilter === "past") {
+        if (!isoDate || isoDate >= TODAY_ISO) return false;
+      }
+      return true;
+    }
+
+    function renderAnexoA() {
+      const tbody = document.getElementById("tbody-anexo");
+      tbody.innerHTML = "";
+
+      STATE.anexoA.forEach((row, idx) => {
+        const searchable = `${row.date} ${row.day} ${row.sprint} ${row.title} ${row.method} ${row.notes || ""}`;
+        if (!matchesFilters(searchable, row.done, row.isoDate)) return;
+
+        const isPast = row.isoDate < TODAY_ISO;
+        const isToday = row.isoDate === TODAY_ISO;
+
+        const acertosNum = parseInt(row.acertos, 10);
+        let pctHtml = `<span class="pct-pill pct-none">—</span>`;
+        if (!isNaN(acertosNum) && row.targetQ > 0) {
+          const pct = Math.round((acertosNum / row.targetQ) * 100);
+          const cls = pct >= 75 ? "pct-high" : (pct >= 60 ? "pct-mid" : "pct-low");
+          pctHtml = `<span class="pct-pill ${cls}">${pct}%</span>`;
+        }
+
+        const tr = document.createElement("tr");
+        if (row.done) tr.classList.add("row-done");
+        else if (isPast) tr.classList.add("row-past");
+        else if (isToday) tr.classList.add("row-today");
+
+        tr.innerHTML = `
+          <td class="chk-wrap">
+            <input type="checkbox" class="custom-chk" ${row.done ? "checked" : ""} onchange="toggleItem('anexoA', ${idx}, this.checked)" />
+          </td>
+          <td>
+            <div class="date-tag">
+              ${row.date}
+              ${isPast && !row.done ? '<span class="tag-past">⏳ PASSOU</span>' : ''}
+              ${isToday ? '<span class="tag-today">📍 HOJE</span>' : ''}
+            </div>
+            <div style="font-size: 0.73rem; color: var(--text-secondary);">${row.day}</div>
+          </td>
+          <td style="font-weight: 600; white-space: nowrap;">${row.sprint}</td>
+          <td style="font-family: 'JetBrains Mono', monospace; font-size: 0.76rem; white-space: nowrap;">${row.time}</td>
+          <td class="item-title" style="font-weight: 600;">${row.title}</td>
+          <td style="color: var(--text-secondary); font-size: 0.78rem;">${row.method}</td>
+          <td><span class="peso-badge peso-${row.peso}">${row.peso}</span></td>
+          <td style="text-align: center;">
+            <input type="number" min="0" max="${row.targetQ}" class="score-input" value="${row.acertos}" placeholder="0"
+              oninput="updateAnexoScore(${idx}, this.value)" />
+          </td>
+          <td style="text-align: center; font-family: 'JetBrains Mono', monospace; font-weight: 700;">${row.targetQ}</td>
+          <td style="text-align: center;" id="pct-cell-${idx}">${pctHtml}</td>
+          <td>
+            <input type="text" class="note-input" value="${row.notes || ""}" placeholder="Anotar..."
+              onchange="updateNote('anexoA', ${idx}, this.value)" />
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function renderAdmin() {
+      const tbody = document.getElementById("tbody-admin");
+      tbody.innerHTML = "";
+
+      STATE.admin.forEach((row, idx) => {
+        const searchable = `${row.date} ${row.orgao} ${row.title} ${row.conduta} ${row.notes || ""}`;
+        if (!matchesFilters(searchable, row.done, row.isoDate)) return;
+
+        const isPast = row.isoDate < TODAY_ISO;
+        const isToday = row.isoDate === TODAY_ISO;
+
+        const tr = document.createElement("tr");
+        if (row.done) tr.classList.add("row-done");
+        else if (isPast) tr.classList.add("row-past");
+        else if (isToday) tr.classList.add("row-today");
+
+        tr.innerHTML = `
+          <td class="chk-wrap">
+            <input type="checkbox" class="custom-chk" ${row.done ? "checked" : ""} onchange="toggleItem('admin', ${idx}, this.checked)" />
+          </td>
+          <td>
+            <span class="date-tag">${row.date}</span>
+            ${isPast && !row.done ? '<span class="tag-past">⏳ PASSOU</span>' : ''}
+            ${isToday && !row.done ? '<span class="tag-today">🚨 HOJE</span>' : ''}
+          </td>
+          <td style="font-weight: 700;">${row.orgao}</td>
+          <td class="item-title" style="font-weight: 600;">${row.title}</td>
+          <td style="color: var(--text-secondary);">${row.conduta}</td>
+          <td><span class="peso-badge peso-${row.peso}">${row.peso}</span></td>
+          <td>
+            <input type="text" class="note-input" value="${row.notes || ""}" placeholder="Protocolo / Obs..."
+              onchange="updateNote('admin', ${idx}, this.value)" />
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function renderSprints() {
+      const tbody = document.getElementById("tbody-sprints");
+      tbody.innerHTML = "";
+
+      STATE.sprints.forEach((row, idx) => {
+        const searchable = `${row.sprint} ${row.period} ${row.fase} ${row.title} ${row.meta}`;
+        if (!matchesFilters(searchable, row.done, row.isoEnd)) return;
+
+        const isPast = row.isoEnd < TODAY_ISO;
+
+        const tr = document.createElement("tr");
+        if (row.done) tr.classList.add("row-done");
+        else if (isPast) tr.classList.add("row-past");
+
+        tr.innerHTML = `
+          <td class="chk-wrap">
+            <input type="checkbox" class="custom-chk" ${row.done ? "checked" : ""} onchange="toggleItem('sprints', ${idx}, this.checked)" />
+          </td>
+          <td style="font-weight: 800; white-space: nowrap;">${row.sprint}</td>
+          <td>
+            <span class="date-tag">${row.period}</span>
+            ${isPast && !row.done ? '<span class="tag-past">⏳ ENCERRADA</span>' : ''}
+          </td>
+          <td style="font-weight: 600; color: var(--accent);">${row.fase}</td>
+          <td class="item-title">${row.title}</td>
+          <td style="font-weight: 600; white-space: nowrap;">${row.meta}</td>
+          <td><span class="peso-badge peso-${row.peso}">${row.peso}</span></td>
+          <td style="text-align: center;">
+            <input type="number" class="score-input" value="${row.qDone || ""}" placeholder="0"
+              onchange="updateSprintQ(${idx}, this.value)" />
+          </td>
+          <td>
+            <input type="text" class="note-input" value="${row.notes || ""}" placeholder="Nota Simulado..."
+              onchange="updateNote('sprints', ${idx}, this.value)" />
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function renderNucleos() {
+      const container = document.getElementById("nucleos-container");
+      container.innerHTML = "";
+
+      const groups = {};
+      STATE.nucleos.forEach((item, idx) => {
+        if (!groups[item.nucleo]) groups[item.nucleo] = [];
+        groups[item.nucleo].push({ ...item, idx });
+      });
+
+      Object.keys(groups).forEach((nucleoName) => {
+        const items = groups[nucleoName].filter(it => matchesFilters(`${it.nucleo} ${it.cat} ${it.title}`, it.done, null));
+        if (items.length === 0) return;
+
+        const doneCount = groups[nucleoName].filter(i => i.done).length;
+        const totalCount = groups[nucleoName].length;
+
+        const card = document.createElement("div");
+        card.className = "section-card";
+        card.innerHTML = `
+          <div class="section-header">
+            <div class="section-title">${nucleoName}</div>
+            <span class="tab-badge">${doneCount} / ${totalCount} concluídos</span>
+          </div>
+          <div class="microfoco-grid">
+            ${items.map(it => `
+              <label class="microfoco-item ${it.done ? 'done' : ''}">
+                <input type="checkbox" class="custom-chk" style="margin-top: 2px;" ${it.done ? "checked" : ""}
+                  onchange="toggleItem('nucleos', ${it.idx}, this.checked)" />
+                <div>
+                  <span class="mf-cat">${it.cat}</span>
+                  <span class="mf-text">${it.title}</span>
+                </div>
+              </label>
+            `).join("")}
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function renderGrades() {
+      const container = document.getElementById("grades-container");
+      container.innerHTML = "";
+
+      const groups = {};
+      STATE.grades.forEach((item, idx) => {
+        if (!groups[item.fase]) groups[item.fase] = [];
+        groups[item.fase].push({ ...item, idx });
+      });
+
+      Object.keys(groups).forEach((faseName) => {
+        const items = groups[faseName].filter(it => matchesFilters(`${it.fase} ${it.dia} ${it.title} ${it.meta}`, it.done, null));
+        if (items.length === 0) return;
+
+        const card = document.createElement("div");
+        card.className = "section-card";
+        card.innerHTML = `
+          <div class="section-header">
+            <div class="section-title">⏰ ${faseName}</div>
+          </div>
+          <div class="table-responsive">
+            <table>
+              <thead>
+                <tr>
+                  <th style="width: 50px; text-align: center;">OK</th>
+                  <th>Dia da Semana</th>
+                  <th>Horário</th>
+                  <th>Disciplina / Microfoco</th>
+                  <th>Meta Operacional</th>
+                  <th>Peso</th>
+                </tr>
+              </thead>
+              <tbody>
+                ${items.map(row => `
+                  <tr class="${row.done ? 'row-done' : ''}">
+                    <td class="chk-wrap">
+                      <input type="checkbox" class="custom-chk" ${row.done ? "checked" : ""}
+                        onchange="toggleItem('grades', ${row.idx}, this.checked)" />
+                    </td>
+                    <td style="font-weight: 700; white-space: nowrap;">${row.dia}</td>
+                    <td style="font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; white-space: nowrap;">${row.horario}</td>
+                    <td class="item-title" style="font-weight: 500;">${row.title}</td>
+                    <td style="color: var(--text-secondary);">${row.meta}</td>
+                    <td><span class="peso-badge peso-${row.peso}">${row.peso}</span></td>
+                  </tr>
+                `).join("")}
+              </tbody>
+            </table>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function updateKPIs() {
+      const axDone = STATE.anexoA.filter(i => i.done).length;
+      const admDone = STATE.admin.filter(i => i.done).length;
+      const spDone = STATE.sprints.filter(i => i.done).length;
+      const ncDone = STATE.nucleos.filter(i => i.done).length;
+      const grDone = STATE.grades.filter(i => i.done).length;
+
+      document.getElementById("badge-anexo").textContent = `${axDone}/${STATE.anexoA.length}`;
+      document.getElementById("badge-admin").textContent = `${admDone}/${STATE.admin.length}`;
+      document.getElementById("badge-sprints").textContent = `${spDone}/${STATE.sprints.length}`;
+      document.getElementById("badge-nucleos").textContent = `${ncDone}/${STATE.nucleos.length}`;
+      document.getElementById("badge-grades").textContent = `${grDone}/${STATE.grades.length}`;
+
+      const totalItems = STATE.anexoA.length + STATE.admin.length + STATE.sprints.length + STATE.nucleos.length + STATE.grades.length;
+      const totalDone = axDone + admDone + spDone + ncDone + grDone;
+      const totalPct = totalItems > 0 ? Math.round((totalDone / totalItems) * 100) : 0;
+
+      document.getElementById("kpiTotalPct").textContent = `${totalPct}%`;
+      document.getElementById("kpiTotalCount").textContent = `${totalDone} de ${totalItems} itens marcados`;
+      document.getElementById("kpiTotalBar").style.width = `${totalPct}%`;
+
+      // Questions & Accuracy
+      let qResolved = 0;
+      let qTargetWithScore = 0;
+      let totalAcertos = 0;
+
+      STATE.anexoA.forEach(r => {
+        const ac = parseInt(r.acertos, 10);
+        if (!isNaN(ac)) {
+          qResolved += r.targetQ;
+          qTargetWithScore += r.targetQ;
+          totalAcertos += ac;
+        } else if (r.done) {
+          qResolved += r.targetQ;
+        }
+      });
+
+      document.getElementById("kpiQuestionsDone").textContent = qResolved;
+      const qPct = Math.min(100, Math.round((qResolved / 595) * 100));
+      document.getElementById("kpiQuestionsBar").style.width = `${qPct}%`;
+
+      const accPct = qTargetWithScore > 0 ? ((totalAcertos / qTargetWithScore) * 100).toFixed(1) : "0.0";
+      document.getElementById("kpiAccuracy").textContent = `${accPct}%`;
+      document.getElementById("kpiAccuracySub").textContent = `${totalAcertos} acertos em ${qTargetWithScore} questões medidas`;
+      document.getElementById("kpiAccuracyBar").style.width = `${Math.min(100, parseFloat(accPct))}%`;
+
+      document.getElementById("kpiAdminDone").textContent = `${admDone} / ${STATE.admin.length}`;
+      document.getElementById("kpiAdminBar").style.width = `${Math.round((admDone / STATE.admin.length) * 100)}%`;
+    }
+
+    function renderAll() {
+      renderAnexoA();
+      renderAdmin();
+      renderSprints();
+      renderNucleos();
+      renderGrades();
+      updateKPIs();
+    }
+
+    // =========================================================================
+    // INTERACTION HANDLERS
+    // =========================================================================
+    function toggleItem(collection, idx, checked) {
+      STATE[collection][idx].done = checked;
+      persistState();
+      renderAll();
+    }
+
+    function updateAnexoScore(idx, val) {
+      STATE.anexoA[idx].acertos = val;
+      if (val !== "" && !isNaN(parseInt(val, 10))) {
+        STATE.anexoA[idx].done = true;
+      }
+      persistState();
+      renderAnexoA();
+    }
+
+    function updateSprintQ(idx, val) {
+      STATE.sprints[idx].qDone = val;
+      persistState();
+    }
+
+    function updateNote(collection, idx, val) {
+      STATE[collection][idx].notes = val;
+      persistState();
+    }
+
+    function markAllPastDatesDone() {
+      let count = 0;
+      STATE.anexoA.forEach(r => {
+        if (r.isoDate < TODAY_ISO && !r.done) {
+          r.done = true;
+          count++;
+        }
+      });
+      STATE.sprints.forEach(r => {
+        if (r.isoEnd < TODAY_ISO && !r.done) {
+          r.done = true;
+          count++;
+        }
+      });
+      persistState();
+      renderAll();
+      alert(`✅ ${count} blocos/sprints com datas anteriores a hoje (${TODAY_ISO}) foram marcados como concluídos!`);
+    }
+
+    function switchTab(tabId, btn) {
+      document.querySelectorAll(".tab-pane").forEach(p => p.classList.remove("active"));
+      document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+      document.getElementById(tabId).classList.add("active");
+      btn.classList.add("active");
+    }
+
+    function setStatusFilter(filter, btn) {
+      currentStatusFilter = filter;
+      document.querySelectorAll(".pill").forEach(p => p.classList.remove("active"));
+      btn.classList.add("active");
+      renderAll();
+    }
+
+    // =========================================================================
+    // EXPORT / IMPORT / GITHUB CLOUD SYNC
+    // =========================================================================
+    function exportDatabaseJSON() {
+      const blob = new Blob([JSON.stringify(STATE, null, 2)], { type: "application/json" });
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(blob);
+      a.download = `dossie_v44_backup_${TODAY_ISO}.json`;
+      a.click();
+    }
+
+    function importDatabaseJSON(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = (ev) => {
+        try {
+          const imported = JSON.parse(ev.target.result);
+          if (imported && imported.anexoA) {
+            STATE = imported;
+            persistState();
+            renderAll();
+            alert("✅ Backup do banco de dados importado com sucesso!");
+          }
+        } catch (err) {
+          alert("Erro ao importar arquivo JSON: " + err.message);
+        }
+      };
+      reader.readAsText(file);
+    }
+
+    function openCloudModal() {
+      document.getElementById("ghTokenInput").value = localStorage.getItem("DOSSIE_GH_TOKEN") || "";
+      document.getElementById("ghRepoInput").value = localStorage.getItem("DOSSIE_GH_REPO") || "willyelias/dossie-v44-checklist";
+      document.getElementById("cloudModal").classList.add("open");
+    }
+
+    function closeCloudModal() {
+      document.getElementById("cloudModal").classList.remove("open");
+    }
+
+    async function saveAndPushGitHub() {
+      const token = document.getElementById("ghTokenInput").value.trim();
+      const repo = document.getElementById("ghRepoInput").value.trim();
+      if (!token || !repo) {
+        alert("Informe o Token do GitHub e o nome do Repositório.");
+        return;
+      }
+      localStorage.setItem("DOSSIE_GH_TOKEN", token);
+      localStorage.setItem("DOSSIE_GH_REPO", repo);
+      await pushToGitHubSilent(true);
+      closeCloudModal();
+    }
+
+    async function pushToGitHubSilent(showAlert = false) {
+      const token = localStorage.getItem("DOSSIE_GH_TOKEN");
+      const repo = localStorage.getItem("DOSSIE_GH_REPO") || "willyelias/dossie-v44-checklist";
+      if (!token) return;
+
+      setSyncStatus("Sincronizando com GitHub Cloud...", true);
+      const path = "data/progress_db.json";
+      const url = `https://api.github.com/repos/${repo}/contents/${path}`;
+
+      try {
+        let sha = null;
+        const getRes = await fetch(url, {
+          headers: { Authorization: `Bearer ${token}`, Accept: "application/vnd.github+json" }
+        });
+        if (getRes.ok) {
+          const fileMeta = await getRes.json();
+          sha = fileMeta.sha;
+        }
+
+        const contentBase64 = btoa(unescape(encodeURIComponent(JSON.stringify(STATE, null, 2))));
+        const body = {
+          message: `chore(db): update study progress (${new Date().toLocaleString("pt-BR")})`,
+          content: contentBase64
+        };
+        if (sha) body.sha = sha;
+
+        const putRes = await fetch(url, {
+          method: "PUT",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            Accept: "application/vnd.github+json",
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(body)
+        });
+
+        if (putRes.ok) {
+          setSyncStatus("☁️ Sincronizado no GitHub + IndexedDB às " + new Date().toLocaleTimeString(), false);
+          if (showAlert) alert("✅ Dados gravados diretamente no repositório do GitHub!");
+        } else {
+          setSyncStatus("Erro ao sincronizar no GitHub (Salvo localmente)", false);
+        }
+      } catch (e) {
+        setSyncStatus("Offline — Salvo localmente no navegador", false);
+      }
+    }
+
+    async function pullFromGitHub() {
+      const token = document.getElementById("ghTokenInput").value.trim();
+      const repo = document.getElementById("ghRepoInput").value.trim();
+      const url = `https://api.github.com/repos/${repo}/contents/data/progress_db.json`;
+      try {
+        const headers = { Accept: "application/vnd.github+json" };
+        if (token) headers.Authorization = `Bearer ${token}`;
+        const res = await fetch(url, { headers });
+        if (res.ok) {
+          const meta = await res.json();
+          const decoded = decodeURIComponent(escape(atob(meta.content.replace(/\n/g, ""))));
+          STATE = JSON.parse(decoded);
+          persistState();
+          renderAll();
+          alert("✅ Estado atualizado a partir do banco no GitHub!");
+          closeCloudModal();
+        } else {
+          alert("Não foi possível encontrar data/progress_db.json no repositório.");
+        }
+      } catch (err) {
+        alert("Erro ao baixar: " + err.message);
+      }
+    }
+
+    // Init
+    document.getElementById("currentDateDisplay").textContent = new Date().toLocaleDateString("pt-BR");
+    loadState();
+  </script>
+</body>
+</html>
