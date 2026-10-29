@@ -1,11 +1,11 @@
 {
   "version": 44,
-  "lastUpdated": "2026-10-28T17:46:43.635Z",
+  "lastUpdated": "2026-10-29T18:11:17.895Z",
   "anexoA": [
     {
       "id": "ax-01",
-      "date": "22/10/2026",
-      "isoDate": "2026-10-22",
+      "date": "29/10/2026",
+      "isoDate": "2026-10-29",
       "day": "Quinta-feira",
       "sprint": "Sprint 01",
       "time": "18h15 – 19h45",
@@ -19,8 +19,8 @@
     },
     {
       "id": "ax-02",
-      "date": "22/10/2026",
-      "isoDate": "2026-10-22",
+      "date": "29/10/2026",
+      "isoDate": "2026-10-29",
       "day": "Quinta-feira",
       "sprint": "Sprint 01",
       "time": "19h45 – 21h15",
@@ -34,8 +34,8 @@
     },
     {
       "id": "ax-03",
-      "date": "22/10/2026",
-      "isoDate": "2026-10-22",
+      "date": "29/10/2026",
+      "isoDate": "2026-10-29",
       "day": "Quinta-feira",
       "sprint": "Sprint 01",
       "time": "21h30 – 23h00",
@@ -49,8 +49,8 @@
     },
     {
       "id": "ax-04",
-      "date": "23/10/2026",
-      "isoDate": "2026-10-23",
+      "date": "30/10/2026",
+      "isoDate": "2026-10-30",
       "day": "Sexta-feira",
       "sprint": "Sprint 01",
       "time": "14h00 – 15h30",
@@ -64,8 +64,8 @@
     },
     {
       "id": "ax-05",
-      "date": "23/10/2026",
-      "isoDate": "2026-10-23",
+      "date": "30/10/2026",
+      "isoDate": "2026-10-30",
       "day": "Sexta-feira",
       "sprint": "Sprint 01",
       "time": "15h30 – 17h00",
@@ -79,8 +79,8 @@
     },
     {
       "id": "ax-06",
-      "date": "25/10/2026",
-      "isoDate": "2026-10-25",
+      "date": "01/11/2026",
+      "isoDate": "2026-11-01",
       "day": "Domingo",
       "sprint": "Sprint 01",
       "time": "08h00 – 12h00",
@@ -94,8 +94,8 @@
     },
     {
       "id": "ax-07",
-      "date": "25/10/2026",
-      "isoDate": "2026-10-25",
+      "date": "01/11/2026",
+      "isoDate": "2026-11-01",
       "day": "Domingo",
       "sprint": "Sprint 01",
       "time": "13h30 – 18h00",
@@ -109,8 +109,8 @@
     },
     {
       "id": "ax-08",
-      "date": "26/10/2026",
-      "isoDate": "2026-10-26",
+      "date": "02/11/2026",
+      "isoDate": "2026-11-02",
       "day": "Segunda-feira",
       "sprint": "Sprint 02",
       "time": "17h30 – 19h00",
@@ -124,8 +124,8 @@
     },
     {
       "id": "ax-09",
-      "date": "26/10/2026",
-      "isoDate": "2026-10-26",
+      "date": "02/11/2026",
+      "isoDate": "2026-11-02",
       "day": "Segunda-feira",
       "sprint": "Sprint 02",
       "time": "19h15 – 20h45",
@@ -139,8 +139,8 @@
     },
     {
       "id": "ax-10",
-      "date": "26/10/2026",
-      "isoDate": "2026-10-26",
+      "date": "02/11/2026",
+      "isoDate": "2026-11-02",
       "day": "Segunda-feira",
       "sprint": "Sprint 02",
       "time": "21h15 – 23h00",
@@ -154,8 +154,8 @@
     },
     {
       "id": "ax-11",
-      "date": "27/10/2026",
-      "isoDate": "2026-10-27",
+      "date": "03/11/2026",
+      "isoDate": "2026-11-03",
       "day": "Terça-feira",
       "sprint": "Sprint 02",
       "time": "17h30 – 19h00",
@@ -169,8 +169,8 @@
     },
     {
       "id": "ax-12",
-      "date": "27/10/2026",
-      "isoDate": "2026-10-27",
+      "date": "03/11/2026",
+      "isoDate": "2026-11-03",
       "day": "Terça-feira",
       "sprint": "Sprint 02",
       "time": "19h15 – 20h45",
@@ -184,8 +184,8 @@
     },
     {
       "id": "ax-13",
-      "date": "27/10/2026",
-      "isoDate": "2026-10-27",
+      "date": "03/11/2026",
+      "isoDate": "2026-11-03",
       "day": "Terça-feira",
       "sprint": "Sprint 02",
       "time": "21h15 – 23h00",
@@ -199,8 +199,8 @@
     },
     {
       "id": "ax-14",
-      "date": "28/10/2026",
-      "isoDate": "2026-10-28",
+      "date": "04/11/2026",
+      "isoDate": "2026-11-04",
       "day": "Quarta-feira",
       "sprint": "Sprint 02",
       "time": "17h30 – 19h00",
@@ -214,8 +214,8 @@
     },
     {
       "id": "ax-15",
-      "date": "28/10/2026",
-      "isoDate": "2026-10-28",
+      "date": "04/11/2026",
+      "isoDate": "2026-11-04",
       "day": "Quarta-feira",
       "sprint": "Sprint 02",
       "time": "19h15 – 20h45",
@@ -229,8 +229,8 @@
     },
     {
       "id": "ax-16",
-      "date": "28/10/2026",
-      "isoDate": "2026-10-28",
+      "date": "04/11/2026",
+      "isoDate": "2026-11-04",
       "day": "Quarta-feira",
       "sprint": "Sprint 02",
       "time": "21h15 – 23h00",
@@ -244,8 +244,8 @@
     },
     {
       "id": "ax-17",
-      "date": "29/10/2026",
-      "isoDate": "2026-10-29",
+      "date": "05/11/2026",
+      "isoDate": "2026-11-05",
       "day": "Quinta-feira",
       "sprint": "Sprint 02",
       "time": "17h30 – 19h00",
@@ -259,8 +259,8 @@
     },
     {
       "id": "ax-18",
-      "date": "29/10/2026",
-      "isoDate": "2026-10-29",
+      "date": "05/11/2026",
+      "isoDate": "2026-11-05",
       "day": "Quinta-feira",
       "sprint": "Sprint 02",
       "time": "19h15 – 20h45",
@@ -274,8 +274,8 @@
     },
     {
       "id": "ax-19",
-      "date": "29/10/2026",
-      "isoDate": "2026-10-29",
+      "date": "05/11/2026",
+      "isoDate": "2026-11-05",
       "day": "Quinta-feira",
       "sprint": "Sprint 02",
       "time": "21h15 – 23h00",
@@ -289,8 +289,8 @@
     },
     {
       "id": "ax-20",
-      "date": "30/10/2026",
-      "isoDate": "2026-10-30",
+      "date": "06/11/2026",
+      "isoDate": "2026-11-06",
       "day": "Sexta-feira",
       "sprint": "Sprint 02",
       "time": "14h00 – 15h30",
@@ -304,8 +304,8 @@
     },
     {
       "id": "ax-21",
-      "date": "30/10/2026",
-      "isoDate": "2026-10-30",
+      "date": "06/11/2026",
+      "isoDate": "2026-11-06",
       "day": "Sexta-feira",
       "sprint": "Sprint 02",
       "time": "15h30 – 17h00",
@@ -319,8 +319,8 @@
     },
     {
       "id": "ax-22",
-      "date": "01/11/2026",
-      "isoDate": "2026-11-01",
+      "date": "08/11/2026",
+      "isoDate": "2026-11-08",
       "day": "Domingo",
       "sprint": "Sprint 02",
       "time": "08h00 – 18h00",
@@ -336,8 +336,8 @@
   "admin": [
     {
       "id": "adm-01",
-      "date": "22/10/2026",
-      "isoDate": "2026-10-22",
+      "date": "29/10/2026",
+      "isoDate": "2026-10-29",
       "orgao": "ABDI / TJPB",
       "title": "Envio dos Pedidos de Isenção (Medula)",
       "conduta": "CONCLUÍDO. Guardar protocolos de envio no portal FGV.",
@@ -358,8 +358,8 @@
     },
     {
       "id": "adm-03",
-      "date": "30/10/2026",
-      "isoDate": "2026-10-30",
+      "date": "06/11/2026",
+      "isoDate": "2026-11-06",
       "orgao": "ABDI",
       "title": "Resultado Preliminar da Isenção ABDI",
       "conduta": "Conferir deferimento no site da FGV (Recurso: 03 e 04/11; Definitivo: 10/11).",
@@ -504,8 +504,8 @@
     {
       "id": "sp-01",
       "sprint": "Sprint 01",
-      "period": "22/10 a 25/10/26",
-      "isoEnd": "2026-10-25",
+      "period": "29/10 a 01/11/26",
+      "isoEnd": "2026-11-01",
       "fase": "Fase 1: Tronco Comum",
       "title": "OSI/TCP-IP, IPv4/IPv6, VLANs, COBIT 2019, ITIL 4, Controle de Acesso e Lógica Sentencial (RLM).",
       "meta": "200 questões + Simulado #1",
@@ -517,8 +517,8 @@
     {
       "id": "sp-02",
       "sprint": "Sprint 02",
-      "period": "26/10 a 01/11/26",
-      "isoEnd": "2026-11-01",
+      "period": "02/11 a 08/11/26",
+      "isoEnd": "2026-11-08",
       "fase": "Fase 1: Tronco Comum",
       "title": "Windows Server, Linux, AD, GPO, DNS, DHCP, PowerShell/Bash, Criptografia, PKI, LGPD, Port e RLM (1ª Ordem).",
       "meta": "310 questões + Simulado #2",
@@ -926,8 +926,8 @@
   "grades": [
     {
       "id": "gr-01",
-      "fase": "Fase 1: Tronco Comum (22/10 a 22/11/2026)",
-      "dia": "Hoje (Qui 22/10)",
+      "fase": "Fase 1: Tronco Comum (29/10 a 22/11/2026)",
+      "dia": "Hoje (Qui 29/10)",
       "horario": "17h30 – 19h30",
       "title": "Redes Convergente: Modelos OSI e TCP/IP, Endereçamento IPv4 e IPv6, Roteamento e VLANs",
       "meta": "30 questões FGV (Execução Pura + Passo 3 nos erros)",
@@ -936,8 +936,8 @@
     },
     {
       "id": "gr-02",
-      "fase": "Fase 1: Tronco Comum (22/10 a 22/11/2026)",
-      "dia": "Hoje (Qui 22/10)",
+      "fase": "Fase 1: Tronco Comum (29/10 a 22/11/2026)",
+      "dia": "Hoje (Qui 29/10)",
       "horario": "19h45 – 21h15",
       "title": "Governança Convergente: COBIT 2019 (Princípios, Componentes e Objetivos EDM/APO/BAI/DSS/MEA)",
       "meta": "25 questões FGV + tabela de domínios",
@@ -946,8 +946,8 @@
     },
     {
       "id": "gr-03",
-      "fase": "Fase 1: Tronco Comum (22/10 a 22/11/2026)",
-      "dia": "Hoje (Qui 22/10)",
+      "fase": "Fase 1: Tronco Comum (29/10 a 22/11/2026)",
+      "dia": "Hoje (Qui 29/10)",
       "horario": "21h30 – 23h00",
       "title": "RLM Convergente: Lógica Sentencial (Proposições, Conectivos, Tabelas-Verdade e Equivalências)",
       "meta": "20 questões exclusivas FGV dissecadas",
@@ -956,7 +956,7 @@
     },
     {
       "id": "gr-04",
-      "fase": "Fase 1: Tronco Comum (22/10 a 22/11/2026)",
+      "fase": "Fase 1: Tronco Comum (29/10 a 22/11/2026)",
       "dia": "Segunda-feira",
       "horario": "17h30 – 19h00",
       "title": "Sistemas Operacionais: Administração Windows Server e Linux, instalação, usuários, permissões e serviços",
@@ -966,7 +966,7 @@
     },
     {
       "id": "gr-05",
-      "fase": "Fase 1: Tronco Comum (22/10 a 22/11/2026)",
+      "fase": "Fase 1: Tronco Comum (29/10 a 22/11/2026)",
       "dia": "Segunda-feira",
       "horario": "19h15 – 20h45",
       "title": "Diretório e Scripts: Active Directory (AD DS), GPO, DNS, DHCP e automação em PowerShell e Shell/Bash",
@@ -976,7 +976,7 @@
     },
     {
       "id": "gr-06",
-      "fase": "Fase 1: Tronco Comum (22/10 a 22/11/2026)",
+      "fase": "Fase 1: Tronco Comum (29/10 a 22/11/2026)",
       "dia": "Segunda-feira",
       "horario": "21h15 – 23h00",
       "title": "Língua Portuguesa FGV: Compreensão e interpretação de textos, tipos/gêneros textuais e coesão/conectores",
@@ -986,7 +986,7 @@
     },
     {
       "id": "gr-07",
-      "fase": "Fase 1: Tronco Comum (22/10 a 22/11/2026)",
+      "fase": "Fase 1: Tronco Comum (29/10 a 22/11/2026)",
       "dia": "Terça-feira",
       "horario": "17h30 – 19h00",
       "title": "Infra, Virtualização e Contêineres: Servidores, storage, hipervisores, VMs, alta disponibilidade e contêineres",
@@ -996,7 +996,7 @@
     },
     {
       "id": "gr-08",
-      "fase": "Fase 1: Tronco Comum (22/10 a 22/11/2026)",
+      "fase": "Fase 1: Tronco Comum (29/10 a 22/11/2026)",
       "dia": "Terça-feira",
       "horario": "19h15 – 20h45",
       "title": "Computação em Nuvem: Modelos IaaS, PaaS e SaaS, segurança em nuvem e planejamento de capacidade/desempenho",
@@ -1006,7 +1006,7 @@
     },
     {
       "id": "gr-09",
-      "fase": "Fase 1: Tronco Comum (22/10 a 22/11/2026)",
+      "fase": "Fase 1: Tronco Comum (29/10 a 22/11/2026)",
       "dia": "Terça-feira",
       "horario": "21h15 – 23h00",
       "title": "Raciocínio Lógico FGV: Diagramas lógicos, lógica de 1ª ordem (quantificadores) e lógica de argumentação",
@@ -1016,7 +1016,7 @@
     },
     {
       "id": "gr-10",
-      "fase": "Fase 1: Tronco Comum (22/10 a 22/11/2026)",
+      "fase": "Fase 1: Tronco Comum (29/10 a 22/11/2026)",
       "dia": "Quarta-feira",
       "horario": "17h30 – 19h00",
       "title": "Redes e Perímetro: LAN, WAN, VPN (IPSec/SSL), switches, roteadores, firewalls, Wi-Fi e diagnóstico de redes",
@@ -1026,7 +1026,7 @@
     },
     {
       "id": "gr-11",
-      "fase": "Fase 1: Tronco Comum (22/10 a 22/11/2026)",
+      "fase": "Fase 1: Tronco Comum (29/10 a 22/11/2026)",
       "dia": "Quarta-feira",
       "horario": "19h15 – 20h45",
       "title": "Segurança e Continuidade: Controle de acesso/identidades, criptografia, PKI, backup/restore, DRP e contingência",
@@ -1036,7 +1036,7 @@
     },
     {
       "id": "gr-12",
-      "fase": "Fase 1: Tronco Comum (22/10 a 22/11/2026)",
+      "fase": "Fase 1: Tronco Comum (29/10 a 22/11/2026)",
       "dia": "Quarta-feira",
       "horario": "21h15 – 23h00",
       "title": "Língua Portuguesa FGV: Morfossintaxe, coordenação/subordinação, pontuação, concordância, regência, crase e reescrita",
@@ -1046,7 +1046,7 @@
     },
     {
       "id": "gr-13",
-      "fase": "Fase 1: Tronco Comum (22/10 a 22/11/2026)",
+      "fase": "Fase 1: Tronco Comum (29/10 a 22/11/2026)",
       "dia": "Quinta-feira",
       "horario": "17h30 – 19h00",
       "title": "Governança e Gestão de Serviços: COBIT 2019, ITIL 4 (incidentes, problemas, mudanças, SLA), riscos e contratos de TIC",
@@ -1056,7 +1056,7 @@
     },
     {
       "id": "gr-14",
-      "fase": "Fase 1: Tronco Comum (22/10 a 22/11/2026)",
+      "fase": "Fase 1: Tronco Comum (29/10 a 22/11/2026)",
       "dia": "Quinta-feira",
       "horario": "19h15 – 20h45",
       "title": "Automação, Ativos e LGPD: Conceitos de DevOps e IaC, gestão de ativos/configurações/licenças e Lei nº 13.709/2018 (LGPD)",
@@ -1066,7 +1066,7 @@
     },
     {
       "id": "gr-15",
-      "fase": "Fase 1: Tronco Comum (22/10 a 22/11/2026)",
+      "fase": "Fase 1: Tronco Comum (29/10 a 22/11/2026)",
       "dia": "Quinta-feira",
       "horario": "21h15 – 23h00",
       "title": "Raciocínio Lógico FGV: Problemas aritméticos, geométricos e matriciais",
