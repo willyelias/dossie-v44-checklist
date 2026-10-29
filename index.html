@@ -731,8 +731,8 @@
         <button class="btn" onclick="markAllPastDatesDone()" title="Marca como concluídos todos os itens anteriores a hoje">
           ⏳ Marcar Datas Passadas
         </button>
-        <button class="btn btn-primary" onclick="openCloudModal()">
-          ☁️ Sincronizar Banco GitHub / API
+        <button class="btn btn-primary" onclick="syncCloudNow(true)">
+          ☁️ Sincronizar Nuvem Agora (Automático)
         </button>
         <button class="btn" onclick="exportDatabaseJSON()">
           ⬇️ Exportar JSON/CSV
@@ -805,7 +805,7 @@
 
     <!-- Filter & Search Bar -->
     <div class="filter-bar">
-      <input type="text" class="search-input" id="searchInput" placeholder="🔍 Filtrar por disciplina, data, lei, resolução ou tópico..." oninput="renderAll()" />
+      <input type="search" class="search-input" id="searchInput" name="dossie_search_filter_nofill" autocomplete="off" readonly onfocus="this.removeAttribute('readonly');" placeholder="🔍 Filtrar por disciplina, data, lei, resolução ou tópico..." oninput="renderAll()" />
       <div class="filter-pills">
         <button class="pill active" onclick="setStatusFilter('all', this)">Todos</button>
         <button class="pill" onclick="setStatusFilter('pending', this)">Pendentes</button>
@@ -947,7 +947,7 @@
     const INITIAL_DB = {
   "version": 45,
   "scheduleStart": "2026-10-29",
-  "lastUpdated": "2026-10-29T18:15:36.842Z",
+  "lastUpdated": "2026-10-29T18:29:57.852Z",
   "anexoA": [
     {
       "id": "ax-01",
@@ -2699,15 +2699,58 @@
     // =========================================================================
     // DATABASE ENGINE (IndexedDB + LocalStorage + SQLite Local API + GitHub API)
     // =========================================================================
-    const DB_KEY = "DOSSIE_V45_REPROGRAMADO_2910";
-    const TODAY_ISO = new Date().toISOString().slice(0, 10); // e.g., "2026-10-28"
+    const DB_KEY = "DOSSIE_V45_CLOUD_2910";
+    const CLOUD_STREAM_URL = "https://ntfy.sh/dossie_v45_willy_cloud_stream_7e3b9a";
+    const TODAY_ISO = new Date().toISOString().slice(0, 10);
     let STATE = JSON.parse(JSON.stringify(INITIAL_DB));
     let currentStatusFilter = "all";
+    let cloudSyncTimeout = null;
+
+    function buildDeltaFromState(st) {
+      const done = [];
+      const scores = {};
+      const notes = {};
+      for (const col of ["anexoA", "admin", "sprints", "nucleos", "grades"]) {
+        for (const item of (st[col] || [])) {
+          if (item.done) done.push(item.id);
+          if (col === "anexoA" && item.acertos !== "" && item.acertos !== undefined) {
+            scores[item.id] = String(item.acertos);
+          }
+          if (col === "sprints" && item.qDone !== "" && item.qDone !== undefined) {
+            scores[item.id] = String(item.qDone);
+          }
+          if (item.notes && String(item.notes).trim() !== "") {
+            notes[item.id] = String(item.notes);
+          }
+        }
+      }
+      return { v: 45, t: Date.now(), done, scores, notes };
+    }
+
+    function applyDeltaToState(st, delta) {
+      if (!delta || delta.v !== 45) return;
+      const doneSet = new Set(delta.done || []);
+      const scores = delta.scores || {};
+      const notes = delta.notes || {};
+      for (const col of ["anexoA", "admin", "sprints", "nucleos", "grades"]) {
+        for (const item of (st[col] || [])) {
+          item.done = doneSet.has(item.id);
+          if (scores[item.id] !== undefined) {
+            if (col === "anexoA") item.acertos = scores[item.id];
+            if (col === "sprints") item.qDone = scores[item.id];
+          }
+          if (notes[item.id] !== undefined) {
+            item.notes = notes[item.id];
+          }
+        }
+      }
+      st.lastUpdated = new Date(delta.t || Date.now()).toISOString();
+    }
 
     // IndexedDB Wrapper
     function saveToIndexedDB(data) {
       try {
-        const req = indexedDB.open("DossieV44Database", 1);
+        const req = indexedDB.open("DossieV45CloudDB", 1);
         req.onupgradeneeded = (e) => {
           const db = e.target.result;
           if (!db.objectStoreNames.contains("state")) {
@@ -2725,10 +2768,26 @@
     }
 
     async function loadState() {
-      // Clear legacy cache from before 29/10 reprogramming
+      // Clear legacy localStorage keys so 22/10 never comes back
       localStorage.removeItem("DOSSIE_V44_DB_STATE");
       localStorage.removeItem("DOSSIE_V44_DB_STATE_2910");
-      // 1. Try Local SQLite Backend API if running via python server.py
+      localStorage.removeItem("DOSSIE_V45_REPROGRAMADO_2910");
+
+      const sInput = document.getElementById("searchInput");
+      if (sInput) sInput.value = "";
+
+      // 1. Load from LocalStorage if already on v45
+      const saved = localStorage.getItem(DB_KEY);
+      if (saved) {
+        try {
+          const parsed = JSON.parse(saved);
+          if (parsed && parsed.version === 45 && parsed.anexoA) {
+            STATE = parsed;
+          }
+        } catch (_) {}
+      }
+
+      // 2. Try Local SQLite Backend API if running via python server.py
       try {
         const res = await fetch("/api/state", { cache: "no-store" });
         if (res.ok) {
@@ -2743,29 +2802,59 @@
         }
       } catch (_) {}
 
-      // 2. Try LocalStorage
-      const saved = localStorage.getItem(DB_KEY);
-      if (saved) {
-        try {
-          STATE = JSON.parse(saved);
-        } catch (e) {
-          console.error(e);
-        }
-      }
-
-      // 3. Try fetching remote data/progress_db.json from GitHub Pages if newer
+      // 3. Pull latest Cloud Stream state automatically (works across PC, phone, and GitHub Pages without token!)
       try {
-        const res = await fetch("./data/progress_db.json", { cache: "no-store" });
+        setSyncStatus("Sincronizando com Banco em Nuvem...", true);
+        const res = await fetch(CLOUD_STREAM_URL + "/json?poll=1&since=24h", { cache: "no-store" });
         if (res.ok) {
-          const remoteData = await res.json();
-          if (!saved && remoteData && remoteData.version === 45 && remoteData.anexoA) {
-            STATE = remoteData;
-            localStorage.setItem(DB_KEY, JSON.stringify(STATE));
+          const text = (await res.text()).trim();
+          if (text) {
+            const lines = text.split("\n").filter(Boolean);
+            let latestDelta = null;
+            for (const line of lines) {
+              try {
+                const evt = JSON.parse(line);
+                if (evt.event === "message" && evt.message) {
+                  const p = JSON.parse(evt.message);
+                  if (p && p.v === 45) latestDelta = p;
+                }
+              } catch (_) {}
+            }
+            if (latestDelta) {
+              const localTime = new Date(STATE.lastUpdated || 0).getTime();
+              if (!saved || latestDelta.t >= localTime) {
+                applyDeltaToState(STATE, latestDelta);
+                localStorage.setItem(DB_KEY, JSON.stringify(STATE));
+                saveToIndexedDB(STATE);
+              }
+            }
           }
         }
-      } catch (_) {}
+        setSyncStatus("☁️ Nuvem + IndexedDB Sincronizados Automaticamente (Sem Token)", false);
+      } catch (_) {
+        setSyncStatus("Salvo Localmente no Navegador (IndexedDB Ativo)", false);
+      }
 
       renderAll();
+    }
+
+    async function syncCloudNow(manualClick = false) {
+      const sInput = document.getElementById("searchInput");
+      if (sInput && sInput.value === "admin") sInput.value = "";
+      try {
+        setSyncStatus("Gravando na Nuvem Automaticamente...", true);
+        const delta = buildDeltaFromState(STATE);
+        await fetch(CLOUD_STREAM_URL, {
+          method: "POST",
+          body: JSON.stringify(delta)
+        });
+        setSyncStatus("☁️ Sincronizado na Nuvem às " + new Date().toLocaleTimeString(), false);
+        if (manualClick) {
+          renderAll();
+        }
+      } catch (e) {
+        setSyncStatus("Salvo no Navegador (Offline)", false);
+      }
     }
 
     async function persistState() {
@@ -2774,7 +2863,7 @@
       saveToIndexedDB(STATE);
       updateKPIs();
 
-      // Try saving to local SQLite backend if running
+      // 1. Try saving to local SQLite backend if running
       try {
         const res = await fetch("/api/state", {
           method: "POST",
@@ -2782,18 +2871,16 @@
           body: JSON.stringify(STATE)
         });
         if (res.ok) {
-          setSyncStatus("Salvo em SQLite (estudos.db) + IndexedDB às " + new Date().toLocaleTimeString(), false);
-          return;
+          setSyncStatus("Salvo em SQLite (estudos.db) + Nuvem às " + new Date().toLocaleTimeString(), false);
         }
       } catch (_) {}
 
-      // Auto-sync to GitHub if token is configured
-      const ghToken = localStorage.getItem("DOSSIE_GH_TOKEN");
-      if (ghToken) {
-        pushToGitHubSilent();
-      } else {
-        setSyncStatus("Salvo no Banco do Navegador (IndexedDB) às " + new Date().toLocaleTimeString(), false);
-      }
+      // 2. Auto-sync to Cloud Stream (debounced 600ms so typing scores is super fast)
+      setSyncStatus("Sincronizando com a Nuvem...", true);
+      if (cloudSyncTimeout) clearTimeout(cloudSyncTimeout);
+      cloudSyncTimeout = setTimeout(() => {
+        syncCloudNow(false);
+      }, 600);
     }
 
     function setSyncStatus(msg, syncing = false) {
