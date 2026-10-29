@@ -759,7 +759,7 @@
       <div class="kpi-card">
         <div class="kpi-title">Questões Resolvidas (TEC)</div>
         <div class="kpi-value" id="kpiQuestionsDone">0</div>
-        <div class="kpi-sub" id="kpiQuestionsTarget">Meta Sprints 01-02: 595 questões</div>
+        <div class="kpi-sub" id="kpiQuestionsTarget">Meta Fase 1 (29/10 a 22/11): 1.375 questões</div>
         <div class="progress-bar-bg"><div class="progress-bar-fill" id="kpiQuestionsBar" style="width: 0%"></div></div>
       </div>
       <div class="kpi-card">
@@ -787,7 +787,7 @@
     <!-- Navigation Tabs -->
     <div class="nav-tabs">
       <button class="tab-btn active" onclick="switchTab('tab-anexo', this)">
-        📊 Anexo A: Sprints 01 e 02 (Diário) <span class="tab-badge" id="badge-anexo">0/22</span>
+        📊 Cronograma Diário Fase 1 (29/10 a 22/11) <span class="tab-badge" id="badge-anexo">0/22</span>
       </button>
       <button class="tab-btn" onclick="switchTab('tab-admin', this)">
         🗓️ 1. Calendário Administrativo <span class="tab-badge" id="badge-admin">1/15</span>
@@ -819,7 +819,7 @@
       <div class="section-card">
         <div class="section-header">
           <div class="section-title">
-            <span>📋 ANEXO A — CRONOGRAMA TÁTICO DE EXECUÇÃO • SPRINTS 01 E 02</span>
+            <span>📋 CRONOGRAMA DIÁRIO REPROGRAMADO (INÍCIO HOJE 29/10 ATÉ 22/11 • ZERO PERDA DE CONTEÚDO)</span>
           </div>
           <span style="font-size: 0.78rem; color: var(--text-secondary);">Marque OK, insira seus Acertos e o banco calculará sua % automaticamente</span>
         </div>
@@ -945,158 +945,1761 @@
     // INITIAL DATASET — DOSSIÊ OPERACIONAL V44 (INTEGRAL)
     // =========================================================================
     const INITIAL_DB = {
-      version: 44,
-      lastUpdated: new Date().toISOString(),
-      anexoA: [
-        { id: "ax-01", date: "29/10/2026", isoDate: "2026-10-29", day: "Quinta-feira", sprint: "Sprint 01", time: "18h15 – 19h45", title: "Redes: OSI, TCP/IP, IPv4/IPv6, Roteamento e VLANs", targetQ: 25, method: "Engenharia Reversa (6 passos)", peso: "ALTO", done: false, acertos: "", notes: "" },
-        { id: "ax-02", date: "29/10/2026", isoDate: "2026-10-29", day: "Quinta-feira", sprint: "Sprint 01", time: "19h45 – 21h15", title: "Governança: COBIT 2019 (EDM/APO/BAI/DSS/MEA)", targetQ: 20, method: "Engenharia Reversa", peso: "ALTO", done: false, acertos: "", notes: "" },
-        { id: "ax-03", date: "29/10/2026", isoDate: "2026-10-29", day: "Quinta-feira", sprint: "Sprint 01", time: "21h30 – 23h00", title: "RLM FGV: Lógica Sentencial e Tabelas-Verdade", targetQ: 20, method: "Resolução Dissecada", peso: "CRITICO", done: false, acertos: "", notes: "" },
-        { id: "ax-04", date: "30/10/2026", isoDate: "2026-10-30", day: "Sexta-feira", sprint: "Sprint 01", time: "14h00 – 15h30", title: "ITIL 4: Práticas, Cadeia de Valor e SLA", targetQ: 25, method: "Engenharia Reversa", peso: "ALTO", done: false, acertos: "", notes: "" },
-        { id: "ax-05", date: "30/10/2026", isoDate: "2026-10-30", day: "Sexta-feira", sprint: "Sprint 01", time: "15h30 – 17h00", title: "Segurança: Controle de Acesso e Gestão de Identidades", targetQ: 25, method: "Execução Pura (Fim 17h - Sabbath)", peso: "ALTO", done: false, acertos: "", notes: "" },
-        { id: "ax-06", date: "01/11/2026", isoDate: "2026-11-01", day: "Domingo", sprint: "Sprint 01", time: "08h00 – 12h00", title: "Simulado Tronco Comum #01 (FGV - 60 qts)", targetQ: 60, method: "Simulado Cronometrado", peso: "CRITICO", done: false, acertos: "", notes: "" },
-        { id: "ax-07", date: "01/11/2026", isoDate: "2026-11-01", day: "Domingo", sprint: "Sprint 01", time: "13h30 – 18h00", title: "Auditoria de Erros + Microbaterias de Reforço", targetQ: 30, method: "Diagnóstico de Causa Raiz", peso: "ALTO", done: false, acertos: "", notes: "" },
-        { id: "ax-08", date: "02/11/2026", isoDate: "2026-11-02", day: "Segunda-feira", sprint: "Sprint 02", time: "17h30 – 19h00", title: "Sistemas Operacionais: Windows Server e Linux (Permissões)", targetQ: 25, method: "Execução Pura", peso: "ALTO", done: false, acertos: "", notes: "" },
-        { id: "ax-09", date: "02/11/2026", isoDate: "2026-11-02", day: "Segunda-feira", sprint: "Sprint 02", time: "19h15 – 20h45", title: "Active Directory, DNS, GPO e PowerShell/Bash", targetQ: 25, method: "Engenharia Reversa", peso: "ALTO", done: false, acertos: "", notes: "" },
-        { id: "ax-10", date: "02/11/2026", isoDate: "2026-11-02", day: "Segunda-feira", sprint: "Sprint 02", time: "21h15 – 23h00", title: "Português FGV: Compreensão Textual e Coesão", targetQ: 20, method: "Resolução Dissecada", peso: "CRITICO", done: false, acertos: "", notes: "" },
-        { id: "ax-11", date: "03/11/2026", isoDate: "2026-11-03", day: "Terça-feira", sprint: "Sprint 02", time: "17h30 – 19h00", title: "Virtualização e Contêineres (VMware, Hyper-V, Docker)", targetQ: 25, method: "Engenharia Reversa", peso: "ALTO", done: false, acertos: "", notes: "" },
-        { id: "ax-12", date: "03/11/2026", isoDate: "2026-11-03", day: "Terça-feira", sprint: "Sprint 02", time: "19h15 – 20h45", title: "Computação em Nuvem (IaaS, PaaS, SaaS)", targetQ: 25, method: "Execução Pura", peso: "ALTO", done: false, acertos: "", notes: "" },
-        { id: "ax-13", date: "03/11/2026", isoDate: "2026-11-03", day: "Terça-feira", sprint: "Sprint 02", time: "21h15 – 23h00", title: "RLM FGV: Diagramas Lógicos e Quantificadores", targetQ: 20, method: "Resolução Dissecada", peso: "CRITICO", done: false, acertos: "", notes: "" },
-        { id: "ax-14", date: "04/11/2026", isoDate: "2026-11-04", day: "Quarta-feira", sprint: "Sprint 02", time: "17h30 – 19h00", title: "Redes e Perímetro: LAN, WAN, VPN, Firewalls", targetQ: 25, method: "Engenharia Reversa", peso: "ALTO", done: false, acertos: "", notes: "" },
-        { id: "ax-15", date: "04/11/2026", isoDate: "2026-11-04", day: "Quarta-feira", sprint: "Sprint 02", time: "19h15 – 20h45", title: "Criptografia, PKI, Backup e DRP", targetQ: 25, method: "Engenharia Reversa", peso: "ALTO", done: false, acertos: "", notes: "" },
-        { id: "ax-16", date: "04/11/2026", isoDate: "2026-11-04", day: "Quarta-feira", sprint: "Sprint 02", time: "21h15 – 23h00", title: "Português FGV: Morfossintaxe e Pontuação", targetQ: 20, method: "Resolução Dissecada", peso: "CRITICO", done: false, acertos: "", notes: "" },
-        { id: "ax-17", date: "05/11/2026", isoDate: "2026-11-05", day: "Quinta-feira", sprint: "Sprint 02", time: "17h30 – 19h00", title: "Governança, Riscos e Contratos (COBIT/ITIL)", targetQ: 25, method: "Engenharia Reversa", peso: "ALTO", done: false, acertos: "", notes: "" },
-        { id: "ax-18", date: "05/11/2026", isoDate: "2026-11-05", day: "Quinta-feira", sprint: "Sprint 02", time: "19h15 – 20h45", title: "Automação, DevOps e LGPD (Lei 13.709/18)", targetQ: 25, method: "Engenharia Reversa", peso: "ALTO", done: false, acertos: "", notes: "" },
-        { id: "ax-19", date: "05/11/2026", isoDate: "2026-11-05", day: "Quinta-feira", sprint: "Sprint 02", time: "21h15 – 23h00", title: "RLM FGV: Problemas Aritméticos e Matriciais", targetQ: 20, method: "Resolução Dissecada", peso: "CRITICO", done: false, acertos: "", notes: "" },
-        { id: "ax-20", date: "06/11/2026", isoDate: "2026-11-06", day: "Sexta-feira", sprint: "Sprint 02", time: "14h00 – 15h30", title: "Operação, Monitoramento e Gestão de Incidentes", targetQ: 25, method: "Engenharia Reversa", peso: "ALTO", done: false, acertos: "", notes: "" },
-        { id: "ax-21", date: "06/11/2026", isoDate: "2026-11-06", day: "Sexta-feira", sprint: "Sprint 02", time: "15h30 – 17h00", title: "Revisão de Erros da Semana (Caderno de Falhas)", targetQ: 25, method: "Retrabalho (Fim 17h - Sabbath)", peso: "ALTO", done: false, acertos: "", notes: "" },
-        { id: "ax-22", date: "08/11/2026", isoDate: "2026-11-08", day: "Domingo", sprint: "Sprint 02", time: "08h00 – 18h00", title: "Simulado Tronco Comum #02 (60 qts) + Auditoria", targetQ: 90, method: "Simulado + Correção Ativa", peso: "CRITICO", done: false, acertos: "", notes: "" }
-      ],
-      admin: [
-        { id: "adm-01", date: "29/10/2026", isoDate: "2026-10-29", orgao: "ABDI / TJPB", title: "Envio dos Pedidos de Isenção (Medula)", conduta: "CONCLUÍDO. Guardar protocolos de envio no portal FGV.", peso: "CONCLUIDO", done: true, notes: "Protocolos salvos" },
-        { id: "adm-02", date: "23 a 28/10/2026", isoDate: "2026-10-28", orgao: "TJPB", title: "Backup Documental HEMONORTE", conduta: "Obter declaração timbrada do Hemonorte para blindar eventual recurso no TJPB.", peso: "CRITICO", done: false, notes: "" },
-        { id: "adm-03", date: "06/11/2026", isoDate: "2026-11-06", orgao: "ABDI", title: "Resultado Preliminar da Isenção ABDI", conduta: "Conferir deferimento no site da FGV (Recurso: 03 e 04/11; Definitivo: 10/11).", peso: "ALTO", done: false, notes: "" },
-        { id: "adm-04", date: "03 e 04/11/2026", isoDate: "2026-11-04", orgao: "ABDI", title: "Prazo de Recurso da Isenção ABDI", conduta: "Interpor recurso caso haja indeferimento preliminar na ABDI.", peso: "ALTO", done: false, notes: "" },
-        { id: "adm-05", date: "10/11/2026", isoDate: "2026-11-10", orgao: "ABDI", title: "Resultado Definitivo da Isenção ABDI", conduta: "Conferir lista definitiva de isentos ABDI no site da FGV.", peso: "ALTO", done: false, notes: "" },
-        { id: "adm-06", date: "10/11/2026 (18h)", isoDate: "2026-11-10", orgao: "ABDI", title: "Encerramento das Inscrições ABDI", conduta: "Conferir status de inscrição ativa (Cargo: Infraestrutura e Operação).", peso: "CRITICO", done: false, notes: "" },
-        { id: "adm-07", date: "11/11/2026", isoDate: "2026-11-11", orgao: "ABDI", title: "Vencimento Final do Boleto ABDI (R$ 100)", conduta: "Pagar boleto exclusivamente se a isenção for indeferida após recurso.", peso: "CRITICO", done: false, notes: "" },
-        { id: "adm-08", date: "Nov/2026 (Site FGV)", isoDate: "2026-11-12", orgao: "TJPB", title: "Resultado Preliminar da Isenção TJPB", conduta: "Se indeferido, interpor recurso em 2 dias úteis anexando declaração do Hemonorte.", peso: "CRITICO", done: false, notes: "" },
-        { id: "adm-09", date: "18/11/2026 (16h)", isoDate: "2026-11-18", orgao: "TJPB", title: "Encerramento das Inscrições TJPB", conduta: "Prazo fatal de inscrição e conferência da opção de Cota Negros (Infra de TI).", peso: "CRITICO", done: false, notes: "" },
-        { id: "adm-10", date: "19/11/2026", isoDate: "2026-11-19", orgao: "TJPB", title: "Vencimento Final da GRJ TJPB (R$ 120)", conduta: "Quitar GRJ (sem usar agendamento) caso a isenção do TJPB seja indeferida.", peso: "CRITICO", done: false, notes: "" },
-        { id: "adm-11", date: "02 e 03/12/2026", isoDate: "2026-12-03", orgao: "ABDI", title: "Regras do Teste Online e Convocação Títulos", conduta: "Executar o teste prévio obrigatório da plataforma online da FGV.", peso: "CRITICO", done: false, notes: "" },
-        { id: "adm-12", date: "03/12 a 22/12 (16h)", isoDate: "2026-12-22", orgao: "ABDI", title: "Envio de Currículo Padrão + Títulos (10 pts)", conduta: "Enviar comprovantes de 10 anos de Infra + Currículo Padrão (eliminatório).", peso: "MAXIMO", done: false, notes: "" },
-        { id: "adm-13", date: "20/12/2026 (13h30)", isoDate: "2026-12-20", orgao: "ABDI", title: "PROVA OBJETIVA ONLINE ABDI", conduta: "Prova remota (13h30–17h00): 60 questões FGV. Virada p/ TJPB no dia 21/12.", peso: "MAXIMO", done: false, notes: "" },
-        { id: "adm-14", date: "11 a 18/01/2027", isoDate: "2027-01-18", orgao: "TJPB", title: "Locais de Prova e Logística João Pessoa", conduta: "Emitir cartão de confirmação e fechar logística Natal → João Pessoa.", peso: "ALTO", done: false, notes: "" },
-        { id: "adm-15", date: "24/01/2027", isoDate: "2027-01-24", orgao: "TJPB", title: "PROVA OBJETIVA + DISCURSIVA TJPB", conduta: "Execução da prova presencial em João Pessoa/PB.", peso: "MAXIMO", done: false, notes: "" }
-      ],
-      sprints: [
-        { id: "sp-01", sprint: "Sprint 01", period: "29/10 a 01/11/26", isoEnd: "2026-11-01", fase: "Fase 1: Tronco Comum", title: "OSI/TCP-IP, IPv4/IPv6, VLANs, COBIT 2019, ITIL 4, Controle de Acesso e Lógica Sentencial (RLM).", meta: "200 questões + Simulado #1", peso: "CRITICO", done: false, qDone: "", notes: "" },
-        { id: "sp-02", sprint: "Sprint 02", period: "02/11 a 08/11/26", isoEnd: "2026-11-08", fase: "Fase 1: Tronco Comum", title: "Windows Server, Linux, AD, GPO, DNS, DHCP, PowerShell/Bash, Criptografia, PKI, LGPD, Port e RLM (1ª Ordem).", meta: "310 questões + Simulado #2", peso: "ALTO", done: false, qDone: "", notes: "" },
-        { id: "sp-03", sprint: "Sprint 03", period: "02/11 a 08/11/26", isoEnd: "2026-11-08", fase: "Fase 1: Tronco Comum", title: "Virtualização, Contêineres, Nuvem (IaaS/PaaS/SaaS), LAN/WAN/VPN, Firewalls, Backup/DRP, SLA e Capacidade.", meta: "310 questões + Simulado #3", peso: "ALTO", done: false, qDone: "", notes: "" },
-        { id: "sp-04", sprint: "Sprint 04", period: "09/11 a 15/11/26", isoEnd: "2026-11-15", fase: "Fase 1: Tronco Comum", title: "Conceitos DevOps/IaC, Gestão de Ativos/CMDB, Riscos, Vulnerabilidades, Contratos TIC e RLM (Aritmético/Matrizes).", meta: "310 questões + Simulado #4", peso: "CRITICO", done: false, qDone: "", notes: "" },
-        { id: "sp-05", sprint: "Sprint 05", period: "16/11 a 22/11/26", isoEnd: "2026-11-22", fase: "Transição Fase 1 → 2", title: "Revisão de Erros do Tronco Comum + LAI, Marco Civil e Lei 12.737/12 + Introdução à Lei 11.080/04 e Dec. 5.352/05.", meta: "310 questões + Simulado #5", peso: "CRITICO", done: false, qDone: "", notes: "" },
-        { id: "sp-06", sprint: "Sprint 06", period: "23/11 a 29/11/26", isoEnd: "2026-11-29", fase: "Fase 2: Reta Final ABDI", title: "Lei 11.080/04 (c/ Lei 14.440/22), Dec. 5.352/05, Estatuto Social ABDI + Informática (Win 10/11, M365, LibreOffice).", meta: "300 questões + Sim. ABDI #1", peso: "CRITICO", done: false, qDone: "", notes: "" },
-        { id: "sp-07", sprint: "Sprint 07", period: "30/11 a 06/12/26", isoEnd: "2026-12-06", fase: "Fase 2: Reta Final ABDI", title: "Regulamento de Licitações/Contratos e Regulamento de Convênios ABDI + Suporte Remoto + Envio Títulos/Currículo.", meta: "300 questões + Sim. ABDI #2", peso: "CRITICO", done: false, qDone: "", notes: "" },
-        { id: "sp-08", sprint: "Sprint 08", period: "07/12 a 13/12/26", isoEnd: "2026-12-13", fase: "Fase 2: Reta Final ABDI", title: "Código de Ética ABDI (Res. 004/22) + Planejamento Estratégico 2024–2029 (Res. 008/23) + Revisão Geral TI/Port/RLM.", meta: "320 questões + Sim. ABDI #3", peso: "CRITICO", done: false, qDone: "", notes: "" },
-        { id: "sp-09", sprint: "Sprint 09", period: "14/12 a 20/12/26", isoEnd: "2026-12-20", fase: "Semana da Prova ABDI", title: "Decoreba final do Bloco Institucional ABDI + Caderno de Erros FGV (Seg a Sex 17h). Dom 20/12: PROVA ABDI.", meta: "180 questões + PROVA ABDI", peso: "MAXIMO", done: false, qDone: "", notes: "" },
-        { id: "sp-10", sprint: "Sprint 10", period: "21/12 a 27/12/26", isoEnd: "2026-12-27", fase: "Fase 3: Imersão TJPB", title: "Res. CNJ (370, 396, 468, 522, 615), PJe, PDPJ-Br + SGBDs, SQL ANSI, ACID, Locks, PITR + Combinatória/Probabilidade.", meta: "320 q + Sim. TJPB #1 + Disc. #1", peso: "CRITICO", done: false, qDone: "", notes: "" },
-        { id: "sp-11", sprint: "Sprint 11", period: "28/12 a 03/01/27", isoEnd: "2027-01-03", fase: "Fase 3: Imersão TJPB", title: "Terraform, Ansible, GitOps, CI/CD, SRE, K8s (Rancher/OpenShift), VMware (vMotion/DRS/HA/FT) + Tuning, NoSQL, DAMA + Estatística.", meta: "320 q + Sim. TJPB #2 + Disc. #2", peso: "CRITICO", done: false, qDone: "", notes: "" },
-        { id: "sp-12", sprint: "Sprint 12", period: "04/01 a 10/01/27", isoEnd: "2027-01-10", fase: "Fase 3: Imersão TJPB", title: "Zero Trust/ZTNA, EDR/NDR/XDR, SIEM/SOAR, MITRE, SBOM, ISO 27001/27002/27005/27701, OSPF/BGP, IPv6 Avançado, Zabbix/Prometheus/ELK.", meta: "320 q + Sim. TJPB #3 + Disc. #3", peso: "CRITICO", done: false, qDone: "", notes: "" },
-        { id: "sp-13", sprint: "Sprint 13", period: "11/01 a 17/01/27", isoEnd: "2027-01-17", fase: "Fase 3: Imersão TJPB", title: "MoReq-Jus, RDC-Arq, PDTI TJPB 2024–26, Eng. Software (Scrum/Kanban/Testes), IA/BI, Redação Oficial, Juros/Funções e Erros.", meta: "340 q + Sim. TJPB #4 + Disc. #4", peso: "CRITICO", done: false, qDone: "", notes: "" },
-        { id: "sp-14", sprint: "Sprint 14", period: "18/01 a 24/01/27", isoEnd: "2027-01-24", fase: "Semana da Prova TJPB", title: "Leitura seca final CNJ + Tabelas ISO/COBIT/ITIL + Comandos K8s/Terraform + Esqueletos Discursiva. Dom 24/01: PROVA TJPB.", meta: "160 questões + PROVA TJPB", peso: "MAXIMO", done: false, qDone: "", notes: "" },
-        { id: "sp-15", sprint: "Sprint 15+", period: "Pós-25/01/2027", isoEnd: "2027-02-28", fase: "Fase 4: Foco TJRN", title: "Manutenção por questões da base de Tribunais (TI/CNJ/FGV) + LC 122/94 (RN).", meta: "300 questões/semana", peso: "ALTO", done: false, qDone: "", notes: "" }
-      ],
-      nucleos: [
-        // NÚCLEO 1
-        { id: "nc-01", nucleo: "NÚCLEO 1: Tronco Comum Convergente (ABDI + TJPB + TJRN | 22/10 a 22/11/2026)", cat: "Português FGV", title: "Compreensão/interpretação de textos, tipos e gêneros textuais e ortografia", done: false },
-        { id: "nc-02", nucleo: "NÚCLEO 1: Tronco Comum Convergente (ABDI + TJPB + TJRN | 22/10 a 22/11/2026)", cat: "Português FGV", title: "Coesão (referenciação/conectores), tempos/modos verbais e morfossintaxe completa", done: false },
-        { id: "nc-03", nucleo: "NÚCLEO 1: Tronco Comum Convergente (ABDI + TJPB + TJRN | 22/10 a 22/11/2026)", cat: "Português FGV", title: "Coordenação/subordinação, pontuação, concordância, regência, crase, colocação pronominal e reescrita", done: false },
-        { id: "nc-04", nucleo: "NÚCLEO 1: Tronco Comum Convergente (ABDI + TJPB + TJRN | 22/10 a 22/11/2026)", cat: "RLM Base", title: "Estruturas lógicas, argumentação, lógica sentencial (proposições, conectivos, tabelas-verdade, equivalências)", done: false },
-        { id: "nc-05", nucleo: "NÚCLEO 1: Tronco Comum Convergente (ABDI + TJPB + TJRN | 22/10 a 22/11/2026)", cat: "RLM Base", title: "Diagramas lógicos, lógica de 1ª ordem (quantificadores) e problemas aritméticos, geométricos e matriciais", done: false },
-        { id: "nc-06", nucleo: "NÚCLEO 1: Tronco Comum Convergente (ABDI + TJPB + TJRN | 22/10 a 22/11/2026)", cat: "Infra, SO e Redes", title: "Arquitetura de servidores/storage, virtualização e contêineres, nuvem (IaaS/PaaS/SaaS) e capacidade/disponibilidade", done: false },
-        { id: "nc-07", nucleo: "NÚCLEO 1: Tronco Comum Convergente (ABDI + TJPB + TJRN | 22/10 a 22/11/2026)", cat: "Infra, SO e Redes", title: "Windows Server e Linux, usuários/permissões/serviços, AD, GPO, DNS, DHCP, PowerShell e Bash", done: false },
-        { id: "nc-08", nucleo: "NÚCLEO 1: Tronco Comum Convergente (ABDI + TJPB + TJRN | 22/10 a 22/11/2026)", cat: "Infra, SO e Redes", title: "OSI/TCP-IP, IPv4/IPv6, roteamento, VLANs, LAN/WAN/VPN, switches/roteadores/firewalls/Wi-Fi e monitoramento", done: false },
-        { id: "nc-09", nucleo: "NÚCLEO 1: Tronco Comum Convergente (ABDI + TJPB + TJRN | 22/10 a 22/11/2026)", cat: "Segurança e Governança", title: "Controle de acesso/identidades, vulnerabilidades/patches/incidentes, criptografia e certificados digitais (PKI)", done: false },
-        { id: "nc-10", nucleo: "NÚCLEO 1: Tronco Comum Convergente (ABDI + TJPB + TJRN | 22/10 a 22/11/2026)", cat: "Segurança e Governança", title: "Backup/restore/DRP e contingência, LGPD (Lei 13.709/18) e SLA", done: false },
-        { id: "nc-11", nucleo: "NÚCLEO 1: Tronco Comum Convergente (ABDI + TJPB + TJRN | 22/10 a 22/11/2026)", cat: "Segurança e Governança", title: "ITIL 4 (incidentes, problemas, mudanças, nível de serviço) e COBIT 2019 (EDM/APO/BAI/DSS/MEA)", done: false },
-        { id: "nc-12", nucleo: "NÚCLEO 1: Tronco Comum Convergente (ABDI + TJPB + TJRN | 22/10 a 22/11/2026)", cat: "Segurança e Governança", title: "Gestão de ativos/configurações/licenças, riscos, contratos/fornecedores de TIC e conceitos de DevOps e IaC", done: false },
-
-        // NÚCLEO 2
-        { id: "nc-13", nucleo: "NÚCLEO 2: Especificidades Exclusivas ABDI (23/11 a 20/12/2026)", cat: "Institucional ABDI (20 qts)", title: "Natureza/finalidade dos Serviços Sociais Autônomos; Lei nº 11.080/2004 (c/ Lei nº 14.440/2022)", done: false },
-        { id: "nc-14", nucleo: "NÚCLEO 2: Especificidades Exclusivas ABDI (23/11 a 20/12/2026)", cat: "Institucional ABDI (20 qts)", title: "Decreto nº 5.352/2005: autonomia, contrato de gestão, supervisão, fiscalização e prestação de contas", done: false },
-        { id: "nc-15", nucleo: "NÚCLEO 2: Especificidades Exclusivas ABDI (23/11 a 20/12/2026)", cat: "Institucional ABDI (20 qts)", title: "Estatuto Social da ABDI (Conselho Deliberativo, Conselho Fiscal e Diretoria-Executiva)", done: false },
-        { id: "nc-16", nucleo: "NÚCLEO 2: Especificidades Exclusivas ABDI (23/11 a 20/12/2026)", cat: "Institucional ABDI (20 qts)", title: "Regulamento de Licitações e Contratos da ABDI (modalidades, dispensa, inexigibilidade, contratos, sanções)", done: false },
-        { id: "nc-17", nucleo: "NÚCLEO 2: Especificidades Exclusivas ABDI (23/11 a 20/12/2026)", cat: "Institucional ABDI (20 qts)", title: "Regulamento de Convênios da ABDI", done: false },
-        { id: "nc-18", nucleo: "NÚCLEO 2: Especificidades Exclusivas ABDI (23/11 a 20/12/2026)", cat: "Institucional ABDI (20 qts)", title: "Regulamento de Ética e Conduta (Res. CD nº 004/2022, arts. 1º a 25) e Planejamento Estratégico 2024–2029 (Res. CD nº 008/2023)", done: false },
-        { id: "nc-19", nucleo: "NÚCLEO 2: Especificidades Exclusivas ABDI (23/11 a 20/12/2026)", cat: "Informática e Leis (6 qts)", title: "Windows 10/11, Microsoft 365 (Word, Excel, PowerPoint, Outlook) e LibreOffice 7.x+ (Writer, Calc, Impress)", done: false },
-        { id: "nc-20", nucleo: "NÚCLEO 2: Especificidades Exclusivas ABDI (23/11 a 20/12/2026)", cat: "Informática e Leis (6 qts)", title: "Navegadores, correio eletrônico, IA no ambiente de trabalho e acessibilidade/atalhos", done: false },
-        { id: "nc-21", nucleo: "NÚCLEO 2: Especificidades Exclusivas ABDI (23/11 a 20/12/2026)", cat: "Informática e Leis (6 qts)", title: "LAI (Lei 12.527/11), Lei 12.737/12 (Delitos Informáticos) e Marco Civil da Internet (Lei 12.965/14)", done: false },
-        { id: "nc-22", nucleo: "NÚCLEO 2: Especificidades Exclusivas ABDI (23/11 a 20/12/2026)", cat: "Suporte Técnico", title: "Atendimento a usuários, gerenciamento remoto e central de serviços", done: false },
-
-        // NÚCLEO 3
-        { id: "nc-23", nucleo: "NÚCLEO 3: Engenharia Avançada + Judiciário — TJPB & TJRN (21/12/2026 a 24/01/2027)", cat: "Normas CNJ e Judiciário", title: "PJe, PDPJ-Br, MoReq-Jus, RDC-Arq e PDTI TJPB 2024–2026", done: false },
-        { id: "nc-24", nucleo: "NÚCLEO 3: Engenharia Avançada + Judiciário — TJPB & TJRN (21/12/2026 a 24/01/2027)", cat: "Normas CNJ e Judiciário", title: "Resoluções CNJ nº 370/2021 (ENTIC-JUD), 396/2021 (ENSEC-PJ + Port. 162/21), 468/2022 (Contratações TIC), 522/2023 e 615/2025 (IA)", done: false },
-        { id: "nc-25", nucleo: "NÚCLEO 3: Engenharia Avançada + Judiciário — TJPB & TJRN (21/12/2026 a 24/01/2027)", cat: "Banco de Dados Avançado", title: "Modelagem, PostgreSQL/Oracle/MySQL/SQL Server, SQL ANSI (DDL/DML/DCL/TCL, joins, CTEs, views), ACID, isolamento, locks/deadlocks, PITR e Query Tuning", done: false },
-        { id: "nc-26", nucleo: "NÚCLEO 3: Engenharia Avançada + Judiciário — TJPB & TJRN (21/12/2026 a 24/01/2027)", cat: "NoSQL, Dados e IA", title: "MongoDB, Redis, Elasticsearch/OpenSearch, DAMA-DMBOK, higienização/qualidade de dados, BI e fundamentos de IA/ML/IA Generativa", done: false },
-        { id: "nc-27", nucleo: "NÚCLEO 3: Engenharia Avançada + Judiciário — TJPB & TJRN (21/12/2026 a 24/01/2027)", cat: "DevOps, IaC e SRE", title: "Terraform (providers, modules, state), Ansible (inventories, playbooks, roles), Gitflow/Trunk-Based, GitOps, CI/CD e SRE (SLIs/SLOs/Error Budget)", done: false },
-        { id: "nc-28", nucleo: "NÚCLEO 3: Engenharia Avançada + Judiciário — TJPB & TJRN (21/12/2026 a 24/01/2027)", cat: "Virtualização Avançada e K8s", title: "VMware (vMotion, Storage vMotion, DRS, HA, FT, vDS), Hyper-V, K8s (Pods, Deployments, Ingress, RBAC, Network Policies, Rancher, OpenShift) e Service Mesh", done: false },
-        { id: "nc-29", nucleo: "NÚCLEO 3: Engenharia Avançada + Judiciário — TJPB & TJRN (21/12/2026 a 24/01/2027)", cat: "SecOps e Zero Trust", title: "Zero Trust (ZTNA/microssegmentação), NGFW, WAF/WAAP, 802.1X, SAML 2.0/OAuth 2.0/OIDC/JWT, PAM, SIEM/SOC, EDR/NDR/XDR, MITRE ATT&CK, SOAR e CVE/CVSS/SBOM", done: false },
-        { id: "nc-30", nucleo: "NÚCLEO 3: Engenharia Avançada + Judiciário — TJPB & TJRN (21/12/2026 a 24/01/2027)", cat: "Redes Avançadas e Observabilidade", title: "IPv6 (SLAAC, NDP, RA Guard, SEND, NAT64/DNS64), OSPF/BGP, SD-WAN, NGINX/HAProxy, DNSSEC, SAN/NAS/NVMe-oF, Ransomware (backup imutável/air gap), Zabbix/Prometheus/Grafana e ELK", done: false },
-        { id: "nc-31", nucleo: "NÚCLEO 3: Engenharia Avançada + Judiciário — TJPB & TJRN (21/12/2026 a 24/01/2027)", cat: "Normas ISO/NIST e Eng. Software", title: "ISO 27001, 27002, 27005 e 27701, NIST CSF, CIS Controls, OWASP Top 10 + Scrum, Kanban, Requisitos e Testes de Software", done: false },
-        { id: "nc-32", nucleo: "NÚCLEO 3: Engenharia Avançada + Judiciário — TJPB & TJRN (21/12/2026 a 24/01/2027)", cat: "Matemática, Estatística e Redação", title: "Análise combinatória, probabilidade, estatística descritiva, conjuntos, razões/proporções, regra de 3, %, juros, equações, funções, sequências + Redação Oficial (Item 6.5) e Discursiva (30 linhas)", done: false }
-      ],
-      grades: [
-        // FASE 1
-        { id: "gr-01", fase: "Fase 1: Tronco Comum (29/10 a 22/11/2026)", dia: "Hoje (Qui 29/10)", horario: "17h30 – 19h30", title: "Redes Convergente: Modelos OSI e TCP/IP, Endereçamento IPv4 e IPv6, Roteamento e VLANs", meta: "30 questões FGV (Execução Pura + Passo 3 nos erros)", peso: "ALTO", done: false },
-        { id: "gr-02", fase: "Fase 1: Tronco Comum (29/10 a 22/11/2026)", dia: "Hoje (Qui 29/10)", horario: "19h45 – 21h15", title: "Governança Convergente: COBIT 2019 (Princípios, Componentes e Objetivos EDM/APO/BAI/DSS/MEA)", meta: "25 questões FGV + tabela de domínios", peso: "ALTO", done: false },
-        { id: "gr-03", fase: "Fase 1: Tronco Comum (29/10 a 22/11/2026)", dia: "Hoje (Qui 29/10)", horario: "21h30 – 23h00", title: "RLM Convergente: Lógica Sentencial (Proposições, Conectivos, Tabelas-Verdade e Equivalências)", meta: "20 questões exclusivas FGV dissecadas", peso: "CRITICO", done: false },
-        { id: "gr-04", fase: "Fase 1: Tronco Comum (29/10 a 22/11/2026)", dia: "Segunda-feira", horario: "17h30 – 19h00", title: "Sistemas Operacionais: Administração Windows Server e Linux, instalação, usuários, permissões e serviços", meta: "25 questões FGV/Cebraspe no TEC", peso: "ALTO", done: false },
-        { id: "gr-05", fase: "Fase 1: Tronco Comum (29/10 a 22/11/2026)", dia: "Segunda-feira", horario: "19h15 – 20h45", title: "Diretório e Scripts: Active Directory (AD DS), GPO, DNS, DHCP e automação em PowerShell e Shell/Bash", meta: "25 questões FGV no TEC", peso: "ALTO", done: false },
-        { id: "gr-06", fase: "Fase 1: Tronco Comum (29/10 a 22/11/2026)", dia: "Segunda-feira", horario: "21h15 – 23h00", title: "Língua Portuguesa FGV: Compreensão e interpretação de textos, tipos/gêneros textuais e coesão/conectores", meta: "20 questões FGV (2024–2026)", peso: "CRITICO", done: false },
-        { id: "gr-07", fase: "Fase 1: Tronco Comum (29/10 a 22/11/2026)", dia: "Terça-feira", horario: "17h30 – 19h00", title: "Infra, Virtualização e Contêineres: Servidores, storage, hipervisores, VMs, alta disponibilidade e contêineres", meta: "25 questões FGV no TEC", peso: "ALTO", done: false },
-        { id: "gr-08", fase: "Fase 1: Tronco Comum (29/10 a 22/11/2026)", dia: "Terça-feira", horario: "19h15 – 20h45", title: "Computação em Nuvem: Modelos IaaS, PaaS e SaaS, segurança em nuvem e planejamento de capacidade/desempenho", meta: "25 questões FGV no TEC", peso: "ALTO", done: false },
-        { id: "gr-09", fase: "Fase 1: Tronco Comum (29/10 a 22/11/2026)", dia: "Terça-feira", horario: "21h15 – 23h00", title: "Raciocínio Lógico FGV: Diagramas lógicos, lógica de 1ª ordem (quantificadores) e lógica de argumentação", meta: "20 questões exclusivas FGV", peso: "CRITICO", done: false },
-        { id: "gr-10", fase: "Fase 1: Tronco Comum (29/10 a 22/11/2026)", dia: "Quarta-feira", horario: "17h30 – 19h00", title: "Redes e Perímetro: LAN, WAN, VPN (IPSec/SSL), switches, roteadores, firewalls, Wi-Fi e diagnóstico de redes", meta: "25 questões FGV no TEC", peso: "ALTO", done: false },
-        { id: "gr-11", fase: "Fase 1: Tronco Comum (29/10 a 22/11/2026)", dia: "Quarta-feira", horario: "19h15 – 20h45", title: "Segurança e Continuidade: Controle de acesso/identidades, criptografia, PKI, backup/restore, DRP e contingência", meta: "25 questões FGV no TEC", peso: "ALTO", done: false },
-        { id: "gr-12", fase: "Fase 1: Tronco Comum (29/10 a 22/11/2026)", dia: "Quarta-feira", horario: "21h15 – 23h00", title: "Língua Portuguesa FGV: Morfossintaxe, coordenação/subordinação, pontuação, concordância, regência, crase e reescrita", meta: "20 questões FGV (2024–2026)", peso: "CRITICO", done: false },
-        { id: "gr-13", fase: "Fase 1: Tronco Comum (29/10 a 22/11/2026)", dia: "Quinta-feira", horario: "17h30 – 19h00", title: "Governança e Gestão de Serviços: COBIT 2019, ITIL 4 (incidentes, problemas, mudanças, SLA), riscos e contratos de TIC", meta: "25 questões FGV no TEC", peso: "ALTO", done: false },
-        { id: "gr-14", fase: "Fase 1: Tronco Comum (29/10 a 22/11/2026)", dia: "Quinta-feira", horario: "19h15 – 20h45", title: "Automação, Ativos e LGPD: Conceitos de DevOps e IaC, gestão de ativos/configurações/licenças e Lei nº 13.709/2018 (LGPD)", meta: "25 questões FGV no TEC", peso: "ALTO", done: false },
-        { id: "gr-15", fase: "Fase 1: Tronco Comum (29/10 a 22/11/2026)", dia: "Quinta-feira", horario: "21h15 – 23h00", title: "Raciocínio Lógico FGV: Problemas aritméticos, geométricos e matriciais", meta: "20 questões exclusivas FGV", peso: "CRITICO", done: false },
-
-        // FASE 2
-        { id: "gr-16", fase: "Fase 2: Reta Final ABDI (23/11 a 20/12/2026)", dia: "Segunda-feira", horario: "17h30 – 19h15", title: "Institucional ABDI (Bloco 1): Serviços Sociais Autônomos; Lei nº 11.080/2004 (c/ Lei nº 14.440/22) e Decreto nº 5.352/2005", meta: "Leitura seca + NotebookLM + 20 questões", peso: "CRITICO", done: false },
-        { id: "gr-17", fase: "Fase 2: Reta Final ABDI (23/11 a 20/12/2026)", dia: "Segunda-feira", horario: "19h30 – 21h00", title: "Manutenção TI + Suporte ABDI: Windows Server/Linux, AD, DNS, DHCP, PowerShell/Bash + Suporte a usuários", meta: "25 questões FGV no TEC", peso: "ALTO", done: false },
-        { id: "gr-18", fase: "Fase 2: Reta Final ABDI (23/11 a 20/12/2026)", dia: "Segunda-feira", horario: "21h30 – 23h00", title: "Língua Portuguesa FGV: Baterias de provas FGV 2025–2026 (Interpretação, Coesão e Reescrita)", meta: "20 questões FGV no TEC", peso: "ALTO", done: false },
-        { id: "gr-19", fase: "Fase 2: Reta Final ABDI (23/11 a 20/12/2026)", dia: "Terça-feira", horario: "17h30 – 19h15", title: "Institucional ABDI (Bloco 2): Estatuto Social da ABDI (natureza, competências, Conselhos, Diretoria, patrimônio e receitas)", meta: "Mapeamento de órgãos/quóruns + 20 questões", peso: "CRITICO", done: false },
-        { id: "gr-20", fase: "Fase 2: Reta Final ABDI (23/11 a 20/12/2026)", dia: "Terça-feira", horario: "19h30 – 21h00", title: "Noções de Informática e Leis (ABDI): Windows 10/11, M365, LibreOffice 7.x+, navegadores, IA, LAI, Lei 12.737/12 e Marco Civil", meta: "30 questões FGV no TEC", peso: "ALTO", done: false },
-        { id: "gr-21", fase: "Fase 2: Reta Final ABDI (23/11 a 20/12/2026)", dia: "Terça-feira", horario: "21h30 – 23h00", title: "Raciocínio Lógico FGV: Bateria mista (Lógica Sentencial, 1ª Ordem e Problemas Aritméticos/Matriciais)", meta: "20 questões exclusivas FGV", peso: "CRITICO", done: false },
-        { id: "gr-22", fase: "Fase 2: Reta Final ABDI (23/11 a 20/12/2026)", dia: "Quarta-feira", horario: "17h30 – 19h15", title: "Institucional ABDI (Bloco 3): Regulamento de Licitações e Contratos da ABDI e Regulamento de Convênios", meta: "Leitura comparativa + 20 questões inéditas", peso: "CRITICO", done: false },
-        { id: "gr-23", fase: "Fase 2: Reta Final ABDI (23/11 a 20/12/2026)", dia: "Quarta-feira", horario: "19h30 – 21h00", title: "Manutenção TI (ABDI/TJPB): Redes (OSI/TCP-IP, IPv4/IPv6, VLANs, VPN), Segurança, Criptografia, Backup/DRP e LGPD", meta: "25 questões FGV no TEC", peso: "ALTO", done: false },
-        { id: "gr-24", fase: "Fase 2: Reta Final ABDI (23/11 a 20/12/2026)", dia: "Quarta-feira", horario: "21h30 – 23h00", title: "Língua Portuguesa FGV: Sintaxe do período, pontuação, concordância, regência e crase", meta: "20 questões FGV no TEC", peso: "ALTO", done: false },
-        { id: "gr-25", fase: "Fase 2: Reta Final ABDI (23/11 a 20/12/2026)", dia: "Quinta-feira", horario: "17h30 – 19h15", title: "Institucional ABDI (Bloco 4): Regulamento de Ética e Conduta (Res. CD nº 004/2022) e Planejamento Estratégico 2024–2029", meta: "Leitura seca integral + 20 questões", peso: "CRITICO", done: false },
-        { id: "gr-26", fase: "Fase 2: Reta Final ABDI (23/11 a 20/12/2026)", dia: "Quinta-feira", horario: "19h30 – 21h00", title: "Manutenção TI (ABDI/TJPB): Governança (ITIL 4, COBIT 2019, SLA, Ativos, Riscos, Contratos), Virtualização, Nuvem e DevOps/IaC", meta: "25 questões FGV no TEC", peso: "ALTO", done: false },
-        { id: "gr-27", fase: "Fase 2: Reta Final ABDI (23/11 a 20/12/2026)", dia: "Quinta-feira", horario: "21h30 – 23h00", title: "Raciocínio Lógico FGV: Sprints cronometrados de 6 questões (formato exato da prova da ABDI)", meta: "3 baterias de 6 q (18 q FGV)", peso: "CRITICO", done: false },
-        { id: "gr-28", fase: "Fase 2: Reta Final ABDI (23/11 a 20/12/2026)", dia: "Sexta-feira", horario: "14h00 – 15h30", title: "Revisão Acelerada Institucional ABDI: Giro nos grifos da Lei 11.080/04, Estatuto, Regulamentos e Código de Ética", meta: "25 flashcards/questões", peso: "CRITICO", done: false },
-        { id: "gr-29", fase: "Fase 2: Reta Final ABDI (23/11 a 20/12/2026)", dia: "Sexta-feira", horario: "15h30 – 17h00", title: "Auditoria do Caderno de Erros da Semana (TI + Básico): Retrabalho de todos os erros de segunda a quinta", meta: "25 a 30 q (Trava às 17h00)", peso: "ALTO", done: false },
-
-        // FASE 3
-        { id: "gr-30", fase: "Fase 3: Engenharia TJPB & TJRN (21/12/26 a 24/01/27)", dia: "Segunda-feira", horario: "17h30 – 19h00", title: "Normas CNJ e Judiciário: PJe, PDPJ-Br, Resoluções CNJ 370, 396, 468, 522 e 615, MoReq-Jus, RDC-Arq e PDTI TJPB", meta: "Leitura seca + 25 questões de Tribunais", peso: "CRITICO", done: false },
-        { id: "gr-31", fase: "Fase 3: Engenharia TJPB & TJRN (21/12/26 a 24/01/27)", dia: "Segunda-feira", horario: "19h15 – 20h45", title: "Banco de Dados Relacional e Admin: Modelagem, PostgreSQL/Oracle/MySQL/SQL Server, SQL ANSI, ACID, locks, PITR e Query Tuning", meta: "25 questões FGV de Banco de Dados", peso: "CRITICO", done: false },
-        { id: "gr-32", fase: "Fase 3: Engenharia TJPB & TJRN (21/12/26 a 24/01/27)", dia: "Segunda-feira", horario: "21h15 – 23h00", title: "Matemática e Estatística FGV (Delta TJPB): Análise combinatória, probabilidade e estatística descritiva", meta: "20 questões exclusivas FGV", peso: "CRITICO", done: false },
-        { id: "gr-33", fase: "Fase 3: Engenharia TJPB & TJRN (21/12/26 a 24/01/27)", dia: "Terça-feira", horario: "17h30 – 19h00", title: "DevOps, IaC e SRE Avançado: Terraform, Ansible, Gitflow/Trunk-Based, GitOps, CI/CD e SRE (SLIs/SLOs/Error Budget)", meta: "25 questões FGV/Cebraspe no TEC", peso: "ALTO", done: false },
-        { id: "gr-34", fase: "Fase 3: Engenharia TJPB & TJRN (21/12/26 a 24/01/27)", dia: "Terça-feira", horario: "19h15 – 20h45", title: "Virtualização Avançada, K8s e Microsserviços: VMware, Hyper-V, K8s (Pods, Deployments, Ingress, RBAC, Rancher, OpenShift) e Service Mesh", meta: "25 questões FGV/Cebraspe no TEC", peso: "ALTO", done: false },
-        { id: "gr-35", fase: "Fase 3: Engenharia TJPB & TJRN (21/12/26 a 24/01/27)", dia: "Terça-feira", horario: "21h15 – 23h00", title: "Português FGV + Redação Oficial: Item 6.5 (Redação Oficial) + Reescrita e Coesão FGV", meta: "20 questões FGV no TEC", peso: "ALTO", done: false },
-        { id: "gr-36", fase: "Fase 3: Engenharia TJPB & TJRN (21/12/26 a 24/01/27)", dia: "Quarta-feira", horario: "17h30 – 19h00", title: "SecOps, Zero Trust e Identidades: Zero Trust, NGFW, WAF, 802.1X, SAML/OAuth/OIDC/JWT, PAM, SIEM/SOC, EDR/XDR, MITRE, SOAR e SBOM", meta: "25 questões FGV/Cebraspe no TEC", peso: "CRITICO", done: false },
-        { id: "gr-37", fase: "Fase 3: Engenharia TJPB & TJRN (21/12/26 a 24/01/27)", dia: "Quarta-feira", horario: "19h15 – 20h45", title: "NoSQL, Governança de Dados e IA: MongoDB, Redis, Elasticsearch, DAMA-DMBOK, qualidade de dados, BI e IA/ML/IA Generativa", meta: "25 questões FGV no TEC", peso: "ALTO", done: false },
-        { id: "gr-38", fase: "Fase 3: Engenharia TJPB & TJRN (21/12/26 a 24/01/27)", dia: "Quarta-feira", horario: "21h15 – 23h00", title: "Matemática FGV (Delta TJPB): Conjuntos, razões/proporções, regra de 3, %, juros simples/compostos, equações, funções e sequências", meta: "20 questões exclusivas FGV", peso: "CRITICO", done: false },
-        { id: "gr-39", fase: "Fase 3: Engenharia TJPB & TJRN (21/12/26 a 24/01/27)", dia: "Quinta-feira", horario: "17h30 – 19h00", title: "Redes Avançadas, Storage e Observabilidade: IPv6 Avançado, OSPF/BGP, SD-WAN, NGINX/HAProxy, DNSSEC, SAN/NAS, Ransomware, Zabbix/Prometheus/ELK", meta: "25 questões FGV/Cebraspe no TEC", peso: "ALTO", done: false },
-        { id: "gr-40", fase: "Fase 3: Engenharia TJPB & TJRN (21/12/26 a 24/01/27)", dia: "Quinta-feira", horario: "19h15 – 20h45", title: "Normas ISO/NIST e Eng. de Software (Comum): ISO 27001, 27002, 27005 e 27701, NIST CSF, CIS Controls, OWASP Top 10 + Scrum, Kanban, Requisitos e Testes", meta: "25 questões FGV no TEC", peso: "ALTO", done: false }
-      ]
-    };
+  "version": 45,
+  "scheduleStart": "2026-10-29",
+  "lastUpdated": "2026-10-29T18:15:36.842Z",
+  "anexoA": [
+    {
+      "id": "ax-01",
+      "date": "29/10/2026",
+      "isoDate": "2026-10-29",
+      "day": "Quinta-feira",
+      "sprint": "Sprint 01",
+      "time": "18h15 – 19h45",
+      "title": "Redes: OSI, TCP/IP, IPv4/IPv6, Roteamento e VLANs",
+      "targetQ": 25,
+      "method": "Engenharia Reversa (6 passos)",
+      "peso": "ALTO",
+      "done": false,
+      "acertos": "",
+      "notes": ""
+    },
+    {
+      "id": "ax-02",
+      "date": "29/10/2026",
+      "isoDate": "2026-10-29",
+      "day": "Quinta-feira",
+      "sprint": "Sprint 01",
+      "time": "19h45 – 21h15",
+      "title": "Governança: COBIT 2019 (EDM/APO/BAI/DSS/MEA)",
+      "targetQ": 20,
+      "method": "Engenharia Reversa",
+      "peso": "ALTO",
+      "done": false,
+      "acertos": "",
+      "notes": ""
+    },
+    {
+      "id": "ax-03",
+      "date": "29/10/2026",
+      "isoDate": "2026-10-29",
+      "day": "Quinta-feira",
+      "sprint": "Sprint 01",
+      "time": "21h30 – 23h00",
+      "title": "RLM FGV: Lógica Sentencial e Tabelas-Verdade",
+      "targetQ": 20,
+      "method": "Resolução Dissecada",
+      "peso": "CRITICO",
+      "done": false,
+      "acertos": "",
+      "notes": ""
+    },
+    {
+      "id": "ax-04",
+      "date": "30/10/2026",
+      "isoDate": "2026-10-30",
+      "day": "Sexta-feira",
+      "sprint": "Sprint 01",
+      "time": "14h00 – 15h30",
+      "title": "ITIL 4: Práticas, Cadeia de Valor e SLA",
+      "targetQ": 25,
+      "method": "Engenharia Reversa",
+      "peso": "ALTO",
+      "done": false,
+      "acertos": "",
+      "notes": ""
+    },
+    {
+      "id": "ax-05",
+      "date": "30/10/2026",
+      "isoDate": "2026-10-30",
+      "day": "Sexta-feira",
+      "sprint": "Sprint 01",
+      "time": "15h30 – 17h00",
+      "title": "Segurança: Controle de Acesso e Gestão de Identidades",
+      "targetQ": 25,
+      "method": "Execução Pura (Fim 17h - Sabbath)",
+      "peso": "ALTO",
+      "done": false,
+      "acertos": "",
+      "notes": ""
+    },
+    {
+      "id": "ax-06",
+      "date": "01/11/2026",
+      "isoDate": "2026-11-01",
+      "day": "Domingo",
+      "sprint": "Sprint 01",
+      "time": "08h00 – 12h00",
+      "title": "Simulado Tronco Comum #01 (FGV - 60 qts)",
+      "targetQ": 60,
+      "method": "Simulado Cronometrado",
+      "peso": "CRITICO",
+      "done": false,
+      "acertos": "",
+      "notes": ""
+    },
+    {
+      "id": "ax-07",
+      "date": "01/11/2026",
+      "isoDate": "2026-11-01",
+      "day": "Domingo",
+      "sprint": "Sprint 01",
+      "time": "13h30 – 18h00",
+      "title": "Auditoria de Erros + Microbaterias de Reforço",
+      "targetQ": 30,
+      "method": "Diagnóstico de Causa Raiz",
+      "peso": "ALTO",
+      "done": false,
+      "acertos": "",
+      "notes": ""
+    },
+    {
+      "id": "ax-08",
+      "date": "02/11/2026",
+      "isoDate": "2026-11-02",
+      "day": "Segunda-feira",
+      "sprint": "Sprint 02",
+      "time": "17h30 – 19h00",
+      "title": "Sistemas Operacionais: Windows Server e Linux (Permissões)",
+      "targetQ": 25,
+      "method": "Execução Pura",
+      "peso": "ALTO",
+      "done": false,
+      "acertos": "",
+      "notes": ""
+    },
+    {
+      "id": "ax-09",
+      "date": "02/11/2026",
+      "isoDate": "2026-11-02",
+      "day": "Segunda-feira",
+      "sprint": "Sprint 02",
+      "time": "19h15 – 20h45",
+      "title": "Active Directory, DNS, GPO e PowerShell/Bash",
+      "targetQ": 25,
+      "method": "Engenharia Reversa",
+      "peso": "ALTO",
+      "done": false,
+      "acertos": "",
+      "notes": ""
+    },
+    {
+      "id": "ax-10",
+      "date": "02/11/2026",
+      "isoDate": "2026-11-02",
+      "day": "Segunda-feira",
+      "sprint": "Sprint 02",
+      "time": "21h15 – 23h00",
+      "title": "Português FGV: Compreensão Textual e Coesão",
+      "targetQ": 20,
+      "method": "Resolução Dissecada",
+      "peso": "CRITICO",
+      "done": false,
+      "acertos": "",
+      "notes": ""
+    },
+    {
+      "id": "ax-11",
+      "date": "03/11/2026",
+      "isoDate": "2026-11-03",
+      "day": "Terça-feira",
+      "sprint": "Sprint 02",
+      "time": "17h30 – 19h00",
+      "title": "Virtualização e Contêineres (VMware, Hyper-V, Docker)",
+      "targetQ": 25,
+      "method": "Engenharia Reversa",
+      "peso": "ALTO",
+      "done": false,
+      "acertos": "",
+      "notes": ""
+    },
+    {
+      "id": "ax-12",
+      "date": "03/11/2026",
+      "isoDate": "2026-11-03",
+      "day": "Terça-feira",
+      "sprint": "Sprint 02",
+      "time": "19h15 – 20h45",
+      "title": "Computação em Nuvem (IaaS, PaaS, SaaS)",
+      "targetQ": 25,
+      "method": "Execução Pura",
+      "peso": "ALTO",
+      "done": false,
+      "acertos": "",
+      "notes": ""
+    },
+    {
+      "id": "ax-13",
+      "date": "03/11/2026",
+      "isoDate": "2026-11-03",
+      "day": "Terça-feira",
+      "sprint": "Sprint 02",
+      "time": "21h15 – 23h00",
+      "title": "RLM FGV: Diagramas Lógicos e Quantificadores",
+      "targetQ": 20,
+      "method": "Resolução Dissecada",
+      "peso": "CRITICO",
+      "done": false,
+      "acertos": "",
+      "notes": ""
+    },
+    {
+      "id": "ax-14",
+      "date": "04/11/2026",
+      "isoDate": "2026-11-04",
+      "day": "Quarta-feira",
+      "sprint": "Sprint 02",
+      "time": "17h30 – 19h00",
+      "title": "Redes e Perímetro: LAN, WAN, VPN, Firewalls",
+      "targetQ": 25,
+      "method": "Engenharia Reversa",
+      "peso": "ALTO",
+      "done": false,
+      "acertos": "",
+      "notes": ""
+    },
+    {
+      "id": "ax-15",
+      "date": "04/11/2026",
+      "isoDate": "2026-11-04",
+      "day": "Quarta-feira",
+      "sprint": "Sprint 02",
+      "time": "19h15 – 20h45",
+      "title": "Criptografia, PKI, Backup e DRP",
+      "targetQ": 25,
+      "method": "Engenharia Reversa",
+      "peso": "ALTO",
+      "done": false,
+      "acertos": "",
+      "notes": ""
+    },
+    {
+      "id": "ax-16",
+      "date": "04/11/2026",
+      "isoDate": "2026-11-04",
+      "day": "Quarta-feira",
+      "sprint": "Sprint 02",
+      "time": "21h15 – 23h00",
+      "title": "Português FGV: Morfossintaxe e Pontuação",
+      "targetQ": 20,
+      "method": "Resolução Dissecada",
+      "peso": "CRITICO",
+      "done": false,
+      "acertos": "",
+      "notes": ""
+    },
+    {
+      "id": "ax-17",
+      "date": "05/11/2026",
+      "isoDate": "2026-11-05",
+      "day": "Quinta-feira",
+      "sprint": "Sprint 02",
+      "time": "17h30 – 19h00",
+      "title": "Governança, Riscos e Contratos (COBIT/ITIL)",
+      "targetQ": 25,
+      "method": "Engenharia Reversa",
+      "peso": "ALTO",
+      "done": false,
+      "acertos": "",
+      "notes": ""
+    },
+    {
+      "id": "ax-18",
+      "date": "05/11/2026",
+      "isoDate": "2026-11-05",
+      "day": "Quinta-feira",
+      "sprint": "Sprint 02",
+      "time": "19h15 – 20h45",
+      "title": "Automação, DevOps e LGPD (Lei 13.709/18)",
+      "targetQ": 25,
+      "method": "Engenharia Reversa",
+      "peso": "ALTO",
+      "done": false,
+      "acertos": "",
+      "notes": ""
+    },
+    {
+      "id": "ax-19",
+      "date": "05/11/2026",
+      "isoDate": "2026-11-05",
+      "day": "Quinta-feira",
+      "sprint": "Sprint 02",
+      "time": "21h15 – 23h00",
+      "title": "RLM FGV: Problemas Aritméticos e Matriciais",
+      "targetQ": 20,
+      "method": "Resolução Dissecada",
+      "peso": "CRITICO",
+      "done": false,
+      "acertos": "",
+      "notes": ""
+    },
+    {
+      "id": "ax-20",
+      "date": "06/11/2026",
+      "isoDate": "2026-11-06",
+      "day": "Sexta-feira",
+      "sprint": "Sprint 02",
+      "time": "14h00 – 15h30",
+      "title": "Operação, Monitoramento e Gestão de Incidentes",
+      "targetQ": 25,
+      "method": "Engenharia Reversa",
+      "peso": "ALTO",
+      "done": false,
+      "acertos": "",
+      "notes": ""
+    },
+    {
+      "id": "ax-21",
+      "date": "06/11/2026",
+      "isoDate": "2026-11-06",
+      "day": "Sexta-feira",
+      "sprint": "Sprint 02",
+      "time": "15h30 – 17h00",
+      "title": "Revisão de Erros da Semana (Caderno de Falhas)",
+      "targetQ": 25,
+      "method": "Retrabalho (Fim 17h - Sabbath)",
+      "peso": "ALTO",
+      "done": false,
+      "acertos": "",
+      "notes": ""
+    },
+    {
+      "id": "ax-22",
+      "date": "08/11/2026",
+      "isoDate": "2026-11-08",
+      "day": "Domingo",
+      "sprint": "Sprint 02",
+      "time": "08h00 – 18h00",
+      "title": "Simulado Tronco Comum #02 (60 qts) + Auditoria",
+      "targetQ": 90,
+      "method": "Simulado + Correção Ativa",
+      "peso": "CRITICO",
+      "done": false,
+      "acertos": "",
+      "notes": ""
+    },
+    {
+      "id": "ax-23",
+      "date": "09/11/2026",
+      "isoDate": "2026-11-09",
+      "day": "Segunda-feira",
+      "sprint": "Sprint 03",
+      "time": "17h30 – 19h00",
+      "title": "Sistemas Operacionais: Windows Server e Linux (Serviços e Kernel)",
+      "targetQ": 25,
+      "method": "Execução Pura",
+      "peso": "ALTO",
+      "done": false,
+      "acertos": "",
+      "notes": ""
+    },
+    {
+      "id": "ax-24",
+      "date": "09/11/2026",
+      "isoDate": "2026-11-09",
+      "day": "Segunda-feira",
+      "sprint": "Sprint 03",
+      "time": "19h15 – 20h45",
+      "title": "AD DS, GPO, DNS, DHCP e Scripts PowerShell/Bash",
+      "targetQ": 25,
+      "method": "Engenharia Reversa",
+      "peso": "ALTO",
+      "done": false,
+      "acertos": "",
+      "notes": ""
+    },
+    {
+      "id": "ax-25",
+      "date": "09/11/2026",
+      "isoDate": "2026-11-09",
+      "day": "Segunda-feira",
+      "sprint": "Sprint 03",
+      "time": "21h15 – 23h00",
+      "title": "Português FGV: Coesão, Conectores e Reescrita",
+      "targetQ": 20,
+      "method": "Resolução Dissecada",
+      "peso": "CRITICO",
+      "done": false,
+      "acertos": "",
+      "notes": ""
+    },
+    {
+      "id": "ax-26",
+      "date": "10/11/2026",
+      "isoDate": "2026-11-10",
+      "day": "Terça-feira",
+      "sprint": "Sprint 03",
+      "time": "17h30 – 19h00",
+      "title": "Virtualização, Contêineres, Alta Disponibilidade e Capacidade",
+      "targetQ": 25,
+      "method": "Engenharia Reversa",
+      "peso": "ALTO",
+      "done": false,
+      "acertos": "",
+      "notes": ""
+    },
+    {
+      "id": "ax-27",
+      "date": "10/11/2026",
+      "isoDate": "2026-11-10",
+      "day": "Terça-feira",
+      "sprint": "Sprint 03",
+      "time": "19h15 – 20h45",
+      "title": "Nuvem (IaaS/PaaS/SaaS), Conceitos DevOps e IaC",
+      "targetQ": 25,
+      "method": "Engenharia Reversa",
+      "peso": "CRITICO",
+      "done": false,
+      "acertos": "",
+      "notes": ""
+    },
+    {
+      "id": "ax-28",
+      "date": "10/11/2026",
+      "isoDate": "2026-11-10",
+      "day": "Terça-feira",
+      "sprint": "Sprint 03",
+      "time": "21h15 – 23h00",
+      "title": "RLM FGV: Lógica de 1ª Ordem e Argumentação",
+      "targetQ": 20,
+      "method": "Resolução Dissecada",
+      "peso": "CRITICO",
+      "done": false,
+      "acertos": "",
+      "notes": ""
+    },
+    {
+      "id": "ax-29",
+      "date": "11/11/2026",
+      "isoDate": "2026-11-11",
+      "day": "Quarta-feira",
+      "sprint": "Sprint 03",
+      "time": "17h30 – 19h00",
+      "title": "LAN/WAN/VPN (IPSec/SSL), Switches, Roteadores, Firewalls e Wi-Fi",
+      "targetQ": 25,
+      "method": "Engenharia Reversa",
+      "peso": "ALTO",
+      "done": false,
+      "acertos": "",
+      "notes": ""
+    },
+    {
+      "id": "ax-30",
+      "date": "11/11/2026",
+      "isoDate": "2026-11-11",
+      "day": "Quarta-feira",
+      "sprint": "Sprint 03",
+      "time": "19h15 – 20h45",
+      "title": "Vulnerabilidades, Patches, Backup/DRP e Contingência",
+      "targetQ": 25,
+      "method": "Engenharia Reversa",
+      "peso": "CRITICO",
+      "done": false,
+      "acertos": "",
+      "notes": ""
+    },
+    {
+      "id": "ax-31",
+      "date": "11/11/2026",
+      "isoDate": "2026-11-11",
+      "day": "Quarta-feira",
+      "sprint": "Sprint 03",
+      "time": "21h15 – 23h00",
+      "title": "Português FGV: Concordância, Regência e Crase",
+      "targetQ": 20,
+      "method": "Resolução Dissecada",
+      "peso": "CRITICO",
+      "done": false,
+      "acertos": "",
+      "notes": ""
+    },
+    {
+      "id": "ax-32",
+      "date": "12/11/2026",
+      "isoDate": "2026-11-12",
+      "day": "Quinta-feira",
+      "sprint": "Sprint 03",
+      "time": "17h30 – 19h00",
+      "title": "Gestão de Ativos/CMDB, Riscos, SLA e Contratos de TIC",
+      "targetQ": 25,
+      "method": "Engenharia Reversa",
+      "peso": "CRITICO",
+      "done": false,
+      "acertos": "",
+      "notes": ""
+    },
+    {
+      "id": "ax-33",
+      "date": "12/11/2026",
+      "isoDate": "2026-11-12",
+      "day": "Quinta-feira",
+      "sprint": "Sprint 03",
+      "time": "19h15 – 20h45",
+      "title": "COBIT 2019 + ITIL 4 (Mudanças, Problemas, Nível de Serviço)",
+      "targetQ": 25,
+      "method": "Engenharia Reversa",
+      "peso": "ALTO",
+      "done": false,
+      "acertos": "",
+      "notes": ""
+    },
+    {
+      "id": "ax-34",
+      "date": "12/11/2026",
+      "isoDate": "2026-11-12",
+      "day": "Quinta-feira",
+      "sprint": "Sprint 03",
+      "time": "21h15 – 23h00",
+      "title": "RLM FGV: Problemas Aritméticos, Geométricos e Matriciais",
+      "targetQ": 20,
+      "method": "Resolução Dissecada",
+      "peso": "CRITICO",
+      "done": false,
+      "acertos": "",
+      "notes": ""
+    },
+    {
+      "id": "ax-35",
+      "date": "13/11/2026",
+      "isoDate": "2026-11-13",
+      "day": "Sexta-feira",
+      "sprint": "Sprint 03",
+      "time": "14h00 – 15h30",
+      "title": "LGPD (Lei 13.709/18) + Licenciamento e Ativos",
+      "targetQ": 25,
+      "method": "Engenharia Reversa",
+      "peso": "ALTO",
+      "done": false,
+      "acertos": "",
+      "notes": ""
+    },
+    {
+      "id": "ax-36",
+      "date": "13/11/2026",
+      "isoDate": "2026-11-13",
+      "day": "Sexta-feira",
+      "sprint": "Sprint 03",
+      "time": "15h30 – 17h00",
+      "title": "Revisão de Erros da Semana (Caderno de Falhas)",
+      "targetQ": 25,
+      "method": "Retrabalho (Fim 17h - Sabbath)",
+      "peso": "ALTO",
+      "done": false,
+      "acertos": "",
+      "notes": ""
+    },
+    {
+      "id": "ax-37",
+      "date": "15/11/2026",
+      "isoDate": "2026-11-15",
+      "day": "Domingo",
+      "sprint": "Sprint 03",
+      "time": "08h00 – 18h00",
+      "title": "Simulado Tronco Comum #03/#04 Integrado (60 qts) + Auditoria",
+      "targetQ": 90,
+      "method": "Simulado + Correção Ativa",
+      "peso": "CRITICO",
+      "done": false,
+      "acertos": "",
+      "notes": ""
+    },
+    {
+      "id": "ax-38",
+      "date": "16/11/2026",
+      "isoDate": "2026-11-16",
+      "day": "Segunda-feira",
+      "sprint": "Sprint 05",
+      "time": "17h30 – 19h00",
+      "title": "Leis de TI: LAI (Lei 12.527/11), Marco Civil (12.965/14) e Lei 12.737/12",
+      "targetQ": 25,
+      "method": "Leitura Seca + Questões",
+      "peso": "CRITICO",
+      "done": false,
+      "acertos": "",
+      "notes": ""
+    },
+    {
+      "id": "ax-39",
+      "date": "16/11/2026",
+      "isoDate": "2026-11-16",
+      "day": "Segunda-feira",
+      "sprint": "Sprint 05",
+      "time": "19h15 – 20h45",
+      "title": "Reforço SO, AD, DNS, DHCP e Scripts (Erros do Tronco Comum)",
+      "targetQ": 25,
+      "method": "Engenharia Reversa",
+      "peso": "ALTO",
+      "done": false,
+      "acertos": "",
+      "notes": ""
+    },
+    {
+      "id": "ax-40",
+      "date": "16/11/2026",
+      "isoDate": "2026-11-16",
+      "day": "Segunda-feira",
+      "sprint": "Sprint 05",
+      "time": "21h15 – 23h00",
+      "title": "Português FGV: Bateria de Revisão do Tronco Comum",
+      "targetQ": 20,
+      "method": "Resolução Dissecada",
+      "peso": "CRITICO",
+      "done": false,
+      "acertos": "",
+      "notes": ""
+    },
+    {
+      "id": "ax-41",
+      "date": "17/11/2026",
+      "isoDate": "2026-11-17",
+      "day": "Terça-feira",
+      "sprint": "Sprint 05",
+      "time": "17h30 – 19h00",
+      "title": "Introdução à Lei 11.080/04 (c/ Lei 14.440/22) e Dec. 5.352/05 (ABDI)",
+      "targetQ": 25,
+      "method": "Leitura Seca + NotebookLM",
+      "peso": "CRITICO",
+      "done": false,
+      "acertos": "",
+      "notes": ""
+    },
+    {
+      "id": "ax-42",
+      "date": "17/11/2026",
+      "isoDate": "2026-11-17",
+      "day": "Terça-feira",
+      "sprint": "Sprint 05",
+      "time": "19h15 – 20h45",
+      "title": "Reforço Virtualização, Contêineres, Nuvem e DevOps/IaC",
+      "targetQ": 25,
+      "method": "Execução Pura",
+      "peso": "ALTO",
+      "done": false,
+      "acertos": "",
+      "notes": ""
+    },
+    {
+      "id": "ax-43",
+      "date": "17/11/2026",
+      "isoDate": "2026-11-17",
+      "day": "Terça-feira",
+      "sprint": "Sprint 05",
+      "time": "21h15 – 23h00",
+      "title": "RLM FGV: Bateria Mista de Fechamento da Fase 1",
+      "targetQ": 20,
+      "method": "Resolução Dissecada",
+      "peso": "CRITICO",
+      "done": false,
+      "acertos": "",
+      "notes": ""
+    },
+    {
+      "id": "ax-44",
+      "date": "18/11/2026",
+      "isoDate": "2026-11-18",
+      "day": "Quarta-feira",
+      "sprint": "Sprint 05",
+      "time": "17h30 – 19h00",
+      "title": "Reforço Redes (OSI/TCP-IP, VLANs, VPN, Firewalls) + Confirmação TJPB 16h",
+      "targetQ": 25,
+      "method": "Engenharia Reversa",
+      "peso": "CRITICO",
+      "done": false,
+      "acertos": "",
+      "notes": ""
+    },
+    {
+      "id": "ax-45",
+      "date": "18/11/2026",
+      "isoDate": "2026-11-18",
+      "day": "Quarta-feira",
+      "sprint": "Sprint 05",
+      "time": "19h15 – 20h45",
+      "title": "Reforço Segurança, Criptografia, PKI, Backup e DRP",
+      "targetQ": 25,
+      "method": "Engenharia Reversa",
+      "peso": "ALTO",
+      "done": false,
+      "acertos": "",
+      "notes": ""
+    },
+    {
+      "id": "ax-46",
+      "date": "18/11/2026",
+      "isoDate": "2026-11-18",
+      "day": "Quarta-feira",
+      "sprint": "Sprint 05",
+      "time": "21h15 – 23h00",
+      "title": "Português FGV: Sintaxe, Pontuação e Reescrita",
+      "targetQ": 20,
+      "method": "Resolução Dissecada",
+      "peso": "CRITICO",
+      "done": false,
+      "acertos": "",
+      "notes": ""
+    },
+    {
+      "id": "ax-47",
+      "date": "19/11/2026",
+      "isoDate": "2026-11-19",
+      "day": "Quinta-feira",
+      "sprint": "Sprint 05",
+      "time": "17h30 – 19h00",
+      "title": "Reforço Governança (COBIT 2019, ITIL 4, Riscos e Contratos TIC)",
+      "targetQ": 25,
+      "method": "Engenharia Reversa",
+      "peso": "ALTO",
+      "done": false,
+      "acertos": "",
+      "notes": ""
+    },
+    {
+      "id": "ax-48",
+      "date": "19/11/2026",
+      "isoDate": "2026-11-19",
+      "day": "Quinta-feira",
+      "sprint": "Sprint 05",
+      "time": "19h15 – 20h45",
+      "title": "Suporte Técnico, Central de Serviços e Informática ABDI",
+      "targetQ": 25,
+      "method": "Execução Pura",
+      "peso": "ALTO",
+      "done": false,
+      "acertos": "",
+      "notes": ""
+    },
+    {
+      "id": "ax-49",
+      "date": "19/11/2026",
+      "isoDate": "2026-11-19",
+      "day": "Quinta-feira",
+      "sprint": "Sprint 05",
+      "time": "21h15 – 23h00",
+      "title": "RLM FGV: Equivalências, Quantificadores e Matrizes",
+      "targetQ": 20,
+      "method": "Resolução Dissecada",
+      "peso": "CRITICO",
+      "done": false,
+      "acertos": "",
+      "notes": ""
+    },
+    {
+      "id": "ax-50",
+      "date": "20/11/2026",
+      "isoDate": "2026-11-20",
+      "day": "Sexta-feira",
+      "sprint": "Sprint 05",
+      "time": "14h00 – 17h00",
+      "title": "Auditoria Geral de Erros da Fase 1 (Tronco Comum Completo)",
+      "targetQ": 50,
+      "method": "Retrabalho (Fim 17h - Sabbath)",
+      "peso": "CRITICO",
+      "done": false,
+      "acertos": "",
+      "notes": ""
+    },
+    {
+      "id": "ax-51",
+      "date": "22/11/2026",
+      "isoDate": "2026-11-22",
+      "day": "Domingo",
+      "sprint": "Sprint 05",
+      "time": "08h00 – 18h00",
+      "title": "Simulado Fechamento Tronco Comum #05 (60 qts) + Auditoria",
+      "targetQ": 90,
+      "method": "Simulado + Correção Ativa",
+      "peso": "CRITICO",
+      "done": false,
+      "acertos": "",
+      "notes": ""
+    }
+  ],
+  "admin": [
+    {
+      "id": "adm-01",
+      "date": "22/10/2026",
+      "isoDate": "2026-10-22",
+      "orgao": "ABDI / TJPB",
+      "title": "Envio dos Pedidos de Isenção (Medula)",
+      "conduta": "CONCLUÍDO. Guardar protocolos de envio no portal FGV.",
+      "peso": "CONCLUIDO",
+      "done": true,
+      "notes": "Protocolos salvos"
+    },
+    {
+      "id": "adm-02",
+      "date": "29/10/2026 (HOJE)",
+      "isoDate": "2026-10-29",
+      "orgao": "TJPB",
+      "title": "Backup Documental HEMONORTE",
+      "conduta": "Deixar pronta declaração timbrada do Hemonorte para blindar eventual recurso no TJPB.",
+      "peso": "CRITICO",
+      "done": false,
+      "notes": ""
+    },
+    {
+      "id": "adm-03",
+      "date": "30/10/2026 (Amanhã)",
+      "isoDate": "2026-10-30",
+      "orgao": "ABDI",
+      "title": "Resultado Preliminar da Isenção ABDI",
+      "conduta": "Conferir deferimento no site da FGV (Recurso: 03 e 04/11; Definitivo: 10/11).",
+      "peso": "ALTO",
+      "done": false,
+      "notes": ""
+    },
+    {
+      "id": "adm-04",
+      "date": "03 e 04/11/2026",
+      "isoDate": "2026-11-04",
+      "orgao": "ABDI",
+      "title": "Prazo de Recurso da Isenção ABDI",
+      "conduta": "Interpor recurso caso haja indeferimento preliminar na ABDI.",
+      "peso": "ALTO",
+      "done": false,
+      "notes": ""
+    },
+    {
+      "id": "adm-05",
+      "date": "10/11/2026",
+      "isoDate": "2026-11-10",
+      "orgao": "ABDI",
+      "title": "Resultado Definitivo da Isenção ABDI",
+      "conduta": "Conferir lista definitiva de isentos ABDI no site da FGV.",
+      "peso": "ALTO",
+      "done": false,
+      "notes": ""
+    },
+    {
+      "id": "adm-06",
+      "date": "10/11/2026 (18h)",
+      "isoDate": "2026-11-10",
+      "orgao": "ABDI",
+      "title": "Encerramento das Inscrições ABDI",
+      "conduta": "Conferir status de inscrição ativa (Cargo: Infraestrutura e Operação).",
+      "peso": "CRITICO",
+      "done": false,
+      "notes": ""
+    },
+    {
+      "id": "adm-07",
+      "date": "11/11/2026",
+      "isoDate": "2026-11-11",
+      "orgao": "ABDI",
+      "title": "Vencimento Final do Boleto ABDI (R$ 100)",
+      "conduta": "Pagar boleto exclusivamente se a isenção for indeferida após recurso.",
+      "peso": "CRITICO",
+      "done": false,
+      "notes": ""
+    },
+    {
+      "id": "adm-08",
+      "date": "Nov/2026 (Site FGV)",
+      "isoDate": "2026-11-12",
+      "orgao": "TJPB",
+      "title": "Resultado Preliminar da Isenção TJPB",
+      "conduta": "Se indeferido, interpor recurso em 2 dias úteis anexando declaração do Hemonorte.",
+      "peso": "CRITICO",
+      "done": false,
+      "notes": ""
+    },
+    {
+      "id": "adm-09",
+      "date": "18/11/2026 (16h)",
+      "isoDate": "2026-11-18",
+      "orgao": "TJPB",
+      "title": "Encerramento das Inscrições TJPB",
+      "conduta": "Prazo fatal de inscrição e conferência da opção de Cota Negros (Infra de TI).",
+      "peso": "CRITICO",
+      "done": false,
+      "notes": ""
+    },
+    {
+      "id": "adm-10",
+      "date": "19/11/2026",
+      "isoDate": "2026-11-19",
+      "orgao": "TJPB",
+      "title": "Vencimento Final da GRJ TJPB (R$ 120)",
+      "conduta": "Quitar GRJ (sem usar agendamento) caso a isenção do TJPB seja indeferida.",
+      "peso": "CRITICO",
+      "done": false,
+      "notes": ""
+    },
+    {
+      "id": "adm-11",
+      "date": "02 e 03/12/2026",
+      "isoDate": "2026-12-03",
+      "orgao": "ABDI",
+      "title": "Regras do Teste Online e Convocação Títulos",
+      "conduta": "Executar o teste prévio obrigatório da plataforma online da FGV.",
+      "peso": "CRITICO",
+      "done": false,
+      "notes": ""
+    },
+    {
+      "id": "adm-12",
+      "date": "03/12 a 22/12 (16h)",
+      "isoDate": "2026-12-22",
+      "orgao": "ABDI",
+      "title": "Envio de Currículo Padrão + Títulos (10 pts)",
+      "conduta": "Enviar comprovantes de 10 anos de Infra + Currículo Padrão (eliminatório).",
+      "peso": "MAXIMO",
+      "done": false,
+      "notes": ""
+    },
+    {
+      "id": "adm-13",
+      "date": "20/12/2026 (13h30)",
+      "isoDate": "2026-12-20",
+      "orgao": "ABDI",
+      "title": "PROVA OBJETIVA ONLINE ABDI",
+      "conduta": "Prova remota (13h30–17h00): 60 questões FGV. Virada p/ TJPB no dia 21/12.",
+      "peso": "MAXIMO",
+      "done": false,
+      "notes": ""
+    },
+    {
+      "id": "adm-14",
+      "date": "11 a 18/01/2027",
+      "isoDate": "2027-01-18",
+      "orgao": "TJPB",
+      "title": "Locais de Prova e Logística João Pessoa",
+      "conduta": "Emitir cartão de confirmação e fechar logística Natal → João Pessoa.",
+      "peso": "ALTO",
+      "done": false,
+      "notes": ""
+    },
+    {
+      "id": "adm-15",
+      "date": "24/01/2027",
+      "isoDate": "2027-01-24",
+      "orgao": "TJPB",
+      "title": "PROVA OBJETIVA + DISCURSIVA TJPB",
+      "conduta": "Execução da prova presencial em João Pessoa/PB.",
+      "peso": "MAXIMO",
+      "done": false,
+      "notes": ""
+    }
+  ],
+  "sprints": [
+    {
+      "id": "sp-01",
+      "sprint": "Sprint 01",
+      "period": "29/10 a 01/11/26",
+      "isoEnd": "2026-11-01",
+      "fase": "Fase 1: Tronco Comum (Início Hoje)",
+      "title": "OSI/TCP-IP, IPv4/IPv6, VLANs, COBIT 2019, ITIL 4, Controle de Acesso e Lógica Sentencial (RLM).",
+      "meta": "205 questões + Simulado #1",
+      "peso": "CRITICO",
+      "done": false,
+      "qDone": "",
+      "notes": ""
+    },
+    {
+      "id": "sp-02",
+      "sprint": "Sprint 02",
+      "period": "02/11 a 08/11/26",
+      "isoEnd": "2026-11-08",
+      "fase": "Fase 1: Tronco Comum",
+      "title": "Windows Server, Linux, AD, GPO, DNS, DHCP, PowerShell/Bash, Virtualização, Nuvem, Redes/Perímetro, Criptografia, PKI, LGPD, Port e RLM.",
+      "meta": "390 questões + Simulado #2",
+      "peso": "ALTO",
+      "done": false,
+      "qDone": "",
+      "notes": ""
+    },
+    {
+      "id": "sp-03",
+      "sprint": "Sprint 03/04",
+      "period": "09/11 a 15/11/26",
+      "isoEnd": "2026-11-15",
+      "fase": "Fase 1: Tronco Comum (Fusão Compactada)",
+      "title": "Virtualização/Contêineres, Nuvem (IaaS/PaaS/SaaS), LAN/WAN/VPN, Firewalls, Backup/DRP, SLA, Capacidade + DevOps/IaC, Ativos/CMDB, Riscos, Vulnerabilidades, Contratos TIC e RLM (Aritmético/Matrizes).",
+      "meta": "390 questões + Simulado #3/#4",
+      "peso": "CRITICO",
+      "done": false,
+      "qDone": "",
+      "notes": ""
+    },
+    {
+      "id": "sp-05",
+      "sprint": "Sprint 05",
+      "period": "16/11 a 22/11/26",
+      "isoEnd": "2026-11-22",
+      "fase": "Transição Fase 1 → 2",
+      "title": "Revisão de Erros do Tronco Comum + LAI, Marco Civil e Lei 12.737/12 + Introdução à Lei 11.080/04 e Dec. 5.352/05.",
+      "meta": "390 questões + Simulado #5",
+      "peso": "CRITICO",
+      "done": false,
+      "qDone": "",
+      "notes": ""
+    },
+    {
+      "id": "sp-06",
+      "sprint": "Sprint 06",
+      "period": "23/11 a 29/11/26",
+      "isoEnd": "2026-11-29",
+      "fase": "Fase 2: Reta Final ABDI",
+      "title": "Lei 11.080/04 (c/ Lei 14.440/22), Dec. 5.352/05, Estatuto Social ABDI + Informática (Win 10/11, M365, LibreOffice).",
+      "meta": "300 questões + Sim. ABDI #1",
+      "peso": "CRITICO",
+      "done": false,
+      "qDone": "",
+      "notes": ""
+    },
+    {
+      "id": "sp-07",
+      "sprint": "Sprint 07",
+      "period": "30/11 a 06/12/26",
+      "isoEnd": "2026-12-06",
+      "fase": "Fase 2: Reta Final ABDI",
+      "title": "Regulamento de Licitações/Contratos e Regulamento de Convênios ABDI + Suporte Remoto + Envio Títulos/Currículo.",
+      "meta": "300 questões + Sim. ABDI #2",
+      "peso": "CRITICO",
+      "done": false,
+      "qDone": "",
+      "notes": ""
+    },
+    {
+      "id": "sp-08",
+      "sprint": "Sprint 08",
+      "period": "07/12 a 13/12/26",
+      "isoEnd": "2026-12-13",
+      "fase": "Fase 2: Reta Final ABDI",
+      "title": "Código de Ética ABDI (Res. 004/22) + Planejamento Estratégico 2024–2029 (Res. 008/23) + Revisão Geral TI/Port/RLM.",
+      "meta": "320 questões + Sim. ABDI #3",
+      "peso": "CRITICO",
+      "done": false,
+      "qDone": "",
+      "notes": ""
+    },
+    {
+      "id": "sp-09",
+      "sprint": "Sprint 09",
+      "period": "14/12 a 20/12/26",
+      "isoEnd": "2026-12-20",
+      "fase": "Semana da Prova ABDI",
+      "title": "Decoreba final do Bloco Institucional ABDI + Caderno de Erros FGV (Seg a Sex 17h). Dom 20/12: PROVA ABDI.",
+      "meta": "180 questões + PROVA ABDI",
+      "peso": "MAXIMO",
+      "done": false,
+      "qDone": "",
+      "notes": ""
+    },
+    {
+      "id": "sp-10",
+      "sprint": "Sprint 10",
+      "period": "21/12 a 27/12/26",
+      "isoEnd": "2026-12-27",
+      "fase": "Fase 3: Imersão TJPB",
+      "title": "Res. CNJ (370, 396, 468, 522, 615), PJe, PDPJ-Br + SGBDs, SQL ANSI, ACID, Locks, PITR + Combinatória/Probabilidade.",
+      "meta": "320 q + Sim. TJPB #1 + Disc. #1",
+      "peso": "CRITICO",
+      "done": false,
+      "qDone": "",
+      "notes": ""
+    },
+    {
+      "id": "sp-11",
+      "sprint": "Sprint 11",
+      "period": "28/12 a 03/01/27",
+      "isoEnd": "2027-01-03",
+      "fase": "Fase 3: Imersão TJPB",
+      "title": "Terraform, Ansible, GitOps, CI/CD, SRE, K8s (Rancher/OpenShift), VMware (vMotion/DRS/HA/FT) + Tuning, NoSQL, DAMA + Estatística.",
+      "meta": "320 q + Sim. TJPB #2 + Disc. #2",
+      "peso": "CRITICO",
+      "done": false,
+      "qDone": "",
+      "notes": ""
+    },
+    {
+      "id": "sp-12",
+      "sprint": "Sprint 12",
+      "period": "04/01 a 10/01/27",
+      "isoEnd": "2027-01-10",
+      "fase": "Fase 3: Imersão TJPB",
+      "title": "Zero Trust/ZTNA, EDR/NDR/XDR, SIEM/SOAR, MITRE, SBOM, ISO 27001/27002/27005/27701, OSPF/BGP, IPv6 Avançado, Zabbix/Prometheus/ELK.",
+      "meta": "320 q + Sim. TJPB #3 + Disc. #3",
+      "peso": "CRITICO",
+      "done": false,
+      "qDone": "",
+      "notes": ""
+    },
+    {
+      "id": "sp-13",
+      "sprint": "Sprint 13",
+      "period": "11/01 a 17/01/27",
+      "isoEnd": "2027-01-17",
+      "fase": "Fase 3: Imersão TJPB",
+      "title": "MoReq-Jus, RDC-Arq, PDTI TJPB 2024–26, Eng. Software (Scrum/Kanban/Testes), IA/BI, Redação Oficial, Juros/Funções e Erros.",
+      "meta": "340 q + Sim. TJPB #4 + Disc. #4",
+      "peso": "CRITICO",
+      "done": false,
+      "qDone": "",
+      "notes": ""
+    },
+    {
+      "id": "sp-14",
+      "sprint": "Sprint 14",
+      "period": "18/01 a 24/01/27",
+      "isoEnd": "2027-01-24",
+      "fase": "Semana da Prova TJPB",
+      "title": "Leitura seca final CNJ + Tabelas ISO/COBIT/ITIL + Comandos K8s/Terraform + Esqueletos Discursiva. Dom 24/01: PROVA TJPB.",
+      "meta": "160 questões + PROVA TJPB",
+      "peso": "MAXIMO",
+      "done": false,
+      "qDone": "",
+      "notes": ""
+    },
+    {
+      "id": "sp-15",
+      "sprint": "Sprint 15+",
+      "period": "Pós-25/01/2027",
+      "isoEnd": "2027-02-28",
+      "fase": "Fase 4: Foco TJRN",
+      "title": "Manutenção por questões da base de Tribunais (TI/CNJ/FGV) + LC 122/94 (RN).",
+      "meta": "300 questões/semana",
+      "peso": "ALTO",
+      "done": false,
+      "qDone": "",
+      "notes": ""
+    }
+  ],
+  "nucleos": [
+    {
+      "id": "nc-01",
+      "nucleo": "NÚCLEO 1: Tronco Comum Convergente (ABDI + TJPB + TJRN | 22/10 a 22/11/2026)",
+      "cat": "Português FGV",
+      "title": "Compreensão/interpretação de textos, tipos e gêneros textuais e ortografia",
+      "done": false
+    },
+    {
+      "id": "nc-02",
+      "nucleo": "NÚCLEO 1: Tronco Comum Convergente (ABDI + TJPB + TJRN | 22/10 a 22/11/2026)",
+      "cat": "Português FGV",
+      "title": "Coesão (referenciação/conectores), tempos/modos verbais e morfossintaxe completa",
+      "done": false
+    },
+    {
+      "id": "nc-03",
+      "nucleo": "NÚCLEO 1: Tronco Comum Convergente (ABDI + TJPB + TJRN | 22/10 a 22/11/2026)",
+      "cat": "Português FGV",
+      "title": "Coordenação/subordinação, pontuação, concordância, regência, crase, colocação pronominal e reescrita",
+      "done": false
+    },
+    {
+      "id": "nc-04",
+      "nucleo": "NÚCLEO 1: Tronco Comum Convergente (ABDI + TJPB + TJRN | 22/10 a 22/11/2026)",
+      "cat": "RLM Base",
+      "title": "Estruturas lógicas, argumentação, lógica sentencial (proposições, conectivos, tabelas-verdade, equivalências)",
+      "done": false
+    },
+    {
+      "id": "nc-05",
+      "nucleo": "NÚCLEO 1: Tronco Comum Convergente (ABDI + TJPB + TJRN | 22/10 a 22/11/2026)",
+      "cat": "RLM Base",
+      "title": "Diagramas lógicos, lógica de 1ª ordem (quantificadores) e problemas aritméticos, geométricos e matriciais",
+      "done": false
+    },
+    {
+      "id": "nc-06",
+      "nucleo": "NÚCLEO 1: Tronco Comum Convergente (ABDI + TJPB + TJRN | 22/10 a 22/11/2026)",
+      "cat": "Infra, SO e Redes",
+      "title": "Arquitetura de servidores/storage, virtualização e contêineres, nuvem (IaaS/PaaS/SaaS) e capacidade/disponibilidade",
+      "done": false
+    },
+    {
+      "id": "nc-07",
+      "nucleo": "NÚCLEO 1: Tronco Comum Convergente (ABDI + TJPB + TJRN | 22/10 a 22/11/2026)",
+      "cat": "Infra, SO e Redes",
+      "title": "Windows Server e Linux, usuários/permissões/serviços, AD, GPO, DNS, DHCP, PowerShell e Bash",
+      "done": false
+    },
+    {
+      "id": "nc-08",
+      "nucleo": "NÚCLEO 1: Tronco Comum Convergente (ABDI + TJPB + TJRN | 22/10 a 22/11/2026)",
+      "cat": "Infra, SO e Redes",
+      "title": "OSI/TCP-IP, IPv4/IPv6, roteamento, VLANs, LAN/WAN/VPN, switches/roteadores/firewalls/Wi-Fi e monitoramento",
+      "done": false
+    },
+    {
+      "id": "nc-09",
+      "nucleo": "NÚCLEO 1: Tronco Comum Convergente (ABDI + TJPB + TJRN | 22/10 a 22/11/2026)",
+      "cat": "Segurança e Governança",
+      "title": "Controle de acesso/identidades, vulnerabilidades/patches/incidentes, criptografia e certificados digitais (PKI)",
+      "done": false
+    },
+    {
+      "id": "nc-10",
+      "nucleo": "NÚCLEO 1: Tronco Comum Convergente (ABDI + TJPB + TJRN | 22/10 a 22/11/2026)",
+      "cat": "Segurança e Governança",
+      "title": "Backup/restore/DRP e contingência, LGPD (Lei 13.709/18) e SLA",
+      "done": false
+    },
+    {
+      "id": "nc-11",
+      "nucleo": "NÚCLEO 1: Tronco Comum Convergente (ABDI + TJPB + TJRN | 22/10 a 22/11/2026)",
+      "cat": "Segurança e Governança",
+      "title": "ITIL 4 (incidentes, problemas, mudanças, nível de serviço) e COBIT 2019 (EDM/APO/BAI/DSS/MEA)",
+      "done": false
+    },
+    {
+      "id": "nc-12",
+      "nucleo": "NÚCLEO 1: Tronco Comum Convergente (ABDI + TJPB + TJRN | 22/10 a 22/11/2026)",
+      "cat": "Segurança e Governança",
+      "title": "Gestão de ativos/configurações/licenças, riscos, contratos/fornecedores de TIC e conceitos de DevOps e IaC",
+      "done": false
+    },
+    {
+      "id": "nc-13",
+      "nucleo": "NÚCLEO 2: Especificidades Exclusivas ABDI (23/11 a 20/12/2026)",
+      "cat": "Institucional ABDI (20 qts)",
+      "title": "Natureza/finalidade dos Serviços Sociais Autônomos; Lei nº 11.080/2004 (c/ Lei nº 14.440/2022)",
+      "done": false
+    },
+    {
+      "id": "nc-14",
+      "nucleo": "NÚCLEO 2: Especificidades Exclusivas ABDI (23/11 a 20/12/2026)",
+      "cat": "Institucional ABDI (20 qts)",
+      "title": "Decreto nº 5.352/2005: autonomia, contrato de gestão, supervisão, fiscalização e prestação de contas",
+      "done": false
+    },
+    {
+      "id": "nc-15",
+      "nucleo": "NÚCLEO 2: Especificidades Exclusivas ABDI (23/11 a 20/12/2026)",
+      "cat": "Institucional ABDI (20 qts)",
+      "title": "Estatuto Social da ABDI (Conselho Deliberativo, Conselho Fiscal e Diretoria-Executiva)",
+      "done": false
+    },
+    {
+      "id": "nc-16",
+      "nucleo": "NÚCLEO 2: Especificidades Exclusivas ABDI (23/11 a 20/12/2026)",
+      "cat": "Institucional ABDI (20 qts)",
+      "title": "Regulamento de Licitações e Contratos da ABDI (modalidades, dispensa, inexigibilidade, contratos, sanções)",
+      "done": false
+    },
+    {
+      "id": "nc-17",
+      "nucleo": "NÚCLEO 2: Especificidades Exclusivas ABDI (23/11 a 20/12/2026)",
+      "cat": "Institucional ABDI (20 qts)",
+      "title": "Regulamento de Convênios da ABDI",
+      "done": false
+    },
+    {
+      "id": "nc-18",
+      "nucleo": "NÚCLEO 2: Especificidades Exclusivas ABDI (23/11 a 20/12/2026)",
+      "cat": "Institucional ABDI (20 qts)",
+      "title": "Regulamento de Ética e Conduta (Res. CD nº 004/2022, arts. 1º a 25) e Planejamento Estratégico 2024–2029 (Res. CD nº 008/2023)",
+      "done": false
+    },
+    {
+      "id": "nc-19",
+      "nucleo": "NÚCLEO 2: Especificidades Exclusivas ABDI (23/11 a 20/12/2026)",
+      "cat": "Informática e Leis (6 qts)",
+      "title": "Windows 10/11, Microsoft 365 (Word, Excel, PowerPoint, Outlook) e LibreOffice 7.x+ (Writer, Calc, Impress)",
+      "done": false
+    },
+    {
+      "id": "nc-20",
+      "nucleo": "NÚCLEO 2: Especificidades Exclusivas ABDI (23/11 a 20/12/2026)",
+      "cat": "Informática e Leis (6 qts)",
+      "title": "Navegadores, correio eletrônico, IA no ambiente de trabalho e acessibilidade/atalhos",
+      "done": false
+    },
+    {
+      "id": "nc-21",
+      "nucleo": "NÚCLEO 2: Especificidades Exclusivas ABDI (23/11 a 20/12/2026)",
+      "cat": "Informática e Leis (6 qts)",
+      "title": "LAI (Lei 12.527/11), Lei 12.737/12 (Delitos Informáticos) e Marco Civil da Internet (Lei 12.965/14)",
+      "done": false
+    },
+    {
+      "id": "nc-22",
+      "nucleo": "NÚCLEO 2: Especificidades Exclusivas ABDI (23/11 a 20/12/2026)",
+      "cat": "Suporte Técnico",
+      "title": "Atendimento a usuários, gerenciamento remoto e central de serviços",
+      "done": false
+    },
+    {
+      "id": "nc-23",
+      "nucleo": "NÚCLEO 3: Engenharia Avançada + Judiciário — TJPB & TJRN (21/12/2026 a 24/01/2027)",
+      "cat": "Normas CNJ e Judiciário",
+      "title": "PJe, PDPJ-Br, MoReq-Jus, RDC-Arq e PDTI TJPB 2024–2026",
+      "done": false
+    },
+    {
+      "id": "nc-24",
+      "nucleo": "NÚCLEO 3: Engenharia Avançada + Judiciário — TJPB & TJRN (21/12/2026 a 24/01/2027)",
+      "cat": "Normas CNJ e Judiciário",
+      "title": "Resoluções CNJ nº 370/2021 (ENTIC-JUD), 396/2021 (ENSEC-PJ + Port. 162/21), 468/2022 (Contratações TIC), 522/2023 e 615/2025 (IA)",
+      "done": false
+    },
+    {
+      "id": "nc-25",
+      "nucleo": "NÚCLEO 3: Engenharia Avançada + Judiciário — TJPB & TJRN (21/12/2026 a 24/01/2027)",
+      "cat": "Banco de Dados Avançado",
+      "title": "Modelagem, PostgreSQL/Oracle/MySQL/SQL Server, SQL ANSI (DDL/DML/DCL/TCL, joins, CTEs, views), ACID, isolamento, locks/deadlocks, PITR e Query Tuning",
+      "done": false
+    },
+    {
+      "id": "nc-26",
+      "nucleo": "NÚCLEO 3: Engenharia Avançada + Judiciário — TJPB & TJRN (21/12/2026 a 24/01/2027)",
+      "cat": "NoSQL, Dados e IA",
+      "title": "MongoDB, Redis, Elasticsearch/OpenSearch, DAMA-DMBOK, higienização/qualidade de dados, BI e fundamentos de IA/ML/IA Generativa",
+      "done": false
+    },
+    {
+      "id": "nc-27",
+      "nucleo": "NÚCLEO 3: Engenharia Avançada + Judiciário — TJPB & TJRN (21/12/2026 a 24/01/2027)",
+      "cat": "DevOps, IaC e SRE",
+      "title": "Terraform (providers, modules, state), Ansible (inventories, playbooks, roles), Gitflow/Trunk-Based, GitOps, CI/CD e SRE (SLIs/SLOs/Error Budget)",
+      "done": false
+    },
+    {
+      "id": "nc-28",
+      "nucleo": "NÚCLEO 3: Engenharia Avançada + Judiciário — TJPB & TJRN (21/12/2026 a 24/01/2027)",
+      "cat": "Virtualização Avançada e K8s",
+      "title": "VMware (vMotion, Storage vMotion, DRS, HA, FT, vDS), Hyper-V, K8s (Pods, Deployments, Ingress, RBAC, Network Policies, Rancher, OpenShift) e Service Mesh",
+      "done": false
+    },
+    {
+      "id": "nc-29",
+      "nucleo": "NÚCLEO 3: Engenharia Avançada + Judiciário — TJPB & TJRN (21/12/2026 a 24/01/2027)",
+      "cat": "SecOps e Zero Trust",
+      "title": "Zero Trust (ZTNA/microssegmentação), NGFW, WAF/WAAP, 802.1X, SAML 2.0/OAuth 2.0/OIDC/JWT, PAM, SIEM/SOC, EDR/NDR/XDR, MITRE ATT&CK, SOAR e CVE/CVSS/SBOM",
+      "done": false
+    },
+    {
+      "id": "nc-30",
+      "nucleo": "NÚCLEO 3: Engenharia Avançada + Judiciário — TJPB & TJRN (21/12/2026 a 24/01/2027)",
+      "cat": "Redes Avançadas e Observabilidade",
+      "title": "IPv6 (SLAAC, NDP, RA Guard, SEND, NAT64/DNS64), OSPF/BGP, SD-WAN, NGINX/HAProxy, DNSSEC, SAN/NAS/NVMe-oF, Ransomware (backup imutável/air gap), Zabbix/Prometheus/Grafana e ELK",
+      "done": false
+    },
+    {
+      "id": "nc-31",
+      "nucleo": "NÚCLEO 3: Engenharia Avançada + Judiciário — TJPB & TJRN (21/12/2026 a 24/01/2027)",
+      "cat": "Normas ISO/NIST e Eng. Software",
+      "title": "ISO 27001, 27002, 27005 e 27701, NIST CSF, CIS Controls, OWASP Top 10 + Scrum, Kanban, Requisitos e Testes de Software",
+      "done": false
+    },
+    {
+      "id": "nc-32",
+      "nucleo": "NÚCLEO 3: Engenharia Avançada + Judiciário — TJPB & TJRN (21/12/2026 a 24/01/2027)",
+      "cat": "Matemática, Estatística e Redação",
+      "title": "Análise combinatória, probabilidade, estatística descritiva, conjuntos, razões/proporções, regra de 3, %, juros, equações, funções, sequências + Redação Oficial (Item 6.5) e Discursiva (30 linhas)",
+      "done": false
+    }
+  ],
+  "grades": [
+    {
+      "id": "gr-01",
+      "fase": "Fase 1: Tronco Comum (29/10 a 22/11/2026)",
+      "dia": "Hoje (Qui 29/10)",
+      "horario": "17h30 – 19h30",
+      "title": "Redes Convergente: Modelos OSI e TCP/IP, Endereçamento IPv4 e IPv6, Roteamento e VLANs",
+      "meta": "30 questões FGV (Execução Pura + Passo 3 nos erros)",
+      "peso": "ALTO",
+      "done": false
+    },
+    {
+      "id": "gr-02",
+      "fase": "Fase 1: Tronco Comum (29/10 a 22/11/2026)",
+      "dia": "Hoje (Qui 29/10)",
+      "horario": "19h45 – 21h15",
+      "title": "Governança Convergente: COBIT 2019 (Princípios, Componentes e Objetivos EDM/APO/BAI/DSS/MEA)",
+      "meta": "25 questões FGV + tabela de domínios",
+      "peso": "ALTO",
+      "done": false
+    },
+    {
+      "id": "gr-03",
+      "fase": "Fase 1: Tronco Comum (29/10 a 22/11/2026)",
+      "dia": "Hoje (Qui 29/10)",
+      "horario": "21h30 – 23h00",
+      "title": "RLM Convergente: Lógica Sentencial (Proposições, Conectivos, Tabelas-Verdade e Equivalências)",
+      "meta": "20 questões exclusivas FGV dissecadas",
+      "peso": "CRITICO",
+      "done": false
+    },
+    {
+      "id": "gr-04",
+      "fase": "Fase 1: Tronco Comum (29/10 a 22/11/2026)",
+      "dia": "Segunda-feira",
+      "horario": "17h30 – 19h00",
+      "title": "Sistemas Operacionais: Administração Windows Server e Linux, instalação, usuários, permissões e serviços",
+      "meta": "25 questões FGV/Cebraspe no TEC",
+      "peso": "ALTO",
+      "done": false
+    },
+    {
+      "id": "gr-05",
+      "fase": "Fase 1: Tronco Comum (29/10 a 22/11/2026)",
+      "dia": "Segunda-feira",
+      "horario": "19h15 – 20h45",
+      "title": "Diretório e Scripts: Active Directory (AD DS), GPO, DNS, DHCP e automação em PowerShell e Shell/Bash",
+      "meta": "25 questões FGV no TEC",
+      "peso": "ALTO",
+      "done": false
+    },
+    {
+      "id": "gr-06",
+      "fase": "Fase 1: Tronco Comum (29/10 a 22/11/2026)",
+      "dia": "Segunda-feira",
+      "horario": "21h15 – 23h00",
+      "title": "Língua Portuguesa FGV: Compreensão e interpretação de textos, tipos/gêneros textuais e coesão/conectores",
+      "meta": "20 questões FGV (2024–2026)",
+      "peso": "CRITICO",
+      "done": false
+    },
+    {
+      "id": "gr-07",
+      "fase": "Fase 1: Tronco Comum (29/10 a 22/11/2026)",
+      "dia": "Terça-feira",
+      "horario": "17h30 – 19h00",
+      "title": "Infra, Virtualização e Contêineres: Servidores, storage, hipervisores, VMs, alta disponibilidade e contêineres",
+      "meta": "25 questões FGV no TEC",
+      "peso": "ALTO",
+      "done": false
+    },
+    {
+      "id": "gr-08",
+      "fase": "Fase 1: Tronco Comum (29/10 a 22/11/2026)",
+      "dia": "Terça-feira",
+      "horario": "19h15 – 20h45",
+      "title": "Computação em Nuvem: Modelos IaaS, PaaS e SaaS, segurança em nuvem e planejamento de capacidade/desempenho",
+      "meta": "25 questões FGV no TEC",
+      "peso": "ALTO",
+      "done": false
+    },
+    {
+      "id": "gr-09",
+      "fase": "Fase 1: Tronco Comum (29/10 a 22/11/2026)",
+      "dia": "Terça-feira",
+      "horario": "21h15 – 23h00",
+      "title": "Raciocínio Lógico FGV: Diagramas lógicos, lógica de 1ª ordem (quantificadores) e lógica de argumentação",
+      "meta": "20 questões exclusivas FGV",
+      "peso": "CRITICO",
+      "done": false
+    },
+    {
+      "id": "gr-10",
+      "fase": "Fase 1: Tronco Comum (29/10 a 22/11/2026)",
+      "dia": "Quarta-feira",
+      "horario": "17h30 – 19h00",
+      "title": "Redes e Perímetro: LAN, WAN, VPN (IPSec/SSL), switches, roteadores, firewalls, Wi-Fi e diagnóstico de redes",
+      "meta": "25 questões FGV no TEC",
+      "peso": "ALTO",
+      "done": false
+    },
+    {
+      "id": "gr-11",
+      "fase": "Fase 1: Tronco Comum (29/10 a 22/11/2026)",
+      "dia": "Quarta-feira",
+      "horario": "19h15 – 20h45",
+      "title": "Segurança e Continuidade: Controle de acesso/identidades, criptografia, PKI, backup/restore, DRP e contingência",
+      "meta": "25 questões FGV no TEC",
+      "peso": "ALTO",
+      "done": false
+    },
+    {
+      "id": "gr-12",
+      "fase": "Fase 1: Tronco Comum (29/10 a 22/11/2026)",
+      "dia": "Quarta-feira",
+      "horario": "21h15 – 23h00",
+      "title": "Língua Portuguesa FGV: Morfossintaxe, coordenação/subordinação, pontuação, concordância, regência, crase e reescrita",
+      "meta": "20 questões FGV (2024–2026)",
+      "peso": "CRITICO",
+      "done": false
+    },
+    {
+      "id": "gr-13",
+      "fase": "Fase 1: Tronco Comum (29/10 a 22/11/2026)",
+      "dia": "Quinta-feira",
+      "horario": "17h30 – 19h00",
+      "title": "Governança e Gestão de Serviços: COBIT 2019, ITIL 4 (incidentes, problemas, mudanças, SLA), riscos e contratos de TIC",
+      "meta": "25 questões FGV no TEC",
+      "peso": "ALTO",
+      "done": false
+    },
+    {
+      "id": "gr-14",
+      "fase": "Fase 1: Tronco Comum (29/10 a 22/11/2026)",
+      "dia": "Quinta-feira",
+      "horario": "19h15 – 20h45",
+      "title": "Automação, Ativos e LGPD: Conceitos de DevOps e IaC, gestão de ativos/configurações/licenças e Lei nº 13.709/2018 (LGPD)",
+      "meta": "25 questões FGV no TEC",
+      "peso": "ALTO",
+      "done": false
+    },
+    {
+      "id": "gr-15",
+      "fase": "Fase 1: Tronco Comum (29/10 a 22/11/2026)",
+      "dia": "Quinta-feira",
+      "horario": "21h15 – 23h00",
+      "title": "Raciocínio Lógico FGV: Problemas aritméticos, geométricos e matriciais",
+      "meta": "20 questões exclusivas FGV",
+      "peso": "CRITICO",
+      "done": false
+    },
+    {
+      "id": "gr-16",
+      "fase": "Fase 2: Reta Final ABDI (23/11 a 20/12/2026)",
+      "dia": "Segunda-feira",
+      "horario": "17h30 – 19h15",
+      "title": "Institucional ABDI (Bloco 1): Serviços Sociais Autônomos; Lei nº 11.080/2004 (c/ Lei nº 14.440/22) e Decreto nº 5.352/2005",
+      "meta": "Leitura seca + NotebookLM + 20 questões",
+      "peso": "CRITICO",
+      "done": false
+    },
+    {
+      "id": "gr-17",
+      "fase": "Fase 2: Reta Final ABDI (23/11 a 20/12/2026)",
+      "dia": "Segunda-feira",
+      "horario": "19h30 – 21h00",
+      "title": "Manutenção TI + Suporte ABDI: Windows Server/Linux, AD, DNS, DHCP, PowerShell/Bash + Suporte a usuários",
+      "meta": "25 questões FGV no TEC",
+      "peso": "ALTO",
+      "done": false
+    },
+    {
+      "id": "gr-18",
+      "fase": "Fase 2: Reta Final ABDI (23/11 a 20/12/2026)",
+      "dia": "Segunda-feira",
+      "horario": "21h30 – 23h00",
+      "title": "Língua Portuguesa FGV: Baterias de provas FGV 2025–2026 (Interpretação, Coesão e Reescrita)",
+      "meta": "20 questões FGV no TEC",
+      "peso": "ALTO",
+      "done": false
+    },
+    {
+      "id": "gr-19",
+      "fase": "Fase 2: Reta Final ABDI (23/11 a 20/12/2026)",
+      "dia": "Terça-feira",
+      "horario": "17h30 – 19h15",
+      "title": "Institucional ABDI (Bloco 2): Estatuto Social da ABDI (natureza, competências, Conselhos, Diretoria, patrimônio e receitas)",
+      "meta": "Mapeamento de órgãos/quóruns + 20 questões",
+      "peso": "CRITICO",
+      "done": false
+    },
+    {
+      "id": "gr-20",
+      "fase": "Fase 2: Reta Final ABDI (23/11 a 20/12/2026)",
+      "dia": "Terça-feira",
+      "horario": "19h30 – 21h00",
+      "title": "Noções de Informática e Leis (ABDI): Windows 10/11, M365, LibreOffice 7.x+, navegadores, IA, LAI, Lei 12.737/12 e Marco Civil",
+      "meta": "30 questões FGV no TEC",
+      "peso": "ALTO",
+      "done": false
+    },
+    {
+      "id": "gr-21",
+      "fase": "Fase 2: Reta Final ABDI (23/11 a 20/12/2026)",
+      "dia": "Terça-feira",
+      "horario": "21h30 – 23h00",
+      "title": "Raciocínio Lógico FGV: Bateria mista (Lógica Sentencial, 1ª Ordem e Problemas Aritméticos/Matriciais)",
+      "meta": "20 questões exclusivas FGV",
+      "peso": "CRITICO",
+      "done": false
+    },
+    {
+      "id": "gr-22",
+      "fase": "Fase 2: Reta Final ABDI (23/11 a 20/12/2026)",
+      "dia": "Quarta-feira",
+      "horario": "17h30 – 19h15",
+      "title": "Institucional ABDI (Bloco 3): Regulamento de Licitações e Contratos da ABDI e Regulamento de Convênios",
+      "meta": "Leitura comparativa + 20 questões inéditas",
+      "peso": "CRITICO",
+      "done": false
+    },
+    {
+      "id": "gr-23",
+      "fase": "Fase 2: Reta Final ABDI (23/11 a 20/12/2026)",
+      "dia": "Quarta-feira",
+      "horario": "19h30 – 21h00",
+      "title": "Manutenção TI (ABDI/TJPB): Redes (OSI/TCP-IP, IPv4/IPv6, VLANs, VPN), Segurança, Criptografia, Backup/DRP e LGPD",
+      "meta": "25 questões FGV no TEC",
+      "peso": "ALTO",
+      "done": false
+    },
+    {
+      "id": "gr-24",
+      "fase": "Fase 2: Reta Final ABDI (23/11 a 20/12/2026)",
+      "dia": "Quarta-feira",
+      "horario": "21h30 – 23h00",
+      "title": "Língua Portuguesa FGV: Sintaxe do período, pontuação, concordância, regência e crase",
+      "meta": "20 questões FGV no TEC",
+      "peso": "ALTO",
+      "done": false
+    },
+    {
+      "id": "gr-25",
+      "fase": "Fase 2: Reta Final ABDI (23/11 a 20/12/2026)",
+      "dia": "Quinta-feira",
+      "horario": "17h30 – 19h15",
+      "title": "Institucional ABDI (Bloco 4): Regulamento de Ética e Conduta (Res. CD nº 004/2022) e Planejamento Estratégico 2024–2029",
+      "meta": "Leitura seca integral + 20 questões",
+      "peso": "CRITICO",
+      "done": false
+    },
+    {
+      "id": "gr-26",
+      "fase": "Fase 2: Reta Final ABDI (23/11 a 20/12/2026)",
+      "dia": "Quinta-feira",
+      "horario": "19h30 – 21h00",
+      "title": "Manutenção TI (ABDI/TJPB): Governança (ITIL 4, COBIT 2019, SLA, Ativos, Riscos, Contratos), Virtualização, Nuvem e DevOps/IaC",
+      "meta": "25 questões FGV no TEC",
+      "peso": "ALTO",
+      "done": false
+    },
+    {
+      "id": "gr-27",
+      "fase": "Fase 2: Reta Final ABDI (23/11 a 20/12/2026)",
+      "dia": "Quinta-feira",
+      "horario": "21h30 – 23h00",
+      "title": "Raciocínio Lógico FGV: Sprints cronometrados de 6 questões (formato exato da prova da ABDI)",
+      "meta": "3 baterias de 6 q (18 q FGV)",
+      "peso": "CRITICO",
+      "done": false
+    },
+    {
+      "id": "gr-28",
+      "fase": "Fase 2: Reta Final ABDI (23/11 a 20/12/2026)",
+      "dia": "Sexta-feira",
+      "horario": "14h00 – 15h30",
+      "title": "Revisão Acelerada Institucional ABDI: Giro nos grifos da Lei 11.080/04, Estatuto, Regulamentos e Código de Ética",
+      "meta": "25 flashcards/questões",
+      "peso": "CRITICO",
+      "done": false
+    },
+    {
+      "id": "gr-29",
+      "fase": "Fase 2: Reta Final ABDI (23/11 a 20/12/2026)",
+      "dia": "Sexta-feira",
+      "horario": "15h30 – 17h00",
+      "title": "Auditoria do Caderno de Erros da Semana (TI + Básico): Retrabalho de todos os erros de segunda a quinta",
+      "meta": "25 a 30 q (Trava às 17h00)",
+      "peso": "ALTO",
+      "done": false
+    },
+    {
+      "id": "gr-30",
+      "fase": "Fase 3: Engenharia TJPB & TJRN (21/12/26 a 24/01/27)",
+      "dia": "Segunda-feira",
+      "horario": "17h30 – 19h00",
+      "title": "Normas CNJ e Judiciário: PJe, PDPJ-Br, Resoluções CNJ 370, 396, 468, 522 e 615, MoReq-Jus, RDC-Arq e PDTI TJPB",
+      "meta": "Leitura seca + 25 questões de Tribunais",
+      "peso": "CRITICO",
+      "done": false
+    },
+    {
+      "id": "gr-31",
+      "fase": "Fase 3: Engenharia TJPB & TJRN (21/12/26 a 24/01/27)",
+      "dia": "Segunda-feira",
+      "horario": "19h15 – 20h45",
+      "title": "Banco de Dados Relacional e Admin: Modelagem, PostgreSQL/Oracle/MySQL/SQL Server, SQL ANSI, ACID, locks, PITR e Query Tuning",
+      "meta": "25 questões FGV de Banco de Dados",
+      "peso": "CRITICO",
+      "done": false
+    },
+    {
+      "id": "gr-32",
+      "fase": "Fase 3: Engenharia TJPB & TJRN (21/12/26 a 24/01/27)",
+      "dia": "Segunda-feira",
+      "horario": "21h15 – 23h00",
+      "title": "Matemática e Estatística FGV (Delta TJPB): Análise combinatória, probabilidade e estatística descritiva",
+      "meta": "20 questões exclusivas FGV",
+      "peso": "CRITICO",
+      "done": false
+    },
+    {
+      "id": "gr-33",
+      "fase": "Fase 3: Engenharia TJPB & TJRN (21/12/26 a 24/01/27)",
+      "dia": "Terça-feira",
+      "horario": "17h30 – 19h00",
+      "title": "DevOps, IaC e SRE Avançado: Terraform, Ansible, Gitflow/Trunk-Based, GitOps, CI/CD e SRE (SLIs/SLOs/Error Budget)",
+      "meta": "25 questões FGV/Cebraspe no TEC",
+      "peso": "ALTO",
+      "done": false
+    },
+    {
+      "id": "gr-34",
+      "fase": "Fase 3: Engenharia TJPB & TJRN (21/12/26 a 24/01/27)",
+      "dia": "Terça-feira",
+      "horario": "19h15 – 20h45",
+      "title": "Virtualização Avançada, K8s e Microsserviços: VMware, Hyper-V, K8s (Pods, Deployments, Ingress, RBAC, Rancher, OpenShift) e Service Mesh",
+      "meta": "25 questões FGV/Cebraspe no TEC",
+      "peso": "ALTO",
+      "done": false
+    },
+    {
+      "id": "gr-35",
+      "fase": "Fase 3: Engenharia TJPB & TJRN (21/12/26 a 24/01/27)",
+      "dia": "Terça-feira",
+      "horario": "21h15 – 23h00",
+      "title": "Português FGV + Redação Oficial: Item 6.5 (Redação Oficial) + Reescrita e Coesão FGV",
+      "meta": "20 questões FGV no TEC",
+      "peso": "ALTO",
+      "done": false
+    },
+    {
+      "id": "gr-36",
+      "fase": "Fase 3: Engenharia TJPB & TJRN (21/12/26 a 24/01/27)",
+      "dia": "Quarta-feira",
+      "horario": "17h30 – 19h00",
+      "title": "SecOps, Zero Trust e Identidades: Zero Trust, NGFW, WAF, 802.1X, SAML/OAuth/OIDC/JWT, PAM, SIEM/SOC, EDR/XDR, MITRE, SOAR e SBOM",
+      "meta": "25 questões FGV/Cebraspe no TEC",
+      "peso": "CRITICO",
+      "done": false
+    },
+    {
+      "id": "gr-37",
+      "fase": "Fase 3: Engenharia TJPB & TJRN (21/12/26 a 24/01/27)",
+      "dia": "Quarta-feira",
+      "horario": "19h15 – 20h45",
+      "title": "NoSQL, Governança de Dados e IA: MongoDB, Redis, Elasticsearch, DAMA-DMBOK, qualidade de dados, BI e IA/ML/IA Generativa",
+      "meta": "25 questões FGV no TEC",
+      "peso": "ALTO",
+      "done": false
+    },
+    {
+      "id": "gr-38",
+      "fase": "Fase 3: Engenharia TJPB & TJRN (21/12/26 a 24/01/27)",
+      "dia": "Quarta-feira",
+      "horario": "21h15 – 23h00",
+      "title": "Matemática FGV (Delta TJPB): Conjuntos, razões/proporções, regra de 3, %, juros simples/compostos, equações, funções e sequências",
+      "meta": "20 questões exclusivas FGV",
+      "peso": "CRITICO",
+      "done": false
+    },
+    {
+      "id": "gr-39",
+      "fase": "Fase 3: Engenharia TJPB & TJRN (21/12/26 a 24/01/27)",
+      "dia": "Quinta-feira",
+      "horario": "17h30 – 19h00",
+      "title": "Redes Avançadas, Storage e Observabilidade: IPv6 Avançado, OSPF/BGP, SD-WAN, NGINX/HAProxy, DNSSEC, SAN/NAS, Ransomware, Zabbix/Prometheus/ELK",
+      "meta": "25 questões FGV/Cebraspe no TEC",
+      "peso": "ALTO",
+      "done": false
+    },
+    {
+      "id": "gr-40",
+      "fase": "Fase 3: Engenharia TJPB & TJRN (21/12/26 a 24/01/27)",
+      "dia": "Quinta-feira",
+      "horario": "19h15 – 20h45",
+      "title": "Normas ISO/NIST e Eng. de Software (Comum): ISO 27001, 27002, 27005 e 27701, NIST CSF, CIS Controls, OWASP Top 10 + Scrum, Kanban, Requisitos e Testes",
+      "meta": "25 questões FGV no TEC",
+      "peso": "ALTO",
+      "done": false
+    }
+  ]
+};
 
     // =========================================================================
     // DATABASE ENGINE (IndexedDB + LocalStorage + SQLite Local API + GitHub API)
     // =========================================================================
-    const DB_KEY = "DOSSIE_V44_DB_STATE_2910";
+    const DB_KEY = "DOSSIE_V45_REPROGRAMADO_2910";
     const TODAY_ISO = new Date().toISOString().slice(0, 10); // e.g., "2026-10-28"
     let STATE = JSON.parse(JSON.stringify(INITIAL_DB));
     let currentStatusFilter = "all";
@@ -1122,12 +2725,15 @@
     }
 
     async function loadState() {
+      // Clear legacy cache from before 29/10 reprogramming
+      localStorage.removeItem("DOSSIE_V44_DB_STATE");
+      localStorage.removeItem("DOSSIE_V44_DB_STATE_2910");
       // 1. Try Local SQLite Backend API if running via python server.py
       try {
         const res = await fetch("/api/state", { cache: "no-store" });
         if (res.ok) {
           const serverData = await res.json();
-          if (serverData && serverData.anexoA) {
+          if (serverData && serverData.version === 45 && serverData.anexoA) {
             STATE = serverData;
             localStorage.setItem(DB_KEY, JSON.stringify(STATE));
             setSyncStatus("Conectado ao Banco SQLite Local (estudos.db)", false);
@@ -1152,7 +2758,7 @@
         const res = await fetch("./data/progress_db.json", { cache: "no-store" });
         if (res.ok) {
           const remoteData = await res.json();
-          if (!saved && remoteData && remoteData.anexoA) {
+          if (!saved && remoteData && remoteData.version === 45 && remoteData.anexoA) {
             STATE = remoteData;
             localStorage.setItem(DB_KEY, JSON.stringify(STATE));
           }
@@ -1482,7 +3088,7 @@
       });
 
       document.getElementById("kpiQuestionsDone").textContent = qResolved;
-      const qPct = Math.min(100, Math.round((qResolved / 595) * 100));
+      const qPct = Math.min(100, Math.round((qResolved / 1375) * 100));
       document.getElementById("kpiQuestionsBar").style.width = `${qPct}%`;
 
       const accPct = qTargetWithScore > 0 ? ((totalAcertos / qTargetWithScore) * 100).toFixed(1) : "0.0";
